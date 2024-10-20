@@ -1,2 +1,4 @@
 .venv/
-yes/h
+*.sqlite3
+*.pyc
+__pycache__
