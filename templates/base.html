@@ -15,7 +15,7 @@
         {% endblock title %}
 
         {% block core_css %}
-        <link rel="stylesheet" href="../static/css/style.css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
         {% endblock core_css %}
         {% block extra_css %}{% endblock extra_css %}
 
@@ -27,6 +27,9 @@
     <body>
         <header>
             <!-- Nav element to be placed here -->
+            <nav class="navbar">
+                <div class=""></div>
+            </nav>
         </header>
         {% if messages %}
         <div class="message-container">
