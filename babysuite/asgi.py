@@ -1,5 +1,5 @@
 """
-ASGI config for homelab project.
+ASGI config for babysuite project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
