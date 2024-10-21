@@ -2,16 +2,53 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {% block meta %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Baby-suite</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% endblock meta %}
+        {% block extra_meta %}{% endblock extra_meta %}
+
+        {% block title %}
+        <title>Baby-suite{% block extra_title %}{% endblock extra_title %}</title>
+        {% endblock title %}
+
+        {% block core_css %}
         <link rel="stylesheet" href="">
+        {% endblock core_css %}
+        {% block extra_css %}{% endblock extra_css %}
+
+        {% block core_js %}
         <script src="" async defer></script>
+        {% endblock core_js %}
+        {% block extra_js %}{% endblock extra_js %}
     </head>
     <body>
+        <header>
+            <!-- Nav element to be placed here -->
+        </header>
+        {% if messages %}
+        <div class="message-container">
+            <!-- "Flash messages" to be displayed here -->
+        </div>
+        {% endif %}
+        {% block page_header %}
+
+        {% comment %} For pages to display their own header{% endcomment %}
+
+        {% endblock page_header %}
+
+        {% block content %}
         
+        {% comment %} main content for each page {% endcomment %}
         
+        {% endblock content %}
+
+        {% block post_load_js %}
+        
+        {% comment %} Files to be loaded after the page has loaded in {% endcomment %}
+        
+        {% endblock post_load_js %}
     </body>
 </html>
