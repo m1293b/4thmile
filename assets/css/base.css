@@ -5,5 +5,5 @@
 /* npx tailwindcss -i ./static/css/base.css -o ./static/css/style.css --watch */
 
 .navbar {
-    @apply flex fixed top-0 bg-black w-[100dvw] h-24;
+    @apply flex fixed top-0 bg-black w-[100dvw] h-10;
 }
