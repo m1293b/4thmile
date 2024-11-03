@@ -745,12 +745,28 @@ video {
 
 /* npx tailwindcss -i ./static/css/base.css -o ./static/css/style.css --watch */
 
+/* 
+colours I used for this project:
+"white":
+#fcfefe
+
+girls:
+#ffcbcb
+#ffb5b5
+
+boys:
+#407088
+#132743
+*/
+
 .navbar {
   position: fixed;
   top: 0px;
   display: flex;
   height: 6rem;
   width: 100dvw;
+  border-bottom-right-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }

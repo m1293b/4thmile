@@ -13,4 +13,3 @@ requests==2.32.3
 requests-oauthlib==2.0.0
 sqlparse==0.5.1
 urllib3==2.2.3
-tailwindcss==3.4.14
