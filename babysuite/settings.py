@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.core.management.commands.runserver import Command as runserver
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,6 +28,9 @@ SECRET_KEY = 'django-insecure-zj1)py2s=b&le+=nmgnt&!ysvj^o6g%7p$8o@(fd*@8+li8k&1
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','babysuite.m1293b.com']
+
+runserver.default_port = "5000"
+runserver.default_addr = "116.203.63.16"
 
 
 # Application definition
