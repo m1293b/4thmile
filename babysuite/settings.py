@@ -30,7 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','babysuite.m1293b.com']
 
 runserver.default_port = "5000"
-runserver.default_addr = "116.203.63.16"
+runserver.default_addr = "116.203.63.16" # Update for 
 
 
 # Application definition
