@@ -27,10 +27,10 @@ SECRET_KEY = 'django-insecure-zj1)py2s=b&le+=nmgnt&!ysvj^o6g%7p$8o@(fd*@8+li8k&1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','babysuite.m1293b.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','babysuite.m1293b.com'] # Update before launching with your own domain
 
 runserver.default_port = "5000"
-runserver.default_addr = "116.203.63.16" # Update for 
+runserver.default_addr = "116.203.63.16" # Update before launching on a new server
 
 
 # Application definition
@@ -84,6 +84,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
+NPM_BIN_PATH = "/usr/bin/npm"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -94,6 +95,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "allauth.account.middleware.AccountMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = 'babysuite.urls'
