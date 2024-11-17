@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 /**
  * This is a minimal config.
  *
@@ -7,12 +8,14 @@
 
 module.exports = {
     content: [
+        '../../node_modules/**/*.{html,js,ts}',
+        "../../assets/**/*.{html,js,ts}",
         /**
          * HTML. Paths to Django template files that will contain Tailwind CSS classes.
          */
 
         /*  Templates within theme app (<tailwind_app_name>/templates), e.g. base.html. */
-        '../templates/**/*.html',
+        '../../templates/**/*.{html,js,ts}',
 
         /*
          * Main templates directory of the project (BASE_DIR/templates).
@@ -53,5 +56,6 @@ module.exports = {
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
+        require('tailwindcss-motion'),
     ],
 }
