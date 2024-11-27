@@ -3,21 +3,56 @@
 @tailwind utilities;
 
 /* npx tailwindcss -i ./static/css/base.css -o ./static/css/style.css --watch */
-
-/* 
-colours I used for this project:
-"white":
-#fcfefe
-
-girls:
-#ffcbcb
-#ffb5b5
-
-boys:
-#407088
-#132743
-*/
+/* python3 manage.py tailwind start */
 
 .navbar {
-    @apply flex fixed top-0 bg-black w-[100dvw] h-24 rounded-b-3xl;
+    @apply bg-white sticky top-0 z-50 transition-all duration-300 ease-in-out;
+}
+
+.navbar-container {
+    @apply container mx-auto px-4 flex flex-row items-center justify-between h-16;
+}
+
+.navbar-sticky {
+    @apply shadow-md;
+}
+
+.logo-container {
+    @apply flex-shrink-0 flex items-center space-x-2;
+}
+
+.logo {
+    @apply h-10 w-auto;
+}
+
+.brand-name {
+    @apply text-xl font-bold text-boys-dark hidden md:inline;
+}
+
+.nav-links {
+    @apply flex-grow flex justify-center items-center space-x-4 md:space-x-8;
+}
+
+.nav-link {
+    @apply text-boys-dark px-2 md:px-3 py-2 rounded-md transition-colors duration-300 hover:bg-girls-light text-sm md:text-base;
+}
+
+.nav-right {
+    @apply flex-shrink-0 flex items-center space-x-2 md:space-x-4;
+}
+
+.cart-icon {
+    @apply text-xl md:text-2xl text-boys-light;
+}
+
+.login-btn {
+    @apply bg-boys-light text-white px-2 md:px-4 py-1 md:py-2 rounded-md cursor-pointer transition-colors duration-300 hover:bg-boys-dark text-sm md:text-base;
+}
+
+:root {
+    --white: #fcfefe;
+    --girls-light: #ffcbcb;
+    --girls-dark: #ffb5b5;
+    --boys-light: #407088;
+    --boys-dark: #132743;
 }

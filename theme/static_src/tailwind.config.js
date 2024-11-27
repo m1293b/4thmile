@@ -45,7 +45,23 @@ module.exports = {
         // '../../**/*.py'
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+              white: 'var(--white)',
+              girls: {
+                light: 'var(--girls-light)',
+                dark: 'var(--girls-dark)',
+              },
+              boys: {
+                light: 'var(--boys-light)',
+                dark: 'var(--boys-dark)',
+              },
+            },
+            container: {
+                center: true,
+                padding: '1rem',
+              },
+        },
     },
     plugins: [
         /**
