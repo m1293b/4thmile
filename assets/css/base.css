@@ -18,11 +18,11 @@
 }
 
 .logo-container {
-    @apply flex items-center space-x-2 w-1/4;
+    @apply flex items-center;
 }
 
 .logo {
-    @apply h-10 w-auto;
+    @apply h-10 w-auto mr-2;
 }
 
 .brand-name {
@@ -30,23 +30,23 @@
 }
 
 .nav-links {
-    @apply flex items-center justify-center space-x-4 md:space-x-8 w-2/4;
+    @apply flex items-center justify-center space-x-4;
 }
 
 .nav-link {
-    @apply text-boys-dark px-2 md:px-3 py-2 rounded-md transition-colors duration-300 hover:bg-girls-light text-sm md:text-base whitespace-nowrap;
+    @apply text-boys-dark px-2 py-2 rounded-md transition-colors duration-300 hover:bg-girls-light text-sm whitespace-nowrap;
 }
 
 .nav-right {
-    @apply flex items-center justify-end space-x-2 md:space-x-4 w-1/4;
+    @apply flex items-center justify-end space-x-2;
 }
 
 .cart-icon {
-    @apply text-xl md:text-2xl text-boys-light;
+    @apply text-xl text-boys-light;
 }
 
 .login-btn {
-    @apply bg-boys-light text-white px-2 md:px-4 py-1 md:py-2 rounded-md cursor-pointer transition-colors duration-300 hover:bg-boys-dark text-sm md:text-base whitespace-nowrap;
+    @apply bg-boys-light text-white px-2 py-1 rounded-md cursor-pointer transition-colors duration-300 hover:bg-boys-dark text-sm whitespace-nowrap;
 }
 
 @media (max-width: 640px) {

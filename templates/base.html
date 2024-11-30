@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {% tailwind_css %}
+        <link rel="stylesheet" href="{% static '/css/style.css' %}">
         {% block meta %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +26,6 @@
         <script src="{% static 'js/script.js' %}" async defer></script>
         {% endblock core_js %}
         {% block extra_js %}{% endblock extra_js %}
-        {% tailwind_css %}
     </head>
     <body>
         <header>
