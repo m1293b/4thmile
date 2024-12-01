@@ -9,7 +9,7 @@
 module.exports = {
     content: [
         '../../node_modules/**/*.{html,js,ts}',
-        "../../assets/**/*.{html,js,ts}",
+        "../../assets/**/*.{html,js,ts,css}",
         /**
          * HTML. Paths to Django template files that will contain Tailwind CSS classes.
          */
