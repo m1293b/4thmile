@@ -13,10 +13,8 @@ import os
 from pathlib import Path
 from django.core.management.commands.runserver import Command as runserver
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -27,12 +25,10 @@ SECRET_KEY = 'django-insecure-zj1)py2s=b&le+=nmgnt&!ysvj^o6g%7p$8o@(fd*@8+li8k&1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','babysuite.m1293b.com'] # Update before launching with your own domain
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','babysuite.m1293b.com']
 
 runserver.default_port = "5000"
-runserver.default_addr = "116.203.63.16" # Update before launching on a new server
-
-
+runserver.default_addr = "116.203.63.16"
 # Application definition
 
 INSTALLED_APPS = [
@@ -110,7 +106,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request', # required by allauth
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -120,20 +116,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'babysuite.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'babysuitedb',
+        'USER': 'babyadmin',
+        'PASSWORD': 'Xtray.2024!!',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
+# The suggested edit to find the tableowner of django_migrations table in PostgreSQL
+# SELECT tableowner FROM pg_tables WHERE tablename = 'django_migrations';
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -150,10 +148,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -162,26 +156,16 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [ os.path.join(BASE_DIR,'static/') ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
 
