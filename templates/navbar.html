@@ -3,7 +3,7 @@
 <nav class="navbar">
     <div class="navbar-container">
         <div class="logo-container">
-            <img src="{% static 'images/logo.png' %}" alt="Baby Suite Logo" class="logo">
+            <img src="{% static 'assets/img/logo.png' %}" alt="Baby Suite Logo" class="logo">
             <span class="brand-name">Baby Suite</span>
         </div>
         <div class="nav-links">
@@ -16,6 +16,9 @@
             <a href="{% url 'cart' %}" class="cart-icon">🛒</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'profile' %}" class="login-btn">Profile</a>
+                {% if user.is_authenticated and user.is_superuser %}
+                <a href="{% url 'admin:index' %}" class="admin-btn">Admin</a>
+                {% endif %}
             {% else %}
                 <a href="{% url 'login' %}" class="login-btn">Login</a>
             {% endif %}

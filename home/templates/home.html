@@ -1,11 +1,59 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold text-boys-dark mb-4">Welcome to Baby Suite</h1>
-    <p class="text-lg text-boys-light mb-8">Find the best clothes and toys for your little ones!</p>
+<div class="container px-4 py-8 mx-auto">
+    <h1 class="mb-4 text-4xl font-bold text-boys-dark">Welcome to Baby Suite</h1>
+    <p class="mb-8 text-lg text-boys-light">Find the best clothes and toys for your little ones!</p>
     
     <!-- Add more content here -->
 
 </div>
+<div class="py-12 bg-boys-dark">
+    <div class="container px-4 mx-auto">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <div class="text-center">
+                <img src="/static/images/boy-clothes.jpg" alt="Boy Clothes" class="object-cover w-full h-48 mb-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-white">Boy Clothes</h3>
+            </div>
+            <div class="text-center">
+                <img src="/static/images/boy-toys.jpg" alt="Boy Toys" class="object-cover w-full h-48 mb-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-white">Boy Toys</h3>
+            </div>
+            <div class="text-center">
+                <img src="/static/images/christmas-gifts.jpg" alt="Christmas Gifts" class="object-cover w-full h-48 mb-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-white">Christmas Gifts</h3>
+            </div>
+            <div class="text-center">
+                <img src="/static/images/birthday-parties.jpg" alt="Birthday Parties" class="object-cover w-full h-48 mb-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-white">Birthday Parties</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="h-[10vh] bg-white"></div>
+
+<div class="py-12 bg-girls-light">
+    <div class="container px-4 mx-auto">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <div class="text-center">
+                <img src="/static/images/girl-clothes.jpg" alt="Girl Clothes" class="object-cover w-full h-48 mb-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-white">Clothes</h3>
+            </div>
+            <div class="text-center">
+                <img src="/static/images/girl-toys.jpg" alt="Girl Toys" class="object-cover w-full h-48 mb-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-white">Toys</h3>
+            </div>
+            <div class="text-center">
+                <img src="/static/images/girl-christmas-gifts.jpg" alt="Girl Christmas Gifts" class="object-cover w-full h-48 mb-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-white">Christmas Gifts</h3>
+            </div>
+            <div class="text-center">
+                <img src="/static/images/girl-birthday-parties.jpg" alt="Girl Birthday Parties" class="object-cover w-full h-48 mb-4 rounded-lg">
+                <h3 class="text-xl font-semibold text-white">Birthday Parties</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
