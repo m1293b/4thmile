@@ -1,59 +1,62 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container px-4 py-8 mx-auto">
-    <h1 class="mb-4 text-4xl font-bold text-boys-dark">Welcome to Baby Suite</h1>
-    <p class="mb-8 text-lg text-boys-light">Find the best clothes and toys for your little ones!</p>
+<div class="home-container">
+    <h1 class="home-title">Welcome to Baby Suite</h1>
+    <p class="home-subtitle">Find the best clothes and toys for your little ones!</p>
     
     <!-- Add more content here -->
 
 </div>
-<div class="py-12 bg-boys-dark">
-    <div class="container px-4 mx-auto">
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-            <div class="text-center">
-                <img src="/static/images/boy-clothes.jpg" alt="Boy Clothes" class="object-cover w-full h-48 mb-4 rounded-lg">
-                <h3 class="text-xl font-semibold text-white">Boy Clothes</h3>
+<div class="categories-section">
+    <div class="categories-container">
+        <div class="categories-grid">
+            <h3 class="categories-heading">Shop Baby Clothes</h3>
+            <!-- Baby Clothes Category cards -->
+            <div class="category-card">
+                <img src="/static/images/baby-onesies.jpg" alt="Baby Onesies" class="category-image">
+                <h3 class="category-title">Onesies</h3>
             </div>
-            <div class="text-center">
-                <img src="/static/images/boy-toys.jpg" alt="Boy Toys" class="object-cover w-full h-48 mb-4 rounded-lg">
-                <h3 class="text-xl font-semibold text-white">Boy Toys</h3>
+            <div class="category-card">
+                <img src="/static/images/baby-sleepwear.jpg" alt="Baby Sleepwear" class="category-image">
+                <h3 class="category-title">Sleepwear</h3>
             </div>
-            <div class="text-center">
-                <img src="/static/images/christmas-gifts.jpg" alt="Christmas Gifts" class="object-cover w-full h-48 mb-4 rounded-lg">
-                <h3 class="text-xl font-semibold text-white">Christmas Gifts</h3>
+            <div class="category-card">
+                <img src="/static/images/baby-outerwear.jpg" alt="Baby Outerwear" class="category-image">
+                <h3 class="category-title">Outerwear</h3>
             </div>
-            <div class="text-center">
-                <img src="/static/images/birthday-parties.jpg" alt="Birthday Parties" class="object-cover w-full h-48 mb-4 rounded-lg">
-                <h3 class="text-xl font-semibold text-white">Birthday Parties</h3>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="h-[10vh] bg-white"></div>
-
-<div class="py-12 bg-girls-light">
-    <div class="container px-4 mx-auto">
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-            <div class="text-center">
-                <img src="/static/images/girl-clothes.jpg" alt="Girl Clothes" class="object-cover w-full h-48 mb-4 rounded-lg">
-                <h3 class="text-xl font-semibold text-white">Clothes</h3>
-            </div>
-            <div class="text-center">
-                <img src="/static/images/girl-toys.jpg" alt="Girl Toys" class="object-cover w-full h-48 mb-4 rounded-lg">
-                <h3 class="text-xl font-semibold text-white">Toys</h3>
-            </div>
-            <div class="text-center">
-                <img src="/static/images/girl-christmas-gifts.jpg" alt="Girl Christmas Gifts" class="object-cover w-full h-48 mb-4 rounded-lg">
-                <h3 class="text-xl font-semibold text-white">Christmas Gifts</h3>
-            </div>
-            <div class="text-center">
-                <img src="/static/images/girl-birthday-parties.jpg" alt="Girl Birthday Parties" class="object-cover w-full h-48 mb-4 rounded-lg">
-                <h3 class="text-xl font-semibold text-white">Birthday Parties</h3>
+            <div class="category-card">
+                <img src="/static/images/baby-accessories.jpg" alt="Baby Accessories" class="category-image">
+                <h3 class="category-title">Accessories</h3>
             </div>
         </div>
     </div>
 </div>
 
+<div class="separator"></div>
+
+<div class="categories-section-light">
+    <div class="categories-container">
+        <div class="categories-grid">
+            <h3 class="categories-heading">Shop Baby Toys</h3>
+            <!-- Baby Toy Category cards -->
+            <div class="category-card">
+                <img src="/static/images/baby-rattles.jpg" alt="Baby Rattles" class="category-image">
+                <h3 class="category-title">Rattles</h3>
+            </div>
+            <div class="category-card">
+                <img src="/static/images/baby-teethers.jpg" alt="Baby Teethers" class="category-image">
+                <h3 class="category-title">Teethers</h3>
+            </div>
+            <div class="category-card">
+                <img src="/static/images/baby-plush-toys.jpg" alt="Baby Plush Toys" class="category-image">
+                <h3 class="category-title">Plush Toys</h3>
+            </div>
+            <div class="category-card">
+                <img src="/static/images/baby-mobiles.jpg" alt="Baby Mobiles" class="category-image">
+                <h3 class="category-title">Mobiles</h3>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
