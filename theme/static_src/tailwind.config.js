@@ -56,6 +56,10 @@ module.exports = {
                 light: 'var(--boys-light)',
                 dark: 'var(--boys-dark)',
               },
+              'theme-primary-light': 'var(--theme-primary-light)',
+              'theme-primary-dark': 'var(--theme-primary-dark)',
+              'theme-secondary-light': 'var(--theme-secondary-light)',
+              'theme-secondary-dark': 'var(--theme-secondary-dark)',
             },
             container: {
                 center: true,

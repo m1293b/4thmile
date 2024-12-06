@@ -5,8 +5,30 @@
 /* npx tailwindcss -i ./static/css/base.css -o ./static/css/style.css --watch */
 /* python3 manage.py tailwind start */
 
+:root {
+    --white: #fcfefe;
+    --primary-light: #407088;
+    --primary-dark: #132743;
+    --secondary-light: #ffcbcb;
+    --secondary-dark: #ffb5b5;
+}
+
+.theme-boys {
+    --theme-primary-light: var(--primary-light);
+    --theme-primary-dark: var(--primary-dark);
+    --theme-secondary-light: var(--secondary-light);
+    --theme-secondary-dark: var(--secondary-dark);
+}
+
+.theme-girls {
+    --theme-primary-light: var(--secondary-light);
+    --theme-primary-dark: var(--secondary-dark);
+    --theme-secondary-light: var(--primary-light);
+    --theme-secondary-dark: var(--primary-dark);
+}
+
 .navbar {
-    @apply bg-boys-dark sticky top-0 z-50 transition-all duration-300 ease-in-out w-full;
+    @apply bg-[var(--theme-primary-dark)] sticky top-0 z-50 transition-all duration-300 ease-in-out w-full;
 }
 
 .navbar-container {
@@ -64,11 +86,11 @@
 }
 
 .categories-section {
-    @apply bg-boys-dark py-12;
+    @apply bg-[var(--theme-primary-dark)] py-12;
 }
 
 .categories-section-light {
-    @apply bg-boys-light py-12;
+    @apply bg-[var(--theme-primary-light)] py-12;
 }
 
 .categories-container {
@@ -101,10 +123,6 @@
 
 /* Custom properties */
 
-:root {
-    --white: #fcfefe;
-    --girls-light: #ffcbcb;
-    --girls-dark: #ffb5b5;
-    --boys-light: #407088;
-    --boys-dark: #132743;
+.theme-toggle {
+    @apply bg-[var(--theme-secondary-light)] text-[var(--theme-primary-dark)] px-2 py-1 rounded-md cursor-pointer transition-colors duration-300 hover:bg-[var(--theme-secondary-dark)] hover:text-[var(--theme-primary-light)] text-sm whitespace-nowrap;
 }
