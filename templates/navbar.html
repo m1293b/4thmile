@@ -1,7 +1,6 @@
 {% load static %}
 
 <nav class="navbar">
-    <button id="theme-toggle" class="theme-toggle">Switch Theme</button>
     <div class="navbar-container">
         <div class="logo-container">
             <img src="{% static 'assets/img/logo.png' %}" alt="Baby Suite Logo" class="logo">
@@ -23,6 +22,9 @@
             {% else %}
                 <a href="{% url 'login' %}" class="login-btn">Login</a>
             {% endif %}
+            <button id="theme-toggle" class="theme-toggle" aria-label="Switch Theme">
+                <i class="fas fa-mars"></i>
+            </button>
         </div>
     </div>
 </nav>
