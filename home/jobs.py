@@ -24,7 +24,9 @@ def increment_purchases(product_id):
 
 def increment_views(product_id):
     """
-    Increment the number of views for the given Product.
+    Increment the number of views for the given Product. This number will be reset by funcition every 24 hours.
+    I am looking for ways to handle this task. Django-Q seems to do the job, but as this isn't a main part of the project,
+    I will try to implement this after I'm ready to submit.
 
     This is a measure to see how many times the product has been viewed.
     If this number is higher then a limit that is set by the admin, it will be displayed on the product's page.
