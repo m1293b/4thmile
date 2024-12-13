@@ -7,6 +7,7 @@ class SalesReport(models.Model):
     Represents a sales report in the database.
 
     Attributes:
+        report_id (AutoField): The unique identifier for the report.
         date (Date): The date the report is for.
         total_sales (Decimal): The total sales for the date.
         total_orders (PositiveIntegerField): The total number of orders for the date.
@@ -15,6 +16,7 @@ class SalesReport(models.Model):
     Returns:
         str: A string representation of the report.
     """
+    report_id = models.AutoField(primary_key=True)
     date = models.DateField()
     total_sales = models.DecimalField(max_digits=10, decimal_places=2)
     total_orders = models.PositiveIntegerField()

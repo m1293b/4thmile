@@ -9,6 +9,7 @@ class Payment(models.Model):
     Represents a payment in the database.
 
     Attributes:
+        payment_id (int): A unique identifier for the payment.
         order (Order): The order that this payment belongs to.
         stripe_charge_id (str): The Stripe charge ID associated with the payment.
         customer (Customer): The customer who made the payment.
@@ -21,6 +22,7 @@ class Payment(models.Model):
     Returns:
         str: A string representation of the payment.
     """
+    payment_id = models.AutoField(primary_key=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     stripe_charge_id = models.CharField(max_length=50)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)

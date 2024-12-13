@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -7,6 +8,7 @@ class Customer(models.Model):
     Represents a customer in the database.
 
     Attributes:
+        account_id (int): The customer's account ID.
         first_name (str): The customer's first name.
         last_name (str): The customer's last name.
         email (str): The customer's email address.
@@ -19,6 +21,8 @@ class Customer(models.Model):
     Returns:
         str: A string representation of the customer.
     """
+    account_id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     username = models.CharField(max_length=255)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)

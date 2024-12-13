@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+import stripe
 from pathlib import Path
 from django.core.management.commands.runserver import Command as runserver
 
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zj1)py2s=b&le+=nmgnt&!ysvj^o6g%7p$8o@(fd*@8+li8k&1'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,6 +33,17 @@ runserver.default_addr = "116.203.63.16"
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
+    'analytics',
+    'cart',
+    'inventory',
+    'notifications',
+    'orders',
+    'payments',
+    'products',
+    'promotions',
+    'reviews',
+    'shipping',
     'home',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -122,9 +134,9 @@ WSGI_APPLICATION = 'babysuite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'babysuitedb',
-        'USER': 'babyadmin',
-        'PASSWORD': 'Xtray.2024!!',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -147,6 +159,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+
+stripe.api_key = STRIPE_SECRET_KEY
 
 LANGUAGE_CODE = 'en-us'
 

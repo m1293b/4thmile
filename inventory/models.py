@@ -8,6 +8,7 @@ class Stock(models.Model):
     Represents a product's current stock level in the database.
 
     Attributes:
+        stock_id (int): A unique identifier for the stock object.
         product (Product): The product whose stock this object represents.
         quantity (int): The current number of available units of the product.
         updated_at (datetime): The date and time the stock was last updated.
@@ -15,7 +16,8 @@ class Stock(models.Model):
     Returns:
         str: A string representation of the stock, including the product name.
     """
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    stock_id = models.AutoField(primary_key=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_stock')
     quantity = models.PositiveIntegerField()
     updated_at = models.DateTimeField(auto_now=True)
     

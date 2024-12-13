@@ -8,6 +8,7 @@ class Notification(models.Model):
     Represents a notification in the database.
 
     Attributes:
+        notification_id (int): The unique id of the notification.
         user (User): The user the notification is for.
         message (str): The message of the notification.
         status (str): The status of the notification, e.g. 'read' or 'unread'.
@@ -16,6 +17,7 @@ class Notification(models.Model):
     Returns:
         str: A string representation of the notification.
     """
+    notification_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     message = models.TextField()
     status = models.CharField(max_length=10)  # e.g., 'read' or 'unread'

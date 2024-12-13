@@ -8,6 +8,7 @@ class Category(models.Model):
     Represents a product category in the database.
 
     Attributes:
+        category_id (int): A unique identifier for the category.
         name (str): The category's name.
         description (str): The category's description.
         created_at (datetime): The date and time the category was created.
@@ -16,6 +17,7 @@ class Category(models.Model):
     Returns:
         str: A string representation of the category.
     """
+    category_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -29,6 +31,7 @@ class Product(models.Model):
     Represents a product in the database.
 
     Attributes:
+        product_id (int): A unique identifier for the product.
         name (str): The product's name.
         description (str): The product's description.
         price (float): The product's price.
@@ -44,8 +47,8 @@ class Product(models.Model):
     Returns:
         str: A string representation of the product.
     """
-    
-    name = models.CharField(max_length=100)
+    product_id = models.AutoField(primary_key=True)
+    product = models.CharField(max_length=100)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
@@ -66,6 +69,7 @@ class ProductImage(models.Model):
     Represents a product image in the database.
 
     Attributes:
+        product_image_id (int): A unique identifier for the product image.
         product (Product): The product to which this image belongs.
         image (ImageField): The image file.
         alt_text (str): The alt text for the image.
@@ -74,6 +78,7 @@ class ProductImage(models.Model):
     Returns:
         str: A string representation of the product image.
     """
+    product_image_id = models.AutoField(primary_key=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='product_images/')
     alt_text = models.CharField(max_length=255, blank=True, null=True)

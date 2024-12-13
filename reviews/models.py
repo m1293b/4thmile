@@ -9,6 +9,7 @@ class Review(models.Model):
     Represents a review of a product in the database.
 
     Attributes:
+        review_id (int): A unique identifier for the review object.
         product (Product): The product being reviewed.
         user (User): The user who wrote the review.
         rating (int): The rating given by the user.
@@ -19,6 +20,7 @@ class Review(models.Model):
         str: A string representation of the review, including the product name,
         the user's username, the rating given, and the comment written.
     """
+    review_id = models.AutoField(primary_key=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.PositiveIntegerField()

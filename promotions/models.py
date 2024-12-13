@@ -7,6 +7,7 @@ class Discount(models.Model):
     Represents a discount in the database.
 
     Attributes:
+        promotion_id (int): A unique identifier for the discount.
         code (str): The unique discount code.
         percentage (float): The discount percentage.
         expiration_date (datetime): The date and time the discount expires.
@@ -16,6 +17,7 @@ class Discount(models.Model):
     Returns:
         str: A string representation of the discount.
     """
+    promotion_id = models.AutoField(primary_key=True)
     code = models.CharField(max_length=20, unique=True)
     percentage = models.DecimalField(max_digits=5, decimal_places=2)
     expiration_date = models.DateTimeField()

@@ -11,10 +11,12 @@ class Cart(models.Model):
     Represents a cart in the database.
 
     Attributes:
+        cart_id (int): A unique identifier for the cart.
         user (User): The user who owns the cart.
         created_at (datetime): The date and time the cart was created.
         updated_at (datetime): The date and time the cart was last updated.
     """
+    cart_id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

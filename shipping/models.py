@@ -8,6 +8,7 @@ class ShippingAddress(models.Model):
     Represents a shipping address in the database.
 
     Attributes:
+        shipping_address_id (int): A unique identifier for the shipping address.
         order (Order): The order that this shipping address belongs to.
         address_line_1 (str): The first line of the shipping address.
         address_line_2 (str, optional): The second line of the shipping address.
@@ -21,6 +22,7 @@ class ShippingAddress(models.Model):
     Returns:
         str: A string representation of the shipping address.
     """
+    shipping_address_id = models.AutoField(primary_key=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     address_line_1 = models.CharField(max_length=255)
     address_line_2 = models.CharField(max_length=255, blank=True, null=True)
@@ -38,6 +40,7 @@ class ShippingMethod(models.Model):
     Represents a shipping method in the database.
 
     Attributes:
+        shipping_method_id (int): A unique identifier for the shipping method.
         name (str): The name of the shipping method.
         price (float): The price of the shipping method.
         estimated_delivery_time (str): The estimated delivery time of the shipping method.
@@ -46,6 +49,7 @@ class ShippingMethod(models.Model):
     Returns:
         str: A string representation of the shipping method.
     """
+    shipping_method_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     estimated_delivery_time = models.CharField(max_length=100)
