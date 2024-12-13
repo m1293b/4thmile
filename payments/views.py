@@ -40,8 +40,8 @@ class StripeCheckoutView(View):
                     },
                 ],
                 mode='payment',
-                success_url='http://example.com/success',
-                cancel_url='http://example.com/cancel',
+                success_url='http://babysuite.m1293b.com/success',
+                cancel_url='http://babysuite.m1293b.com/cancel',
             )
 
             return redirect(checkout_session.url)
