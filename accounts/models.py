@@ -31,6 +31,9 @@ class Customer(models.Model):
     address = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    theme_preference = models.CharField(
+        max_length=255, choices=[('light', 'Light'), ('dark', 'Dark')]
+    )
     notes = models.TextField(blank=True)
 
     def __str__(self):

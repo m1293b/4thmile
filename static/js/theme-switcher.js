@@ -22,6 +22,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             localStorage.setItem('theme', 'boys');
             updateThemeIcon('boys');
         }
+        const logo = document.getElementById('logo');
+        if (document.body.classList.contains('theme-boys')) {
+            logo.src = "{% static 'assets/img/pink_logo.png' %}";
+        } else {
+            logo.src = "{% static 'assets/img/blue_logo.png' %}";
+        }
     });
 
     function updateThemeIcon(theme) {
@@ -33,4 +39,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
         console.log('Updated icon class:', themeIcon.className);
     }
+    
 });

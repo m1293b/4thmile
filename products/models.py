@@ -43,22 +43,28 @@ class Product(models.Model):
         smiles (int): The number of customers who have left a positive feedback (smile) for the product.
         purchases (int): The number of times the product has been purchased.
         views (int): The number of customers who have viewed the product in the last 24 hours.
+        sales (int): The number of times the product has been sold.
+        is_on_sale (bool): Indicates whether the product is currently on sale.
+        sale_price (float): The price of the product during a sale.
 
     Returns:
         str: A string representation of the product.
     """
     product_id = models.AutoField(primary_key=True)
-    product = models.CharField(max_length=100)
-    description = models.TextField()
+    product = models.CharField(max_length=100, default=999)
+    description = models.TextField(blank=False)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     notes = models.TextField(blank=True)
     smiles = models.IntegerField(default=0)
     purchases = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
+    sales = models.IntegerField(default=0)
+    is_on_sale = models.BooleanField(default=False)
+    sale_price = models.DecimalField(max_digits=10, decimal_places=2)
     
     def __str__(self):
         return self.name
@@ -80,7 +86,9 @@ class ProductImage(models.Model):
     """
     product_image_id = models.AutoField(primary_key=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='product_images/')
+    image = models.ImageField(upload_to='uploads/product_images/')
     alt_text = models.CharField(max_length=255, blank=True, null=True)
-    sales = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return super().__str__()
