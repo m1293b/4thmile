@@ -64,7 +64,7 @@ class Product(models.Model):
     views = models.IntegerField(default=0)
     sales = models.IntegerField(default=0)
     is_on_sale = models.BooleanField(default=False)
-    sale_price = models.DecimalField(max_digits=10, decimal_places=2)
+    sale_price = models.DecimalField(max_digits=10, decimal_places=2, default=999)
     
     def __str__(self):
         return self.name
