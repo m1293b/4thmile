@@ -60,7 +60,7 @@
 }
 
 .logo {
-    @apply w-auto h-10 mr-2;
+    @apply w-auto h-10 mr-2 rounded-[50%];
 }
 
 .brand-name {
@@ -68,7 +68,7 @@
 }
 
 .nav-links {
-    @apply flex items-center justify-center space-x-4;
+    @apply items-center justify-center space-x-4 hidden md:flex;
 }
 
 .nav-link {
@@ -84,7 +84,7 @@
 }
 
 .login-btn {
-    @apply text-white px-2 py-1 rounded-md cursor-pointer transition-colors duration-300 hover:bg-[var(--theme-primary-light)] text-sm md:text-lg whitespace-nowrap;
+    @apply text-white md:px-2 md:py-1 rounded-md cursor-pointer transition-colors duration-300 hover:bg-[var(--theme-primary-light)] text-sm md:text-lg whitespace-nowrap;
 }
 
 /* Home page styling */
