@@ -48,7 +48,7 @@
 }
 
 .navbar-container {
-    @apply container mx-auto px-4 flex flex-row items-center justify-between h-16 w-full;
+    @apply container flex flex-row items-center justify-between w-full h-16 px-4 mx-auto;
 }
 
 .navbar-sticky {
@@ -60,11 +60,11 @@
 }
 
 .logo {
-    @apply h-10 w-auto mr-2;
+    @apply w-auto h-10 mr-2;
 }
 
 .brand-name {
-    @apply text-xl font-bold text-white hidden sm:inline;
+    @apply hidden text-xl font-bold text-white sm:inline;
 }
 
 .nav-links {
@@ -90,7 +90,7 @@
 /* Home page styling */
 
 .home-container {
-    @apply container mx-auto px-4 py-4 sm:py-6 md:py-8;
+    @apply container px-4 py-4 mx-auto sm:py-6 md:py-8;
 }
 
 .home-title {
@@ -110,15 +110,15 @@
 }
 
 .categories-container {
-    @apply container mx-auto px-4;
+    @apply container px-4 mx-auto;
 }
 
 .categories-grid {
-    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8;
+    @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 md:gap-8;
 }
 
 .categories-heading {
-    @apply text-xl sm:text-2xl md:text-3xl font-semibold text-white mb-4 col-span-full;
+    @apply mb-4 text-xl font-semibold text-white sm:text-2xl md:text-3xl col-span-full;
 }
 
 .category-card {
@@ -126,13 +126,13 @@
 }
 
 .category-image {
-    @apply w-full h-36 sm:h-40 md:h-48 object-cover rounded-lg mb-2 sm:mb-3 md:mb-4;
+    @apply object-cover w-full mb-2 rounded-lg h-36 sm:h-40 md:h-48 sm:mb-3 md:mb-4;
 }
 
 .category-title {
-    @apply text-lg sm:text-xl md:text-2xl font-semibold text-white;
+    @apply text-lg font-semibold text-white sm:text-xl md:text-2xl;
 }
 
 .separator {
-    @apply bg-white py-4 sm:py-6 md:py-8;
+    @apply py-4 bg-white sm:py-6 md:py-8;
 }
