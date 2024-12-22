@@ -2,6 +2,10 @@
 
 <nav class="navbar">
     <div class="navbar-container">
+        <button id="hamburger-menu" class="hamburger-menu">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-chevron-down"></i>
+        </button>
         <div class="logo-container">
             <img src="{% static 'assets/img/blue_logo.png' %}" alt="Baby Suite Logo" class="logo">
             <span class="brand-name">Baby Suite</span>
@@ -11,6 +15,7 @@
             <a href="{% url 'baby_toys' %}" class="nav-link">Toys</a>
             <a href="{% url 'about' %}" class="nav-link">About</a>
             <a href="{% url 'contact' %}" class="nav-link">Contact</a>
+            <a href="{% url 'login' %}" class="hidden login-btn">Login</a>
         </div>
         <div class="nav-right">
             <a href="{% url 'cart' %}" class="cart-icon">🛒</a>
