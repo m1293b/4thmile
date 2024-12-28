@@ -6,6 +6,9 @@
  * https://unpkg.com/browse/tailwindcss@latest/stubs/defaultConfig.stub.js
  */
 
+// @ts-ignore
+const motion = require('tailwindcss-motion');
+
 module.exports = {
     content: [
         '../../node_modules/**/*.{html,js,ts}',
@@ -82,6 +85,6 @@ module.exports = {
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
-        require('tailwindcss-motion'),
+        motion,
     ],
 }

@@ -1,12 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
 
 /* npx tailwindcss -i ./static/css/base.css -o ./static/css/style.css --watch */
 /* python3 manage.py tailwind start */
 
 :root {
-    --white: #fcfefe;
+    --txt-light: #fcfefe;
+    --txt-dark: #132743;
     --primary-light: #407088;
     --primary-dark: #132743;
     --secondary-light: #ffcbcb;
@@ -14,6 +16,7 @@
 }
 
 .theme-boys {
+    @apply text-[var(--txt-light)];
     --theme-primary-light: var(--primary-light);
     --theme-primary-dark: var(--primary-dark);
     --theme-secondary-light: var(--secondary-light);
@@ -21,6 +24,7 @@
 }
 
 .theme-girls {
+    @apply text-[var(--txt-dark)];
     --theme-primary-light: var(--secondary-light);
     --theme-primary-dark: var(--secondary-dark);
     --theme-secondary-light: var(--primary-light);
@@ -29,30 +33,30 @@
 
 /* Theme toggle */
 
+body {
+    @apply text-[var(--txt-light)];
+}
+
 .theme-toggle {
-    @apply bg-[var(--theme-secondary-light)] text-[var(--theme-primary-dark)] px-2 py-1 rounded-md cursor-pointer transition-colors duration-300 text-xs sm:text-sm whitespace-nowrap;
+    @apply bg-[var(--theme-secondary-light)] text-[var(--theme-primary-dark)] px-2 py-1 rounded-md cursor-pointer transition-colors duration-300 text-xs sm:text-sm whitespace-nowrap order-3 md:order-4;
 }
 
 .theme-boys .theme-toggle:hover {
-    @apply bg-[var(--theme-secondary-dark)] text-[var(--white)];
+    @apply bg-[var(--theme-secondary-dark)] text-[var(--txt-light)];
 }
 
 .theme-girls .theme-toggle:hover {
-    @apply bg-[var(--theme-secondary-dark)] text-[var(--white)];
+    @apply bg-[var(--theme-secondary-dark)] text-[var(--txt-light)];
 }
 
 /* Navigation bar styling */
 
 .navbar {
-    @apply bg-[var(--theme-primary-dark)] sticky top-0 z-50 transition-all duration-300 ease-in-out w-full flex;
+    @apply bg-[var(--theme-primary-dark)] absolute top-0 transition-all duration-300 ease-in-out w-full flex shadow-xl z-10;
 }
 
 .navbar-container {
     @apply container flex flex-row items-center justify-between w-full h-16 px-4 mx-auto;
-}
-
-.navbar-sticky {
-    @apply shadow-md;
 }
 
 .logo-container {
@@ -64,15 +68,19 @@
 }
 
 .brand-name {
-    @apply hidden text-xl font-bold text-white sm:inline;
+    @apply hidden text-xl font-bold sm:inline;
 }
 
 .nav-links {
-    @apply absolute top-[60px] md:static items-center justify-center hidden space-x-0 space-y-2 md:space-x-4 md:flex order-1 md:order-2 bg-theme-secondary-dark;
+    @apply absolute grid opacity-0 grid-flow-row border rounded-md border-[var(--txt-light)] shadow-lg items-center justify-center space-x-0 space-y-4 py-2 bg-theme-primary-light ml-[2.5px] font-bold md:z-[2] md:font-medium sm:ml-0 md:bg-theme-primary-dark md:shadow-none transition-all duration-300 md:static md:space-x-4 md:space-y-0 md:py-0 md:grid md:grid-flow-col md:border-none order-1 md:order-2;
+}
+
+.nav-links-down {
+    @apply top-[64px] opacity-100 motion-preset-focus;
 }
 
 .nav-link {
-    @apply text-white text-sm sm:text-base px-2 py-1 rounded-md transition-colors duration-300 hover:bg-[var(--theme-primary-light)];
+    @apply text-sm sm:text-base justify-self-center px-[11px] py-1 rounded-md transition-colors duration-75 hover:bg-[var(--theme-primary-light)];
 }
 
 .nav-right {
@@ -80,17 +88,17 @@
 }
 
 .cart-icon {
-    @apply text-xl p-1 text-white rounded-md transition-colors duration-300 hover:bg-[var(--theme-primary-light)];
+    @apply text-xl p-1 rounded-md transition-colors duration-300 hover:bg-[var(--theme-primary-light)];
 }
 
 .login-btn {
-    @apply text-white md:px-2 md:py-1 rounded-md cursor-pointer transition-colors duration-300 hover:bg-[var(--theme-primary-light)] text-sm md:text-lg whitespace-nowrap;
+    @apply md:px-2 md:py-1 rounded-md cursor-pointer transition-colors duration-75 hover:bg-[var(--theme-primary-light)] text-sm md:text-lg whitespace-nowrap;
 }
 
 /* Home page styling */
 
 .home-container {
-    @apply container px-4 py-4 mx-auto sm:py-6 md:py-8;
+    @apply container px-4 py-4 mx-auto mt-16 sm:py-6 md:py-8;
 }
 
 .home-title {
@@ -118,7 +126,7 @@
 }
 
 .categories-heading {
-    @apply mb-4 text-xl font-semibold text-white sm:text-2xl md:text-3xl col-span-full;
+    @apply mb-4 text-xl font-semibold sm:text-2xl md:text-3xl col-span-full;
 }
 
 .category-card {
@@ -130,7 +138,7 @@
 }
 
 .category-title {
-    @apply text-lg font-semibold text-white sm:text-xl md:text-2xl;
+    @apply text-lg font-semibold sm:text-xl md:text-2xl;
 }
 
 .separator {
@@ -143,7 +151,7 @@
 
 /* styles.css or any other relevant stylesheet */
 .hamburger-menu {
-    @apply bg-white rounded border-none cursor-pointer px-2 py-1 ml-5 mr-[60px] flex justify-center items-center w-8 h-6 outline-none transition-colors duration-300 md:hidden;
+    @apply z-10 bg-slate-100 rounded border-none cursor-pointer p-5 ml-5 mr-[60px] flex justify-center items-center w-8 h-6 outline-none transition-colors duration-300 md:hidden;
 }
 
 .hamburger-menu i {
@@ -155,5 +163,5 @@
 }
 
 .fa-bars, .fa-chevron-down {
-    @apply transition-all duration-150 ease-in-out transform;
+    @apply transition-all duration-200 ease-in-out transform;
 }
