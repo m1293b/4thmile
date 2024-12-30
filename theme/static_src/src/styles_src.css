@@ -38,7 +38,7 @@ body {
 }
 
 .theme-toggle {
-    @apply bg-[var(--theme-secondary-light)] text-[var(--theme-primary-dark)] px-2 py-1 rounded-md cursor-pointer transition-colors duration-300 text-xs sm:text-sm whitespace-nowrap order-3 md:order-4;
+    @apply bg-[var(--theme-secondary-light)] text-[var(--theme-primary-dark)] px-2 py-1 ml-[50px] rounded-md cursor-pointer transition-colors duration-300 text-xs sm:text-sm whitespace-nowrap order-3 md:order-4;
 }
 
 .theme-boys .theme-toggle:hover {
@@ -52,7 +52,7 @@ body {
 /* Navigation bar styling */
 
 .navbar {
-    @apply bg-[var(--theme-primary-dark)] absolute top-0 transition-all duration-300 ease-in-out w-full flex shadow-xl z-10;
+    @apply bg-[var(--theme-primary-dark)] fixed top-0 transition-all duration-300 ease-in-out w-full flex shadow-xl z-10;
 }
 
 .navbar-container {
@@ -72,19 +72,31 @@ body {
 }
 
 .nav-links {
-    @apply absolute grid opacity-0 grid-flow-row border rounded-md border-[var(--txt-light)] shadow-lg items-center justify-center space-x-0 space-y-4 py-2 bg-theme-primary-light ml-[2.5px] font-bold md:z-[2] md:font-medium sm:ml-0 md:bg-theme-primary-dark md:shadow-none transition-all duration-300 md:static md:space-x-4 md:space-y-0 md:py-0 md:grid md:grid-flow-col md:border-none order-1 md:order-2;
+    @apply absolute grid opacity-0 grid-flow-row border rounded-md border-[var(--txt-light)] shadow-lg items-center justify-center space-x-0 space-y-4 py-2 bg-theme-primary-light ml-[2.5px] font-bold md:z-[2] md:font-medium sm:ml-0 md:bg-theme-primary-dark md:shadow-none transition-all duration-100 md:static md:space-x-4 md:space-y-0 md:py-0 md:grid md:grid-flow-col md:border-none order-1 md:order-2 md:opacity-100;
 }
 
 .nav-links-down {
-    @apply top-[64px] opacity-100 motion-preset-focus;
+    @apply top-[64px] opacity-100 motion-preset-focus motion-duration-[0.33s];
+}
+
+.nav-links-up {
+    @apply top-[64px] motion-opacity-out-0 motion-preset-slide-up motion-duration-[0.33s] md:opacity-100;
 }
 
 .nav-link {
     @apply text-sm sm:text-base justify-self-center px-[11px] py-1 rounded-md transition-colors duration-75 hover:bg-[var(--theme-primary-light)];
 }
 
-.nav-right {
-    @apply flex items-center justify-end space-x-0 space-y-2 md:space-y-0 md:space-x-2 order-3;
+.nav-mid {
+    @apply absolute opacity-0 grid grid-flow-row md:grid-flow-col items-center justify-end space-x-0 space-y-2 border rounded-md border-[var(--txt-light)] shadow-lg bg-theme-primary-light md:bg-theme-primary-dark md:border-none md:space-y-0 md:space-x-2;
+}
+
+.nav-mid-down {
+    @apply top-[64px] motion-preset-focus motion-duration-[0.33s];
+}
+
+.nav-mid-up {
+    @apply top-[0px] motion-opacity-out-0 motion-preset-slide-up motion-duration-[0.33s];
 }
 
 .cart-icon {

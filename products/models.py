@@ -4,12 +4,15 @@ from django.db import models
 
 class Category(models.Model):
     
+    class Meta:
+        verbose_name_plural = 'Categories'
     """
     Represents a product category in the database.
 
     Attributes:
         category_id (int): A unique identifier for the category.
         name (str): The category's name.
+        main_category (str): Main category of product.
         description (str): The category's description.
         created_at (datetime): The date and time the category was created.
         updated_at (datetime): The date and time the category was last updated.
@@ -19,6 +22,7 @@ class Category(models.Model):
     """
     category_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
+    main_category = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

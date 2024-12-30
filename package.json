@@ -11,5 +11,22 @@
   "dependencies": {
     "postcss-cli": "^9.0.1",
     "postcss-loader": "^8.1.1"
-  }
+  },
+  "name": "4thmile",
+  "description": "User stories",
+  "version": "1.0.0",
+  "main": "postcss.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m1293b/4thmile.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m1293b/4thmile/issues"
+  },
+  "homepage": "https://github.com/m1293b/4thmile#readme"
 }
