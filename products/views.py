@@ -18,4 +18,10 @@ def Products(request):
 
 def Clothes(request):
     
-    clothes = Product.objects.filter(category__name='Clothes')
+    clothes = Product.objects.filter(Category.objects.filter(name='Clothes').all()) # does this work?
+    clothes_categories = Category.objects.filter(name='Clothes').all()
+    context = {
+        'clothes': clothes,
+        'categories': clothes_categories
+    }
+    return render(request, 'products/clothes.html', context)

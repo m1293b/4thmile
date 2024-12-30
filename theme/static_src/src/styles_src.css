@@ -88,11 +88,11 @@ body {
 }
 
 .nav-mid {
-    @apply absolute opacity-0 grid grid-flow-row md:grid-flow-col items-center justify-end space-x-0 space-y-2 border rounded-md border-[var(--txt-light)] shadow-lg bg-theme-primary-light md:bg-theme-primary-dark md:border-none md:space-y-0 md:space-x-2;
+    @apply absolute opacity-0 grid grid-flow-row items-center justify-end space-x-0 space-y-2 border rounded-b-lg blur-md border-[var(--txt-light)] shadow-lg bg-theme-primary-light md:bg-theme-primary-dark md:border-none md:space-y-0 md:space-x-2;
 }
 
 .nav-mid-down {
-    @apply top-[64px] motion-preset-focus motion-duration-[0.33s];
+    @apply top-[64px] motion-preset-focus motion-duration-[0.33s] motion-opacity-in-100 motion-preset-fade-sm;
 }
 
 .nav-mid-up {

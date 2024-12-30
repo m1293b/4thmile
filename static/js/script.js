@@ -50,10 +50,10 @@ $(window).on('resize', function(){
     const navMid= $('.nav-mid')
 
     if (win.width() >= 768) {
-        navLinks.removeClass('nav-links-up').removeClass('display-none');
-        navMid.removeClass('nav-mid-up').removeClass('display-none');
-    } else if(win.width() < 768) { 
-        navLinks.addClass('nav-links-up').addClass('display-none');
-        navMid.addClass('nav-mid-up').addClass('display-none');
-     }
+        navLinks.removeClass('nav-links-up').removeClass('nav-links-down').removeClass('display-none');
+        navMid.removeClass('nav-mid-up').removeClass('nav-mid-down').removeClass('display-none');
+    // } else if(win.width() < 768) { 
+    //     navLinks.addClass('nav-links-up').addClass('display-none');
+    //     navMid.addClass('nav-mid-up').addClass('display-none');
+    }
 });
