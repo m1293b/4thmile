@@ -38,7 +38,7 @@ body {
 }
 
 .theme-toggle {
-    @apply bg-[var(--theme-secondary-light)] text-[var(--theme-primary-dark)] px-2 py-1 ml-[50px] rounded-md cursor-pointer transition-colors duration-300 text-xs sm:text-sm whitespace-nowrap order-3 md:order-4;
+    @apply bg-[var(--theme-secondary-light)] text-[var(--theme-primary-dark)] px-2 py-1 ml-[50px] md:ml-[120px] rounded-md cursor-pointer transition-colors duration-300 text-xs sm:text-sm whitespace-nowrap order-3 md:order-4;
 }
 
 .theme-boys .theme-toggle:hover {
@@ -56,7 +56,7 @@ body {
 }
 
 .navbar-container {
-    @apply container flex flex-row items-center justify-between w-full h-16 px-4 mx-auto;
+    @apply container grid grid-flow-col items-center justify-between w-full h-16 px-4 mx-auto;
 }
 
 .logo-container {
@@ -68,43 +68,47 @@ body {
 }
 
 .brand-name {
-    @apply hidden text-xl font-bold sm:inline;
+    @apply hidden text-xl font-bold md:inline;
 }
 
 .nav-links {
-    @apply absolute grid opacity-0 grid-flow-row border rounded-md border-[var(--txt-light)] shadow-lg items-center justify-center space-x-0 space-y-4 py-2 bg-theme-primary-light ml-[2.5px] font-bold md:z-[2] md:font-medium sm:ml-0 md:bg-theme-primary-dark md:shadow-none transition-all duration-100 md:static md:space-x-4 md:space-y-0 md:py-0 md:grid md:grid-flow-col md:border-none order-1 md:order-2 md:opacity-100;
+    @apply absolute top-[64px] pointer-events-none md:pointer-events-auto grid grid-flow-row border rounded-b-lg border-[var(--txt-light)] shadow-lg items-center justify-center space-x-0 space-y-4 py-2 bg-theme-primary-light ml-[2.5px] font-bold md:z-[2] md:font-medium sm:ml-0 md:bg-theme-primary-dark md:shadow-none transition-all duration-100 md:static md:space-x-4 md:space-y-0 md:py-0 md:grid md:grid-flow-col md:border-none order-1 md:order-2 md:opacity-100;
 }
 
 .nav-links-down {
-    @apply top-[64px] opacity-100 motion-preset-focus motion-duration-[0.33s];
+    @apply opacity-100 pointer-events-auto motion-preset-focus motion-duration-[0.33s];
 }
 
 .nav-links-up {
-    @apply top-[64px] motion-opacity-out-0 motion-preset-slide-up motion-duration-[0.33s] md:opacity-100;
+    @apply motion-opacity-out-0 motion-preset-slide-up motion-duration-[0.33s] md:opacity-100 pointer-events-none;
 }
 
 .nav-link {
-    @apply text-sm sm:text-base justify-self-center px-[11px] py-1 rounded-md transition-colors duration-75 hover:bg-[var(--theme-primary-light)];
+    @apply text-sm md:text-base justify-self-center px-[11px] py-1 rounded-md transition-colors duration-75 hover:bg-[var(--theme-primary-dark)] md:hover:bg-[var(--theme-primary-light)];
 }
 
 .nav-mid {
-    @apply absolute opacity-0 grid grid-flow-row items-center justify-end space-x-0 space-y-2 border rounded-b-lg blur-md border-[var(--txt-light)] shadow-lg bg-theme-primary-light md:bg-theme-primary-dark md:border-none md:space-y-0 md:space-x-2;
+    @apply fixed top-[64px] py-1 pointer-events-none md:pointer-events-auto grid grid-flow-col items-center justify-self-center px-3 space-y-0 space-x-2 border rounded-b-lg border-[var(--txt-light)] shadow-lg bg-theme-primary-light md:opacity-100 md:bg-theme-primary-light md:space-x-2;
 }
 
 .nav-mid-down {
-    @apply top-[64px] motion-preset-focus motion-duration-[0.33s] motion-opacity-in-100 motion-preset-fade-sm;
+    @apply opacity-100 pointer-events-auto motion-preset-focus motion-duration-[0.33s] motion-opacity-in-100 motion-preset-fade-sm;
 }
 
 .nav-mid-up {
-    @apply top-[0px] motion-opacity-out-0 motion-preset-slide-up motion-duration-[0.33s];
+    @apply motion-opacity-out-0 motion-preset-slide-up motion-duration-[0.33s] pointer-events-none;
 }
 
 .cart-icon {
-    @apply text-xl p-1 rounded-md transition-colors duration-300 hover:bg-[var(--theme-primary-light)];
+    @apply text-xl p-2 md:px-2 md:py-1 rounded-md transition-colors duration-300 hover:bg-[var(--theme-primary-dark)];
 }
 
 .login-btn {
-    @apply md:px-2 md:py-1 rounded-md cursor-pointer transition-colors duration-75 hover:bg-[var(--theme-primary-light)] text-sm md:text-lg whitespace-nowrap;
+    @apply p-2 md:px-2 md:py-1 rounded-md cursor-pointer transition-colors duration-75 hover:bg-[var(--theme-primary-dark)] font-bold text-sm md:text-lg whitespace-nowrap;
+}
+
+.admin-btn {
+    @apply p-2 md:px-2 md:py-1 rounded-md cursor-pointer transition-colors duration-75 hover:bg-[var(--theme-primary-dark)] font-bold text-sm md:text-lg whitespace-nowrap;
 }
 
 /* Home page styling */
@@ -114,7 +118,7 @@ body {
 }
 
 .home-title {
-    @apply text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--theme-primary-dark)] mb-2 sm:mb-3 md:mb-4;
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--theme-primary-dark)] mt-10 md:mt-2 mb-2 sm:mb-3 md:mb-4;
 }
 
 .home-subtitle {
@@ -163,7 +167,7 @@ body {
 
 /* styles.css or any other relevant stylesheet */
 .hamburger-menu {
-    @apply z-10 bg-slate-100 rounded border-none cursor-pointer p-5 ml-5 mr-[60px] flex justify-center items-center w-8 h-6 outline-none transition-colors duration-300 md:hidden;
+    @apply z-10 bg-slate-100 rounded border-none cursor-pointer p-5 ml-5 mr-[30px] flex justify-center items-center w-8 h-6 outline-none transition-colors duration-300 md:hidden;
 }
 
 .hamburger-menu i {

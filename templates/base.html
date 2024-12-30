@@ -10,9 +10,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="{% static 'assets/img/favicon_boys.ico'%}">
+        <link rel="icon" href="{% static 'assets/img/favicon_boys.ico'%}?v=0.1">
         {% endblock meta %}
         {% block extra_meta %}{% endblock extra_meta %}
+
+        {% block extra_js %}
+        <script src="{% static 'js/jquery-3.7.1.min.js' %}" async defer></script>
+        <script src="{% static 'js/theme-switcher.js' %}?v=0.002" async defer></script>
+        {% endblock extra_js %}
+        {% block core_js %}
+        <script src="{% static 'js/script.js' %}?v=0.000002" async defer></script>
+        {% endblock core_js %}
 
         {% block title %}
         <title>Baby-suite{% block extra_title %}{% endblock extra_title %}</title>
@@ -23,12 +31,6 @@
         <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
         {% endblock extra_css %}
 
-        {% block extra_js %}
-        <script src="{% static 'js/jquery-3.7.1.min.js' %}" async defer></script>
-        {% endblock extra_js %}
-        {% block core_js %}
-        <script src="{% static 'js/script.js' %}?v=0.02" async defer></script>
-        {% endblock core_js %}
     </head>
     <body class="theme-boys">
         <header>
@@ -56,8 +58,6 @@
         {% block post_load_js %}
         
         {% comment %} Files to be loaded after the page has loaded in {% endcomment %}
-        
-        <script src="{% static 'js/theme-switcher.js' %}?v=0.1341" async defer></script>
 
         {% endblock post_load_js %}
     </body>

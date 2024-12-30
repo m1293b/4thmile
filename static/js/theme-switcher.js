@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     function updateFavicon(theme) {
         if (theme === 'boys') {
-            favIcon.href = "static/assets/img/favicon_boys.ico";
+            favIcon.href = "static/assets/img/favicon_boys.ico?v=0.2";
         } else {
-            favIcon.href = "static/assets/img/favicon_girls.ico";
+            favIcon.href = "static/assets/img/favicon_girls.ico?v=0.2";
         }
     }
     

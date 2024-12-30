@@ -23,23 +23,11 @@ $('#hamburger-menu').on('click', function() {
     // 
 
     if(navLinks.hasClass('nav-links-down')) {
-        navLinks.removeClass('nav-links-down').addClass('nav-links-up');
-        if(navLinks.style.opacity('0')){
-            navLinks.addClass('display-none');
-        };
+        navLinks.removeClass('nav-links-down').addClass('nav-links-up').removeClass('display-none');
+        navMid.removeClass('nav-mid-down').addClass('nav-mid-up').removeClass('display-none');
     }
     else {
-        navLinks.removeClass('display-none');
         navLinks.removeClass('nav-links-up').addClass('nav-links-down');
-    }
-    if(navMid.hasClass('nav-mid-down')) {
-        navMid.removeClass('nav-mid-down').addClass('nav-mid-up');
-        if(navMid.style.opacity('0')){
-            navMid.addClass('display-none');
-        };
-    }
-    else {
-        navMid.removeClass('display-none');
         navMid.removeClass('nav-mid-up').addClass('nav-mid-down');
     }
 });
@@ -52,8 +40,8 @@ $(window).on('resize', function(){
     if (win.width() >= 768) {
         navLinks.removeClass('nav-links-up').removeClass('nav-links-down').removeClass('display-none');
         navMid.removeClass('nav-mid-up').removeClass('nav-mid-down').removeClass('display-none');
-    // } else if(win.width() < 768) { 
-    //     navLinks.addClass('nav-links-up').addClass('display-none');
-    //     navMid.addClass('nav-mid-up').addClass('display-none');
-    }
+    } // else if(win.width() < 768) { 
+    //     navLinks.addClass('nav-links-up');
+    //     navMid.addClass('nav-mid-up');
+    // }
 });
