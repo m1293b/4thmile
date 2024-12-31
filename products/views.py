@@ -14,7 +14,7 @@ def Products(request):
         'product_images': product_images
     }
     
-    return render(request, 'products/products.html')
+    return render(request, '/products/products.html')
 
 def Clothes(request):
     
@@ -24,4 +24,4 @@ def Clothes(request):
         'clothes': clothes,
         'categories': clothes_categories
     }
-    return render(request, 'products/clothes.html', context)
+    return render(request, '/products/clothes.html', context)

@@ -7,177 +7,180 @@
 /* python3 manage.py tailwind start */
 
 :root {
-    --txt-light: #fcfefe;
-    --txt-dark: #132743;
-    --primary-light: #407088;
-    --primary-dark: #132743;
-    --secondary-light: #ffcbcb;
-    --secondary-dark: #ffb5b5;
+  --txt-light: #fcfefe;
+  --txt-dark: #132743;
+  --primary-light: #407088;
+  --primary-dark: #132743;
+  --secondary-light: #ffcbcb;
+  --secondary-dark: #ffb5b5;
 }
 
 .theme-boys {
-    @apply text-[var(--txt-light)];
-    --theme-primary-light: var(--primary-light);
-    --theme-primary-dark: var(--primary-dark);
-    --theme-secondary-light: var(--secondary-light);
-    --theme-secondary-dark: var(--secondary-dark);
+  @apply text-[var(--txt-light)];
+  --theme-primary-light: var(--primary-light);
+  --theme-primary-dark: var(--primary-dark);
+  --theme-secondary-light: var(--secondary-light);
+  --theme-secondary-dark: var(--secondary-dark);
 }
 
 .theme-girls {
-    @apply text-[var(--txt-dark)];
-    --theme-primary-light: var(--secondary-light);
-    --theme-primary-dark: var(--secondary-dark);
-    --theme-secondary-light: var(--primary-light);
-    --theme-secondary-dark: var(--primary-dark);
+  @apply text-[var(--txt-dark)];
+  --theme-primary-light: var(--secondary-light);
+  --theme-primary-dark: var(--secondary-dark);
+  --theme-secondary-light: var(--primary-light);
+  --theme-secondary-dark: var(--primary-dark);
 }
 
 /* Theme toggle */
 
 body {
-    @apply text-[var(--txt-light)];
+  @apply text-[var(--txt-light)];
 }
 
 .theme-toggle {
-    @apply bg-[var(--theme-secondary-light)] text-[var(--theme-primary-dark)] px-2 py-1 ml-[50px] md:ml-[120px] rounded-md cursor-pointer transition-colors duration-300 text-xs sm:text-sm whitespace-nowrap order-3 md:order-4;
+  @apply bg-[var(--theme-secondary-light)] text-[var(--theme-primary-dark)] px-2 py-1 ml-[50px] md:ml-[120px] rounded-md cursor-pointer transition-colors duration-300 text-xs sm:text-sm whitespace-nowrap order-3 md:order-4;
 }
 
 .theme-boys .theme-toggle:hover {
-    @apply bg-[var(--theme-secondary-dark)] text-[var(--txt-light)];
+  @apply bg-[var(--theme-secondary-dark)] text-[var(--txt-light)];
 }
 
 .theme-girls .theme-toggle:hover {
-    @apply bg-[var(--theme-secondary-dark)] text-[var(--txt-light)];
+  @apply bg-[var(--theme-secondary-dark)] text-[var(--txt-light)];
 }
 
 /* Navigation bar styling */
 
 .navbar {
-    @apply bg-[var(--theme-primary-dark)] fixed top-0 transition-all duration-300 ease-in-out w-full flex shadow-xl z-10;
+  @apply bg-[var(--theme-primary-dark)] fixed top-0 transition-all duration-300 ease-in-out w-full flex shadow-xl z-10;
 }
 
 .navbar-container {
-    @apply container grid grid-flow-col items-center justify-between w-full h-16 px-4 mx-auto;
+  @apply container grid grid-flow-col items-center justify-between w-full h-16 px-4 mx-auto;
 }
 
-.logo-container {
-    @apply flex items-center order-2 md:order-1;
-}
-
-.logo {
-    @apply w-auto h-10 mr-2 rounded-[50%];
-}
-
-.brand-name {
-    @apply hidden text-xl font-bold md:inline;
-}
-
-.nav-links {
-    @apply absolute top-[64px] pointer-events-none md:pointer-events-auto grid grid-flow-row border rounded-b-lg border-[var(--txt-light)] shadow-lg items-center justify-center space-x-0 space-y-4 py-2 bg-theme-primary-light ml-[2.5px] font-bold md:z-[2] md:font-medium sm:ml-0 md:bg-theme-primary-dark md:shadow-none transition-all duration-100 md:static md:space-x-4 md:space-y-0 md:py-0 md:grid md:grid-flow-col md:border-none order-1 md:order-2 md:opacity-100;
-}
-
-.nav-links-down {
-    @apply opacity-100 pointer-events-auto motion-preset-focus motion-duration-[0.33s];
-}
-
-.nav-links-up {
-    @apply motion-opacity-out-0 motion-preset-slide-up motion-duration-[0.33s] md:opacity-100 pointer-events-none;
-}
-
-.nav-link {
-    @apply text-sm md:text-base justify-self-center px-[11px] py-1 rounded-md transition-colors duration-75 hover:bg-[var(--theme-primary-dark)] md:hover:bg-[var(--theme-primary-light)];
-}
-
-.nav-mid {
-    @apply fixed top-[64px] py-1 pointer-events-none md:pointer-events-auto grid grid-flow-col items-center justify-self-center px-3 space-y-0 space-x-2 border rounded-b-lg border-[var(--txt-light)] shadow-lg bg-theme-primary-light md:opacity-100 md:bg-theme-primary-light md:space-x-2;
-}
-
-.nav-mid-down {
-    @apply opacity-100 pointer-events-auto motion-preset-focus motion-duration-[0.33s] motion-opacity-in-100 motion-preset-fade-sm;
-}
-
-.nav-mid-up {
-    @apply motion-opacity-out-0 motion-preset-slide-up motion-duration-[0.33s] pointer-events-none;
-}
-
-.cart-icon {
-    @apply text-xl p-2 md:px-2 md:py-1 rounded-md transition-colors duration-300 hover:bg-[var(--theme-primary-dark)];
-}
-
-.login-btn {
-    @apply p-2 md:px-2 md:py-1 rounded-md cursor-pointer transition-colors duration-75 hover:bg-[var(--theme-primary-dark)] font-bold text-sm md:text-lg whitespace-nowrap;
-}
-
-.admin-btn {
-    @apply p-2 md:px-2 md:py-1 rounded-md cursor-pointer transition-colors duration-75 hover:bg-[var(--theme-primary-dark)] font-bold text-sm md:text-lg whitespace-nowrap;
-}
-
-/* Home page styling */
-
-.home-container {
-    @apply container px-4 py-4 mx-auto mt-16 sm:py-6 md:py-8;
-}
-
-.home-title {
-    @apply text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--theme-primary-dark)] mt-10 md:mt-2 mb-2 sm:mb-3 md:mb-4;
-}
-
-.home-subtitle {
-    @apply text-base sm:text-lg md:text-xl text-[var(--theme-primary-light)] mb-4 sm:mb-6 md:mb-8;
-}
-
-.categories-section {
-    @apply bg-[var(--theme-primary-dark)] py-6 sm:py-8 md:py-12;
-}
-
-.categories-section-light {
-    @apply bg-[var(--theme-primary-light)] py-6 sm:py-8 md:py-12;
-}
-
-.categories-container {
-    @apply container px-4 mx-auto;
-}
-
-.categories-grid {
-    @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 md:gap-8;
-}
-
-.categories-heading {
-    @apply mb-4 text-xl font-semibold sm:text-2xl md:text-3xl col-span-full;
-}
-
-.category-card {
-    @apply text-center;
-}
-
-.category-image {
-    @apply object-cover w-full mb-2 rounded-lg h-36 sm:h-40 md:h-48 sm:mb-3 md:mb-4;
-}
-
-.category-title {
-    @apply text-lg font-semibold sm:text-xl md:text-2xl;
-}
-
-.separator {
-    @apply py-4 bg-white sm:py-6 md:py-8;
-}
-
-
-
-/* TEST */
-
-/* styles.css or any other relevant stylesheet */
+/* Hamburger menu */
 .hamburger-menu {
-    @apply z-10 bg-slate-100 rounded border-none cursor-pointer p-5 ml-5 mr-[30px] flex justify-center items-center w-8 h-6 outline-none transition-colors duration-300 md:hidden;
+  @apply z-10 bg-slate-100 rounded border-none cursor-pointer p-5 ml-5 mr-[30px] flex justify-center items-center w-8 h-6 outline-none transition-colors duration-300 md:hidden;
 }
 
 .hamburger-menu i {
-    @apply text-gray-800 transition-transform duration-300;
+  @apply text-gray-800 transition-transform duration-300;
 }
 
 .fas.fa-chevron-down {
-    @apply hidden;
+  @apply hidden;
 }
 
-.fa-bars, .fa-chevron-down {
-    @apply transition-all duration-200 ease-in-out transform;
+.fa-bars,
+.fa-chevron-down {
+  @apply transition-all duration-200 ease-in-out transform;
+}
+
+/* Logo */
+
+.logo-container {
+  @apply flex items-center order-2 md:order-1;
+}
+
+.logo {
+  @apply w-auto h-10 mr-2 rounded-[50%];
+}
+
+.brand-name {
+  @apply hidden text-xl font-bold md:inline;
+}
+
+/* Nav links */
+
+.nav-links {
+  @apply absolute top-[64px] pointer-events-none md:pointer-events-auto grid grid-flow-row border rounded-b-lg border-[var(--txt-light)] shadow-lg items-center justify-center space-x-0 space-y-4 py-2 bg-theme-primary-light ml-[2.5px] font-bold md:z-[2] md:font-medium sm:ml-0 md:bg-theme-primary-dark md:shadow-none transition-all duration-100 md:static md:space-x-4 md:space-y-0 md:py-0 md:grid md:grid-flow-col md:border-none order-1 md:order-2 md:opacity-100;
+}
+
+.nav-links-down {
+  @apply opacity-100 pointer-events-auto motion-preset-focus motion-duration-[0.33s];
+}
+
+.nav-links-up {
+  @apply motion-opacity-out-0 motion-preset-slide-up motion-duration-[0.33s] md:opacity-100 pointer-events-none;
+}
+
+.nav-link {
+  @apply text-sm md:text-base justify-self-center px-[11px] py-1 rounded-md transition-colors duration-75 hover:bg-[var(--theme-primary-dark)] md:hover:bg-[var(--theme-primary-light)];
+}
+
+/* Cart, login and buttons for account */
+
+.nav-mid {
+  @apply fixed top-[64px] py-1 pointer-events-none md:pointer-events-auto grid grid-flow-col items-center justify-self-center px-3 space-y-0 space-x-2 border rounded-b-lg border-[var(--txt-light)] shadow-lg bg-theme-primary-light md:opacity-100 md:bg-theme-primary-light md:space-x-2;
+}
+
+.nav-mid-down {
+  @apply opacity-100 pointer-events-auto motion-preset-focus motion-duration-[0.33s] motion-opacity-in-100 motion-preset-fade-sm;
+}
+
+.nav-mid-up {
+  @apply motion-opacity-out-0 motion-preset-slide-up motion-duration-[0.33s] pointer-events-none;
+}
+
+.cart-icon {
+  @apply text-xl p-2 md:px-2 md:py-1 rounded-md transition-colors duration-300 hover:bg-[var(--theme-primary-dark)];
+}
+
+.login-btn {
+  @apply p-2 md:px-2 md:py-1 rounded-md cursor-pointer transition-colors duration-75 hover:bg-[var(--theme-primary-dark)] font-bold text-sm md:text-lg whitespace-nowrap;
+}
+
+.admin-btn {
+  @apply p-2 md:px-2 md:py-1 rounded-md cursor-pointer transition-colors duration-75 hover:bg-[var(--theme-primary-dark)] font-bold text-sm md:text-lg whitespace-nowrap;
+}
+
+/* General page styling */
+
+.page-container {
+  @apply container px-4 py-4 mx-auto mt-16 sm:py-6 md:py-8;
+}
+
+.page-title {
+  @apply text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--theme-primary-dark)] mt-10 md:mt-2 mb-2 sm:mb-3 md:mb-4;
+}
+
+.page-subtitle {
+  @apply text-base sm:text-lg md:text-xl text-[var(--theme-primary-light)] mb-4 sm:mb-6 md:mb-8;
+}
+
+.page-section {
+  @apply bg-[var(--theme-primary-dark)] py-6 sm:py-8 md:py-12;
+}
+
+.page-section-light {
+  @apply bg-[var(--theme-primary-light)] py-6 sm:py-8 md:py-12;
+}
+
+.page-container {
+  @apply container px-4 mx-auto;
+}
+
+.page-grid {
+  @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 md:gap-8;
+}
+
+.page-heading {
+  @apply mb-4 text-xl font-semibold sm:text-2xl md:text-3xl col-span-full;
+}
+
+.product-card {
+  @apply text-center;
+}
+
+.product-image {
+  @apply object-cover w-full mb-2 rounded-lg h-36 sm:h-40 md:h-48 sm:mb-3 md:mb-4;
+}
+
+.product-title {
+  @apply text-lg font-semibold sm:text-xl md:text-2xl;
+}
+
+.separator {
+  @apply py-4 bg-white sm:py-6 md:py-8;
 }
