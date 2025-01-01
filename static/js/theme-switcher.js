@@ -3,10 +3,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const body = document.body;
   const themeIcon = themeToggle.querySelector("i");
 
-  const favicon_boys = STATIC_URLS.favicon_boys;
-  const favicon_girls = STATIC_URLS.favicon_girls;
-  const blue_logo = STATIC_URLS.blue_logo;
-  const pink_logo = STATIC_URLS.pink_logo;
+  // This variable will help to serve the static files regardless which app is being used. This was the best way I found today
+  // to use the theme-switcher without having to change the code in every app.
+  const baseUrl = `${window.location.origin}`;
+
+  const favicon_boys = "/static/assets/img/favicon_boys.ico";
+  const favicon_girls = "/static/assets/img/favicon_girls.ico";
+  const blue_logo = "/static/assets/img/blue_logo.png";
+  const pink_logo = "/static/assets/img/pink_logo.png";
 
   const logo = document.getElementsByClassName("logo")[0];
 
@@ -35,9 +39,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   function updateLogo(theme) {
     if (theme === "boys") {
-      logo.src = blue_logo;
+      logo.src = `${baseUrl}${blue_logo}`;
     } else {
-      logo.src = pink_logo;
+      logo.src = `${baseUrl}${pink_logo}`;
     }
   }
 
@@ -51,9 +55,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   function updateFavicon(theme) {
     if (theme === "boys") {
-      favIcon.href = favicon_boys;
+      favIcon.href = `${baseUrl}${favicon_boys}`;
     } else {
-      favIcon.href = favicon_girls;
+      favIcon.href = `${baseUrl}${favicon_girls}`;
     }
   }
 });
