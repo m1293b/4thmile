@@ -3,33 +3,29 @@
 <html>
   <head>
     {% tailwind_css %} {% block meta %}
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="{% static 'assets/img/favicon_boys.ico' %}?v=0.1" />
-    {% endblock %} {% block extra_meta %} {% endblock %} {% comment %}extra .js
-    files{% endcomment %} {% block extra_js %}
-    <script src="{% static 'js/jquery-3.7.1.min.js' %}" async defer></script>
-    <script
-      src="{% static 'js/theme-switcher.js' %}?v=0.002"
-      async
-      defer
-    ></script>
-    {% endblock %} {% comment %}extra{% endcomment %} {% block core_js %} {%
-    endblock %} {% block title %}
-    <title>Baby-suite{% block extra_title %} {% endblock %}</title>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="description" content="" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="icon" href="{% static 'assets/img/favicon_boys.ico' %}?v=0.1" />
+    {% endblock %} {% block extra_meta %}
+
+    {% endblock %} {% comment %}extra .js files{% endcomment %}
+    {% block core_js %}
+      {{ STATIC_URLS|json_script:'static-urls' }}
+    {% endblock %}
+    {% block extra_js %}
+      <script src="{% static 'js/jquery-3.7.1.min.js' %}" async defer></script>
+      <script src="{% static 'js/theme-switcher.js' %}?v=0.00002" async defer></script>
+    {% endblock %} {% comment %}extra{% endcomment %} {% block title %}
+      <title>
+        Baby-suite{% block extra_title %}
+
+        {% endblock %}
+      </title>
     {% endblock %} {% block extra_css %}
-    <link
-      href="{% static 'fontawesomefree/css/solid.css' %}"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="{% static 'fontawesomefree/css/fontawesome.css' %}"
-      rel="stylesheet"
-      type="text/css"
-    />
+      <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css" />
+      <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css" />
     {% endblock %}
   </head>
   <body class="theme-boys">
@@ -38,20 +34,23 @@
       {% include 'navbar.html' %}
     </header>
     {% if messages %}
-    <div class="message-container">
-      <!-- "Flash messages" to be displayed here -->
-    </div>
-    {% endif %} {% block page_header %} {% comment %}For pages to display their
-    own header{% endcomment %} {% endblock %} {% block content %} {% comment %}
-    main content for each page{% endcomment %} {% endblock %} {% block
-    post_load_js %} {% comment %}Files to be loaded after the page has loaded
-    in{% endcomment %}
+      <div class="message-container">
+        <!-- "Flash messages" to be displayed here -->
+      </div>
+    {% endif %} {% block page_header %}
+      {% comment %}For pages to display their own header{% endcomment %}
+    {% endblock %} {% block content %}
+      {% comment %}main content for each page{% endcomment %}
+    {% endblock %} {% block post_load_js %}
+      {% comment %}Files to be loaded after the page has loaded in{% endcomment %}
 
-    <script
-      src="{% static 'js/script.js' %}?v=0.00000000002"
-      async
-      defer
-    ></script>
+      <script src="{% static 'js/script.js' %}?v=0.000000000002" async defer></script>
+      <script defer>
+        // Wait for the DOM to be fully loaded before executing
+        document.addEventListener('DOMContentLoaded', function () {
+          const STATIC_URLS = JSON.parse(document.getElementById('static-urls').textContent)
+        })
+      </script>
     {% endblock %}
   </body>
 </html>

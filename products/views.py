@@ -14,12 +14,12 @@ def Products(request):
         'product_images': product_images
     }
     
-    return render(request, '/products/products.html')
+    return render(request, './products/products.html')
 
 def Clothes(request):
     
     clothes = Product.objects.filter(Category.objects.filter(name='Clothes').all()) # does this work?
-    clothes_categories = Category.objects.filter(name='Clothes').all()
+    clothes_categories = Category.objects.filter(main_category='Clothes').all()
     context = {
         'clothes': clothes,
         'categories': clothes_categories
