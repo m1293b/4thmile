@@ -169,8 +169,12 @@ body {
   @apply mb-4 text-xl font-semibold sm:text-2xl md:text-3xl col-span-full;
 }
 
+.category-title {
+  @apply mb-4 text-base sm:text-lg md:text-xl col-span-full;
+}
+
 .product-card {
-  @apply text-center;
+  @apply text-center cursor-pointer;
 }
 
 .product-image {

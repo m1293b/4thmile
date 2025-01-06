@@ -90,7 +90,7 @@ class ProductImage(models.Model):
     """
     product_image_id = models.AutoField(primary_key=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='uploads/product_images/')
+    image = models.ImageField(upload_to='products/images/')
     alt_text = models.CharField(max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     

@@ -7370,7 +7370,29 @@ body {
   }
 }
 
+.category-title {
+  grid-column: 1 / -1;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .category-title {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .category-title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
 .product-card {
+  cursor: pointer;
   text-align: center;
 }
 

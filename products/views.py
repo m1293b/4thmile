@@ -1,17 +1,22 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Product, Category, ProductImage
 
 # Create your views here.
 
 def Products(request):
     
-    products = Product.objects.all()
+    products = (
+        Product.objects
+        .select_related('category')  # Optimize category access
+        .prefetch_related(
+            'productimage_set',  # Prefetch related product images
+        )
+        .all()
+    )
     categories = Category.objects.all()
-    product_images = ProductImage.objects.all()
     context = {
         'products': products,
         'categories': categories,
-        'product_images': product_images
     }
     
     return render(request, './products/products.html')
@@ -25,3 +30,13 @@ def Clothes(request):
         'categories': clothes_categories
     }
     return render(request, '/products/clothes.html', context)
+
+def product_detail(request, pk):
+    
+    product = get_object_or_404(Product, pk=pk)
+    
+    context = {
+        'product': product,
+    }
+    
+    return render(request, './products/product_detail.html', context)
