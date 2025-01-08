@@ -29,6 +29,12 @@ class Category(models.Model):
     
     def __str__(self):
         return self.name
+    
+class Tag(models.Model):
+    name = models.CharField(max_length=50, unique=True)  # Ensure tag names are unique
+
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     """
@@ -41,6 +47,9 @@ class Product(models.Model):
         price (float): The product's price.
         stock (int): The number of available units of the product.
         category (Category): The category to which the product belongs.
+        color (str): The color of the product.
+        size (str): The size of the product.
+        tags ()
         created_at (datetime): The date and time the product was created.
         updated_at (datetime): The date and time the product was last updated.
         notes (str): Any additional notes about the product.
@@ -60,6 +69,9 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
+    color = models.CharField(max_length=50, blank=True)
+    size = models.CharField(max_length=10, blank=True)
+    tags = models.ManyToManyField(Tag, related_name='products')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     notes = models.TextField(blank=True)

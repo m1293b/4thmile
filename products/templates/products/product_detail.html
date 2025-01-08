@@ -7,7 +7,6 @@
       <h1 class="page-title">{{ product.name }}</h1>
       <p class="page-subtitle">Find the best clothes for your little ones!</p>
 
-      <!-- Add more content here -->
     </div>
     <div class="product-detail-container">
       <h1>{{ product.name }}</h1>
@@ -18,8 +17,9 @@
       {% endif %}
       <p>Price: £{{ product.price }}</p>
 
-      <p>Sale Price: £{{ product.sale_price }}</p>
-      <!-- Add more product details here as needed -->
+      {% if product.is_on_sale == True %}
+        <p>Sale Price: £{{ product.sale_price }}</p>
+      {% endif %}
       <p>Description: {{ product.description }}</p>
 
       <p>
@@ -44,13 +44,11 @@
         {% endif %}
       </p>
 
-      <p>Material: {{ product.material }}</p>
-
       <p>
         Stock:{% if product.stock > 0 %}
-          In stock
+          {{ product.stock }} in stock
         {% else %}
-          Out of stock
+          <span style="color:red">Out of stock</span>
         {% endif %}
       </p>
 
@@ -72,26 +70,26 @@
             </li>
           {% endfor %}
         </ul>
-
-        <form method="post">
-          {% csrf_token %}
-          <label for="rating">Rating:</label>
-          <select id="rating" name="rating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-
-          <label for="comment">Comment:</label>
-          <textarea id="comment" name="comment"></textarea>
-
-          <button type="submit">Submit Review</button>
-        </form>
       {% else %}
         <p>No reviews yet.</p>
       {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+        <label for="rating">Rating:</label>
+        <select id="rating" name="rating">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment"></textarea>
+
+        <button type="submit">Submit Review</button>
+      </form>
     </div>
   </div>
 {% endblock %}

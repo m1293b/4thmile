@@ -33,7 +33,7 @@
                   <h3 class="product-title">{{ product.name }}</h3>
                   {% if product.is_on_sale == True %}
                     <p>
-                      <span class="badge badge-danger">{{ product.sale_price }}$</span>
+                      <span class="on-sale">{{ product.sale_price }}$</span>
                     </p>
                   {% endif %}
                 </div>
