@@ -38,7 +38,7 @@ body {
 }
 
 .theme-toggle {
-  @apply bg-[var(--theme-secondary-light)] text-[var(--theme-primary-dark)] px-2 py-1 ml-[50px] md:ml-[120px] rounded-md cursor-pointer transition-colors duration-300 text-xs sm:text-sm whitespace-nowrap order-3 md:order-4;
+  @apply bg-[var(--theme-secondary-light)] text-[var(--theme-primary-dark)] px-2 py-1 ml-[10px] md:ml-[65px] rounded-md cursor-pointer transition-colors duration-300 text-xs sm:text-sm whitespace-nowrap order-3 md:order-4;
 }
 
 .theme-boys .theme-toggle:hover {
@@ -56,7 +56,7 @@ body {
 }
 
 .navbar-container {
-  @apply container grid grid-flow-col items-center justify-between w-full h-16 px-4 mx-auto;
+  @apply container grid items-center justify-between w-full h-16 grid-flow-col px-4 mx-auto;
 }
 
 /* Hamburger menu */
@@ -89,6 +89,24 @@ body {
 
 .brand-name {
   @apply hidden text-xl font-bold md:inline;
+}
+
+/* Search bar */
+
+.search-bar-container {
+  @apply relative flex items-center order-3 w-full h-16 px-4 mx-auto md:order-2;
+}
+
+.search-form {
+  @apply absolute top-[65px] items-center grid-flow-col gap-x-4 left-[-199px] md:left-[-80px];
+}
+
+.search-input {
+  @apply bg-slate-50 border-none rounded-md text-gray-700 focus:outline-none focus:border-l-theme-primary-dark focus:border-r-theme-primary-light h-12 pl-8 pr-3 w-[100%] shadow-lg;
+}
+
+.search-submit-button {
+  @apply absolute text-gray-500 cursor-pointer left-2 justify-self-center hover:text-blue-500 md:mr-4 lg:mr-6;
 }
 
 /* Nav links */
