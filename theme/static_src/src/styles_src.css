@@ -98,11 +98,11 @@ body {
 }
 
 .search-form {
-  @apply absolute top-[65px] items-center grid-flow-col gap-x-4 left-[-199px] md:left-[-80px];
+  @apply absolute top-[65px] items-center grid-flow-col gap-x-4 left-[-70px] md:left-[-50px];
 }
 
 .search-input {
-  @apply bg-slate-50 border-none rounded-md text-gray-700 focus:outline-none focus:border-l-theme-primary-dark focus:border-r-theme-primary-light h-12 pl-8 pr-3 w-[100%] shadow-lg;
+  @apply bg-slate-50 border-none rounded-md text-gray-700 focus:outline-none focus:border-l-theme-primary-dark focus:border-r-theme-primary-light h-12 pl-8 pr-3 w-[105%] md:w-[99%] shadow-lg;
 }
 
 .search-submit-button {
@@ -155,7 +155,7 @@ body {
 
 /* General page styling */
 
-.page-container {
+.page-title-container {
   @apply container px-4 py-4 mx-auto mt-16 sm:py-6 md:py-8;
 }
 
@@ -167,16 +167,16 @@ body {
   @apply text-base sm:text-lg md:text-xl text-[var(--theme-primary-light)] mb-4 sm:mb-6 md:mb-8;
 }
 
+.page-container {
+  @apply container px-4 py-4 mx-auto mt-2 sm:py-6 md:py-8;
+}
+
 .page-section {
-  @apply bg-[var(--theme-primary-dark)] py-6 sm:py-8 md:py-12;
+  @apply bg-[var(--theme-primary-dark)] py-6 sm:py-8 md:py-10;
 }
 
 .page-section-light {
-  @apply bg-[var(--theme-primary-light)] py-6 sm:py-8 md:py-12;
-}
-
-.page-container {
-  @apply container px-4 mx-auto;
+  @apply bg-[var(--theme-primary-light)] py-6 sm:py-8 md:py-10;
 }
 
 .page-grid {
@@ -187,16 +187,32 @@ body {
   @apply mb-4 text-xl font-semibold sm:text-2xl md:text-3xl col-span-full;
 }
 
+.category-card {
+  @apply grid justify-items-center col-span-full;
+}
+
 .category-title {
   @apply mb-4 text-base sm:text-lg md:text-xl col-span-full;
+}
+
+.category-image {
+  @apply rounded-md max-w-[10%];
+}
+
+.product-detail-container {
+  @apply text-base sm:text-lg md:text-xl text-[var(--theme-primary-light)] mb-4 sm:mb-6 md:mb-8;
 }
 
 .product-card {
   @apply text-center cursor-pointer;
 }
 
+.product-link {
+  @apply grid justify-items-center;
+}
+
 .product-image {
-  @apply object-cover w-full mb-2 rounded-lg h-36 sm:h-40 md:h-48 sm:mb-3 md:mb-4;
+  @apply object-cover mb-2 rounded-lg max-w-[66%];
 }
 
 .product-title {

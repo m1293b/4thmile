@@ -35,7 +35,7 @@ def products(request):
                 return redirect(reverse("products"))
 
             queries = Q(name__icontains=query) | Q(category__name__icontains=query)
-            products = products.filter(queries).distinct()
+            products = products.filter(queries)
             page_title = f"Search Results: {query}"
             page_description = f"View all the products available in our store that match your search term '{query}'."
 
@@ -88,4 +88,4 @@ def product_detail(request, pk):
         "product": product,
     }
 
-    return render(request, "./products/product_detail.html", context)
+    return render(request, "products/product_detail.html", context)

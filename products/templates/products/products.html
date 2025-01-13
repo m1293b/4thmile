@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
   <div class="background-container">
-    <div class="page-container">
+    <div class="page-title-container">
       <h1 class="page-title">{{ page_title }}</h1>
       <p class="page-subtitle">{{ page_description }}</p>
     </div>
@@ -21,14 +21,14 @@
             <div class="products-section">
               {% for product in products %}
                 <div class="product-card">
-                  <a href="{% url 'product_detail' pk=product.pk %}">
+                  <a href="{% url 'product_detail' pk=product.pk %}" class="product-link">
                     {% if product.productimage_set.exists %}
                       <img src="{{ product.productimage_set.first.image.url }}" alt="{{ product.name }}" class="product-image" />
                     {% else %}
                       <img src="{% static 'assets/img/no-clothes-picture.jpg' %}" alt="{{ product.name }}" class="product-image" />
                     {% endif %}
+                    <h3 class="product-title">{{ product.name }}</h3>
                   </a>
-                  <h3 class="product-title">{{ product.name }}</h3>
                   {% if product.is_on_sale == True %}
                     <p>
                       <span class="on-sale">{{ product.sale_price }}$</span>
