@@ -1,42 +1,53 @@
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, render, redirect, reverse
+from django.contrib import messages
+from django.db.models import Q
 from .models import Product, Category, ProductImage
 from .forms import ProductForm, ProductImageForm
 
 # Create your views here.
 
 
-def Products(request):
+def products(request):
+    """
+    This function is used to display all the products in the database. It also allows users to search for products by name or category.
+    """
+
     products = (
-        Product.objects.select_related("category")  # Optimize category access
+        Product.objects.select_related("category")
         .prefetch_related(
-            "productimage_set",  # Prefetch related product images
+            "productimage_set",
         )
         .all()
     )
+
     categories = Category.objects.all()
+
+    query = None
+
+    page_title = "View Products"
+    page_description = "View all the products available in our store."
+
+    if request.GET:
+        if "q" in request.GET:
+            query = request.GET["q"]
+            if not query:
+                messages.error(request, "Please enter a search term.")
+                return redirect(reverse("products"))
+
+            queries = Q(name__icontains=query) | Q(category__name__icontains=query)
+            products = products.filter(queries).distinct()
+            page_title = f"Search Results: {query}"
+            page_description = f"View all the products available in our store that match your search term '{query}'."
+
     context = {
         "products": products,
         "categories": categories,
+        "search_term": query,
+        "page_title": page_title,
+        "page_description": page_description,
     }
 
-    return render(request, "./products/products.html")
-
-
-def Clothes(request):
-    clothes = Product.objects.filter(category__name="Clothes")
-    clothes_categories = Category.objects.filter(main_category="Clothes").all()
-    context = {"clothes": clothes, "categories": clothes_categories}
-    return render(request, "/products/clothes.html", context)
-
-
-def product_detail(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-
-    context = {
-        "product": product,
-    }
-
-    return render(request, "./products/product_detail.html", context)
+    return render(request, "products/products.html", context)
 
 
 def add_product(request):
@@ -54,7 +65,9 @@ def add_product(request):
                 image_instance.image = file
                 image_instance.save()
 
-            return redirect("product_list")  # Replace with your actual view name or URL
+            return redirect(
+                "productdetail"
+            )  # Replace with your actual view name or URL
 
     else:
         product_form = ProductForm()
@@ -68,17 +81,11 @@ def add_product(request):
     return render(request, "products/add_product.html", context)
 
 
-def search_products(request):
-    query = request.GET.get("query", "")
-
-    if query:
-        products = Product.objects.filter(name__icontains=query)
-    else:
-        products = Product.objects.none()
+def product_detail(request, pk):
+    product = get_object_or_404(Product, pk=pk)
 
     context = {
-        "products": products,
-        "search_query": query,
+        "product": product,
     }
 
-    return render(request, "./products/search_results.html", context)
+    return render(request, "./products/product_detail.html", context)

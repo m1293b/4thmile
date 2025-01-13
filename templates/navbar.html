@@ -36,8 +36,8 @@
     <!-- Search Bar Section -->
     <div class="search-bar-container">
       <button id="toggle-search-btn" class="search-toggle-button"><i class="fas fa-search"></i></button>
-      <form action="{% url 'search_products' %}" method="get" class="hidden search-form">
-        <input type="text" name="query" placeholder="Search products..." class="search-input" />
+      <form action="{% url 'products' %}" method="get" class="hidden search-form">
+        <input type="text" name="q" placeholder="Search products..." class="search-input" />
         <button type="submit" class="search-submit-button"><i class="fas fa-search"></i></button>
       </form>
 
