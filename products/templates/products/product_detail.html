@@ -3,91 +3,97 @@
 {% block content %}
   <div class="background-container">
     <div class="page-title-container">
-      <h1 class="page-title">{{ product.name }}</h1>
-      <p class="page-subtitle">Find the best clothes for your little ones!</p>
+      <h1 class="page-title">Detailed view of {{ product.name }}</h1>
+      <p class="page-subtitle">which is a {{ product.description }}</p>
     </div>
     <div class="product-detail-container">
-      <h1>{{ product.name }}</h1>
-      {% if product.productimage_set.exists %}
-        <img src="{{ product.productimage_set.first.image.url }}" alt="{{ product.name }}" class="main-product-image" />
-      {% else %}
-        <img src="{% static 'assets/img/no-clothes-picture.jpg' %}" alt="{{ product.name }}" class="main-product-image" />
-      {% endif %}
-      <p>Price: £{{ product.price }}</p>
-
-      {% if product.is_on_sale == True %}
-        <p>Sale Price: £{{ product.sale_price }}</p>
-      {% endif %}
-      <p>Description: {{ product.description }}</p>
-
-      <p>
-        Size:{% if product.sizes %}
-          {% for size in product.sizes.all %}
-            {{ size }}{% if not forloop.last %}, {% endif %}
-          {% endfor %}
+      <div class="product-detail-container-header">
+        {% if product.productimage_set.exists %}
+          <img src="{{ product.productimage_set.first.image.url }}" alt="{{ product.name }}" class="product-detail-image" />
         {% else %}
-          N/A
+          <img src="{% static 'assets/img/no-clothes-picture.jpg' %}" alt="{{ product.name }}" class="product-detail-image" />
         {% endif %}
-      </p>
+        <h3 class="category-title">{{ category.name }}</h3>
+      </div>
+      <div class="product-detail-section">
+        <p>Price: £{{ product.price }}</p>
 
-      <p>
-        Color:{% if product.colors %}
-          {% for color in product.colors.all %}
-            {{ color.name }}
-            <img src="{{ color.image.url }}" alt="{{ color.name }}" width="20" height="20" />
-            {% if not forloop.last %}, {% endif %}
-          {% endfor %}
+        {% if product.is_on_sale == True %}
+          <p>Sale Price: £{{ product.sale_price }}</p>
+        {% endif %}
+        <p>Description: {{ product.description }}</p>
+
+        <p>
+          Size:{% if product.sizes %}
+            {% for size in product.sizes.all %}
+              {{ size }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          {% else %}
+            N/A
+          {% endif %}
+        </p>
+
+        <p>
+          Color:{% if product.colors %}
+            {% for color in product.colors.all %}
+              {{ color.name }}
+              <img src="{{ color.image.url }}" alt="{{ color.name }}" width="20" height="20" />
+              {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          {% else %}
+            N/A
+          {% endif %}
+        </p>
+
+        <p>
+          Stock:{% if product.stock > 0 %}
+            {{ product.stock }} in stock
+          {% else %}
+            <span style="color:red">Out of stock</span>
+          {% endif %}
+        </p>
+
+        <form method="post">
+          {% csrf_token %}
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" name="quantity" min="1" max="{{ product.stock }}" value="1" />
+
+          <button type="submit">Add to Cart</button>
+        </form>
+
+        <h2>Customer Reviews</h2>
+        {% if reviews %}
+          <ul>
+            {% for review in reviews %}
+              <li>
+                <p>{{ review.rating }} stars - {{ review.comment }}</p>
+                <small>By: {{ review.author }}</small>
+              </li>
+            {% endfor %}
+          </ul>
         {% else %}
-          N/A
+          <p>No reviews yet.</p>
         {% endif %}
-      </p>
 
-      <p>
-        Stock:{% if product.stock > 0 %}
-          {{ product.stock }} in stock
-        {% else %}
-          <span style="color:red">Out of stock</span>
-        {% endif %}
-      </p>
+        <form method="post">
+          {% csrf_token %}
+          <label for="rating">Rating:</label>
+          <select id="rating" name="rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
 
-      <form method="post">
-        {% csrf_token %}
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity" min="1" max="{{ product.stock }}" value="1" />
+          <label for="comment">Comment:</label>
+          <textarea id="comment" name="comment"></textarea>
 
-        <button type="submit">Add to Cart</button>
-      </form>
+          <button type="submit">Submit Review</button>
+        </form>
+      </div>
 
-      <h2>Customer Reviews</h2>
-      {% if reviews %}
-        <ul>
-          {% for review in reviews %}
-            <li>
-              <p>{{ review.rating }} stars - {{ review.comment }}</p>
-              <small>By: {{ review.author }}</small>
-            </li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <p>No reviews yet.</p>
-      {% endif %}
-
-      <form method="post">
-        {% csrf_token %}
-        <label for="rating">Rating:</label>
-        <select id="rating" name="rating">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-
-        <label for="comment">Comment:</label>
-        <textarea id="comment" name="comment"></textarea>
-
-        <button type="submit">Submit Review</button>
-      </form>
+      {% comment %}use details from underneath this comment{% endcomment %}
     </div>
   </div>
 {% endblock %}

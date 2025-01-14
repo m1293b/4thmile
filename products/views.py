@@ -30,9 +30,6 @@ def products(request):
     if request.GET:
         if "q" in request.GET:
             query = request.GET["q"]
-            if not query:
-                messages.error(request, "Please enter a search term.")
-                return redirect(reverse("products"))
 
             queries = Q(name__icontains=query) | Q(category__name__icontains=query)
             products = products.filter(queries)

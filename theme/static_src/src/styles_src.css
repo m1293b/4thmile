@@ -153,14 +153,40 @@ body {
   @apply p-2 md:px-2 md:py-1 rounded-md cursor-pointer transition-colors duration-75 hover:bg-[var(--theme-primary-dark)] font-bold text-sm md:text-lg whitespace-nowrap;
 }
 
+/* Detailed view of product */
+
+.product-detail-container {
+  @apply grid grid-cols-1 mb-4 text-base rounded-md shadow-lg md:grid-cols-2 sm:text-lg md:text-xl sm:mb-6 md:mb-8 bg-theme-primary-dark;
+}
+
+.product-detail-container-header {
+  @apply grid content-center p-4 justify-items-center;
+}
+
+.product-detail-image {
+  @apply object-cover w-[45%] max-w-[530px] h-auto rounded-[10rem] border-2 border-[var(--txt-light)] md:min-w-[300px];
+}
+
+.product-detail-section {
+  @apply p-4;
+}
+
 /* General page styling */
 
+body.theme-girls div.product-detail-container p.dark-text {
+  color: var(--text-dark); /* Dark theme text */
+}
+
+body.theme-boys div.product-detail-container p.light-text {
+  color: var(--text-light); /* Light theme text */
+}
+
 .page-title-container {
-  @apply container px-4 py-4 mx-auto mt-16 sm:py-6 md:py-8;
+  @apply container px-4 pt-16 pb-4 mx-auto mt-16 sm:py-6 md:py-8;
 }
 
 .page-title {
-  @apply text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--theme-primary-dark)] mt-10 md:mt-2 mb-2 sm:mb-3 md:mb-4;
+  @apply text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--theme-primary-dark)] mt-10 md:mt-10 mb-2 sm:mb-3 md:mb-4;
 }
 
 .page-subtitle {
@@ -197,10 +223,6 @@ body {
 
 .category-image {
   @apply rounded-md max-w-[10%];
-}
-
-.product-detail-container {
-  @apply text-base sm:text-lg md:text-xl text-[var(--theme-primary-light)] mb-4 sm:mb-6 md:mb-8;
 }
 
 .product-card {

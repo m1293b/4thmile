@@ -28,12 +28,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
       updateThemeIcon("girls");
       updateFavicon("girls");
       updateLogo("girls");
+      updatePTextColor("girls");
     } else {
       body.classList.replace("theme-girls", "theme-boys");
       localStorage.setItem("theme", "boys");
       updateThemeIcon("boys");
       updateFavicon("boys");
       updateLogo("boys");
+      updatePTextColor("boys");
     }
   });
 
@@ -59,5 +61,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
     } else {
       favIcon.href = `${baseUrl}${favicon_girls}`;
     }
+  }
+
+  function updatePTextColor(theme) {
+    $("div.product-detail-container p").each(function () {
+      if (theme === "boys") {
+        $(this).removeClass("dark-text").addClass("light-text");
+      } else {
+        $(this).removeClass("light-text").addClass("dark-text");
+      }
+    });
   }
 });
