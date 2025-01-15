@@ -3,6 +3,26 @@
 {% block content_main %}
   <div class="page-title-container">
     <h1 class="page-title">{{ page_title }}</h1>
+    <div class="sort-products">
+      {% if request.GET.category %}
+        <input type="hidden" name="category" value="{{ request.GET.category }}" />
+      {% endif %}
+
+      {% if request.GET.q %}
+        <input type="hidden" name="q" value="{{ request.GET.q }}" />
+      {% endif %}
+      <form method="get" action="{% url 'products' %}">
+        <label for="sort">Sort by:</label>
+        <select name="sort" id="sort">
+          <option value="">Select a sort option</option>
+          <option value="name">Name (A-Z)</option>
+          <option value="-name">Name (Z-A)</option>
+          <option value="price">Price: Low to High</option>
+          <option value="-price">Price: High to Low</option>
+        </select>
+        <button type="submit">Sort</button>
+      </form>
+    </div>
     <p class="page-subtitle">{{ page_description }}</p>
   </div>
   {% if products %}

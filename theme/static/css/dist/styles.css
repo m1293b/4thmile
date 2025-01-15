@@ -7621,6 +7621,8 @@ body.theme-boys div.product-detail-container p.light-text {
   margin-left: auto;
   margin-right: auto;
   margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 4rem;
@@ -7664,6 +7666,14 @@ body.theme-boys div.product-detail-container p.light-text {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
+}
+
+.sort-products {
+  grid-row: span 2 / span 2;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+  color: var(--theme-primary-dark);
 }
 
 .page-subtitle {

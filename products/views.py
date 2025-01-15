@@ -1,5 +1,4 @@
-from django.shortcuts import get_object_or_404, render, redirect, reverse
-from django.contrib import messages
+from django.shortcuts import get_object_or_404, render, redirect
 from django.db.models import Q
 from .models import Product, Category, ProductImage
 from .forms import ProductForm, ProductImageForm
@@ -27,6 +26,9 @@ def products(request):
     category = None
 
     query = None
+    sort = None
+
+    print(sort)
 
     page_title = "View Products"
     page_description = "View all the products available in our store."
@@ -36,6 +38,8 @@ def products(request):
         if "category" in request.GET:
             category = request.GET["category"]
             products = products.filter(category__main_category__in=category)
+            page_title = f"Products in Category: {category}"
+            page_description = f"View all the products available in our store that belong to the category '{category}'."
 
         if "q" in request.GET:
             query = request.GET["q"]
@@ -45,11 +49,16 @@ def products(request):
             page_title = f"Search Results: {query}"
             page_description = f"View all the products available in our store that match your search term '{query}'."
 
+        if "sort" in request.GET:
+            sort = request.GET.get("sort", "")
+            products = products.order_by(sort)
+
     context = {
         "products": products,
         "categories": categories,
         "category": category,
         "search_term": query,
+        "sort": sort,
         "page_title": page_title,
         "page_description": page_description,
     }
