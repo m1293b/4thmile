@@ -53,7 +53,8 @@
           {% endif %}
         </p>
 
-        <form method="post">
+        <form method="post" action="">
+          {% comment %} {% url 'add_to_cart' product.id %}this to be placed to action when view is ready{% endcomment %}
           {% csrf_token %}
           <label for="quantity">Quantity:</label>
           <input type="number" id="quantity" name="quantity" min="1" max="{{ product.stock }}" value="1" />
@@ -61,13 +62,16 @@
           <button type="submit">Add to Cart</button>
         </form>
 
+        <hr class="horizontal-rule" />
+
         <h2>Customer Reviews</h2>
         {% if reviews %}
           <ul>
             {% for review in reviews %}
-              <li>
-                <p>{{ review.rating }} stars - {{ review.comment }}</p>
-                <small>By: {{ review.author }}</small>
+              <li class="review-item">
+                <p class="col-span-2">{{ review.rating }} stars - {{ review.comment }}</p>
+                <small>By: {{ review.user.username }}</small>
+                <small>Posted on: {{ review.created_at }}</small>
               </li>
             {% endfor %}
           </ul>
@@ -75,7 +79,7 @@
           <p>No reviews yet.</p>
         {% endif %}
 
-        <form method="post">
+        <form method="post" action="{% url 'add_review' product.pk %}">
           {% csrf_token %}
           <label for="rating">Rating:</label>
           <select id="rating" name="rating">
@@ -83,7 +87,7 @@
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
-            <option value="5">5</option>
+            <option value="5" selected>5</option>
           </select>
 
           <label for="comment">Comment:</label>

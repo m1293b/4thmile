@@ -6,6 +6,11 @@ $(document).ready(function () {
     navLinks.addClass("nav-links-up");
     navMid.addClass("nav-mid-up");
   }
+
+  $(".message-container").hover(function () {
+    $(this).addClass("hidden");
+    $(this).removeClass("message-container");
+  });
 }),
   // Hamburger menu script
 

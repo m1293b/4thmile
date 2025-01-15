@@ -4,6 +4,7 @@ from products.models import Product
 
 # Create your models here.
 
+
 class Review(models.Model):
     """
     Represents a review of a product in the database.
@@ -20,12 +21,24 @@ class Review(models.Model):
         str: A string representation of the review, including the product name,
         the user's username, the rating given, and the comment written.
     """
+
     review_id = models.AutoField(primary_key=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    rating = models.PositiveIntegerField()
-    comment = models.TextField()
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, verbose_name="Product"
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
+    rating = models.PositiveIntegerField(
+        verbose_name="Rating",
+        choices=[
+            (1, "1 Star"),
+            (2, "2 Stars"),
+            (3, "3 Stars"),
+            (4, "4 Stars"),
+            (5, "5 Stars"),
+        ],
+    )
+    comment = models.TextField(verbose_name="Comment")
     created_at = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
-        return f'Review by {self.user.username} on {self.product.name}'
+        return f"Review by {self.user.username} on {self.product.name}"

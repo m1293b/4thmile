@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.db.models import Q
 from .models import Product, Category, ProductImage
 from .forms import ProductForm, ProductImageForm
+from reviews.forms import ReviewForm
+from reviews.models import Review
 
 # Create your views here.
 
@@ -22,12 +24,19 @@ def products(request):
 
     categories = Category.objects.all()
 
+    category = None
+
     query = None
 
     page_title = "View Products"
     page_description = "View all the products available in our store."
 
     if request.GET:
+
+        if "category" in request.GET:
+            category = request.GET["category"]
+            products = products.filter(category__main_category__in=category)
+
         if "q" in request.GET:
             query = request.GET["q"]
 
@@ -39,6 +48,7 @@ def products(request):
     context = {
         "products": products,
         "categories": categories,
+        "category": category,
         "search_term": query,
         "page_title": page_title,
         "page_description": page_description,
@@ -62,9 +72,8 @@ def add_product(request):
                 image_instance.image = file
                 image_instance.save()
 
-            return redirect(
-                "productdetail"
-            )  # Replace with your actual view name or URL
+            messages.success(request, "Product added successfully!")
+            return redirect("product_detail", pk=image_instance.product.pk)
 
     else:
         product_form = ProductForm()
@@ -80,9 +89,21 @@ def add_product(request):
 
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
+    reviews = Review.objects.filter(product=product).order_by("-created_at")[:3]
 
     context = {
         "product": product,
+        "reviews": reviews,
     }
 
     return render(request, "products/product_detail.html", context)
+
+
+# def add_to_cart(request, pk):
+#     product = get_object_or_404(Product, pk=pk)
+#     cart_item, created_at = CartItem.objects.get_or_create(
+#         user=request.user, product=product
+#     )
+#     cart_item.quantity += 1
+#     cart_item.save()
+#     return redirect("cart")  # Redirect to the cart page

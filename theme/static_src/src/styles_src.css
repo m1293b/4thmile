@@ -112,7 +112,7 @@ body {
 /* Nav links */
 
 .nav-links {
-  @apply absolute top-[64px] pointer-events-none md:pointer-events-auto grid grid-flow-row border rounded-b-lg border-[var(--txt-light)] shadow-lg items-center justify-center space-x-0 space-y-4 py-2 bg-theme-primary-light ml-[2.5px] font-bold md:z-[2] md:font-medium sm:ml-0 md:bg-theme-primary-dark md:shadow-none transition-all duration-100 md:static md:space-x-4 md:space-y-0 md:py-0 md:grid md:grid-flow-col md:border-none order-1 md:order-2 md:opacity-100;
+  @apply absolute top-[64px] pointer-events-none md:pointer-events-auto grid grid-flow-row border rounded-b-lg border-[var(--txt-light)] shadow-lg items-center justify-center justify-items-center space-x-0 space-y-4 py-2 bg-theme-primary-light ml-[2.5px] font-bold md:z-[2] md:font-medium sm:ml-0 md:bg-theme-primary-dark md:shadow-none transition-all duration-100 md:static md:space-x-4 md:space-y-0 md:py-0 md:grid md:grid-flow-col md:border-none order-1 md:order-2 md:opacity-100;
 }
 
 .nav-links-down {
@@ -130,7 +130,7 @@ body {
 /* Cart, login and buttons for account */
 
 .nav-mid {
-  @apply fixed top-[64px] py-1 pointer-events-none md:pointer-events-auto grid grid-flow-col items-center justify-self-center px-3 space-y-0 space-x-2 border rounded-b-lg border-[var(--txt-light)] shadow-lg bg-theme-primary-light md:opacity-100 md:bg-theme-primary-light md:space-x-2;
+  @apply fixed top-[64px] py-1 pointer-events-none md:pointer-events-auto grid grid-flow-row md:grid-flow-col items-center justify-items-center justify-self-center px-3 space-y-0 border rounded-b-lg border-[var(--txt-light)] shadow-lg bg-theme-primary-light md:opacity-100 md:bg-theme-primary-light md:space-x-2;
 }
 
 .nav-mid-down {
@@ -153,10 +153,10 @@ body {
   @apply p-2 md:px-2 md:py-1 rounded-md cursor-pointer transition-colors duration-75 hover:bg-[var(--theme-primary-dark)] font-bold text-sm md:text-lg whitespace-nowrap;
 }
 
-/* Detailed view of product */
+/* Product detail page styling */
 
 .product-detail-container {
-  @apply grid grid-cols-1 mb-4 text-base rounded-md shadow-lg md:grid-cols-2 sm:text-lg md:text-xl sm:mb-6 md:mb-8 bg-theme-primary-dark;
+  @apply grid grid-cols-1 mx-3 mb-4 text-base rounded-md shadow-lg md:grid-cols-2 sm:text-lg md:text-xl sm:mb-6 md:mb-8 bg-theme-primary-dark;
 }
 
 .product-detail-container-header {
@@ -168,10 +168,36 @@ body {
 }
 
 .product-detail-section {
-  @apply p-4;
+  @apply grid content-center gap-4 py-4 justify-items-center;
 }
 
-/* General page styling */
+.product-detail-section form {
+  @apply grid content-center gap-4 text-center justify-items-center;
+}
+
+.product-detail-section input,
+.product-detail-section select,
+.product-detail-section textarea {
+  @apply rounded-md border-[var(--txt-light)] focus:border-[var(--theme-primary-dark)] focus:outline-none px-3 py-2 mb-2 text-sm md:text-lg text-[var(--txt-dark)];
+}
+
+.product-detail-section select {
+  @apply h-[40px] w-[60px] rounded-md;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.product-detail-section select::-ms-expand {
+  display: none;
+}
+
+.product-detail-section textarea {
+  @apply h-[120px] w-[330px] md:h-[150px] md:w-[400px] resize max-h-[160px] max-w-[700px] overflow-hidden;
+}
+
+.product-detail-section button {
+  @apply px-4 py-2 rounded-md bg-[var(--txt-light)] border-theme-primary-light hover:bg-theme-primary-light hover:border-[var(--txt-light)] hover:text-white focus:outline-none text-theme-primary-dark;
+}
 
 body.theme-girls div.product-detail-container p.dark-text {
   color: var(--text-dark); /* Dark theme text */
@@ -179,6 +205,28 @@ body.theme-girls div.product-detail-container p.dark-text {
 
 body.theme-boys div.product-detail-container p.light-text {
   color: var(--text-light); /* Light theme text */
+}
+
+.review-item {
+  @apply grid items-center content-center grid-cols-2 p-3 mb-1 border-2 rounded border-sky-100;
+}
+
+/* General page styling */
+
+.message-container {
+  @apply fixed grid content-center bottom-[20px] right-[20px] bg-theme-primary-light p-4 shadow-md rounded-lg ease-out transition-all duration-300 outline-2 outline-dotted outline-white outline-offset-2;
+}
+
+.message {
+  @apply text-sm font-bold leading-relaxed text-white sm:text-base md:text-lg;
+}
+
+.horizontal-rule {
+  @apply my-10 text-white w-[80%];
+}
+
+.horizontal-rule-message {
+  @apply text-white w-[80%];
 }
 
 .page-title-container {

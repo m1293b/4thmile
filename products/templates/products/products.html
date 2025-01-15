@@ -7,17 +7,17 @@
       <p class="page-subtitle">{{ page_description }}</p>
     </div>
     {% if products %}
-      {% for category in categories %}
+      {% for product in products %}
         <div class="page-section">
           <div class="page-container">
             <div class="page-grid">
               <div class="category-card">
-                {% if category.image %}
-                  <img src="{{ category.image }}" alt="{{ category.name }}" class="category-image" />
+                {% if product.category.image %}
+                  <img src="{{ product.category.image }}" alt="{{ product.category.name }}" class="category-image" />
                 {% else %}
-                  <img src="{% static 'assets/img/no-clothes-picture.jpg' %}" alt="{{ category.name }}" class="category-image" />
+                  <img src="{% static 'assets/img/no-clothes-picture.jpg' %}" alt="{{ product.category.name }}" class="category-image" />
                 {% endif %}
-                <h3 class="category-title">{{ category.name }}</h3>
+                <h3 class="category-title">{{ product.category.name }}</h3>
               </div>
               <div class="products-section">
                 {% for product in products %}
@@ -58,7 +58,7 @@
             </div>
           </div>
         </div>
-        {% if category|add:1 <= categories|length %}
+        {% if not forloop.last %}
           <div class="separator"></div>
         {% endif %}
       </div>
