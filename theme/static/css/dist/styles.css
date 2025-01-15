@@ -7403,6 +7403,126 @@ body.theme-boys div.product-detail-container p.light-text {
 
 /* General page styling */
 
+.background-container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+@media (min-width: 640px) {
+  .background-container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .background-container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .background-container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .background-container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .background-container {
+    max-width: 1536px;
+  }
+}
+
+.background-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2.5rem;
+  display: grid;
+  max-width: 90%;
+  justify-items: center;
+  background-color: var(--theme-primary-light);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 4rem;
+  padding-bottom: 1rem;
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  outline-style: dotted;
+  outline-width: 2px;
+  outline-offset: 2px;
+  outline-color: var(--theme-primary-dark);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+@media (min-width: 640px) {
+  .background-container {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .background-container {
+    margin-top: 80px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.background-container-header {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+@media (min-width: 640px) {
+  .background-container-header {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .background-container-header {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .background-container-header {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .background-container-header {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .background-container-header {
+    max-width: 1536px;
+  }
+}
+
+.background-container-header {
+  padding-top: 5rem;
+}
+
 .message-container {
   position: fixed;
   bottom: 20px;
@@ -7540,7 +7660,6 @@ body.theme-boys div.product-detail-container p.light-text {
 
 @media (min-width: 768px) {
   .page-title {
-    margin-top: 2.5rem;
     margin-bottom: 1rem;
     font-size: 2.25rem;
     line-height: 2.5rem;

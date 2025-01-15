@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -23,22 +24,22 @@ from payments.views import StripeCheckoutView
 
 urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
-    path('admin/', admin.site.urls),
-    path('users/', include('allauth.urls')),
-    path('', include('home.urls')),
-    path('accounts/', include('accounts.urls')),
-    path('analytics/', include('analytics.urls')),
-    path('cart/', include('cart.urls')),
-    path('inventory/', include('inventory.urls')),
-    path('notifications/', include('notifications.urls')),
-    path('orders/', include('orders.urls')),
-    path('payments/', include('payments.urls')),
-    path('products/', include('products.urls')),
-    path('promotions/', include('promotions.urls')),
-    path('reviews/', include('reviews.urls')),
-    path('shipping/', include('shipping.urls')),
-    
-    path('stripe/', StripeCheckoutView.as_view(), name='stripe'),
+    path("admin/", admin.site.urls),
+    path("accounts/", include("allauth.urls")),
+    path("users/", include("allauth.urls")),
+    path("", include("home.urls")),
+    path("accounts/", include("accounts.urls")),
+    path("analytics/", include("analytics.urls")),
+    path("cart/", include("cart.urls")),
+    path("inventory/", include("inventory.urls")),
+    path("notifications/", include("notifications.urls")),
+    path("orders/", include("orders.urls")),
+    path("payments/", include("payments.urls")),
+    path("products/", include("products.urls")),
+    path("promotions/", include("promotions.urls")),
+    path("reviews/", include("reviews.urls")),
+    path("shipping/", include("shipping.urls")),
+    path("stripe/", StripeCheckoutView.as_view(), name="stripe"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

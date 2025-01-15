@@ -213,6 +213,14 @@ body.theme-boys div.product-detail-container p.light-text {
 
 /* General page styling */
 
+.background-container {
+  @apply container max-w-[90%] grid px-4 pt-16 pb-4 md:mt-[80px] mb-10 mx-auto transition-all duration-300 ease-out shadow-md justify-items-center sm:py-6 md:py-8 bg-theme-primary-light outline-2 outline-dotted outline-theme-primary-dark outline-offset-2;
+}
+
+.background-container-header {
+  @apply container pt-20;
+}
+
 .message-container {
   @apply fixed grid content-center bottom-[20px] right-[20px] bg-theme-primary-light p-4 shadow-md rounded-lg ease-out transition-all duration-300 outline-2 outline-dotted outline-white outline-offset-2;
 }
@@ -234,7 +242,7 @@ body.theme-boys div.product-detail-container p.light-text {
 }
 
 .page-title {
-  @apply text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--theme-primary-dark)] mt-10 md:mt-10 mb-2 sm:mb-3 md:mb-4;
+  @apply text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--theme-primary-dark)] mt-10 mb-2 sm:mb-3 md:mb-4;
 }
 
 .page-subtitle {
