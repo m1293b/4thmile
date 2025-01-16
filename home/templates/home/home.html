@@ -10,18 +10,29 @@
       <div class="page-grid">
         <h3 class="page-heading">Shop Baby Clothes</h3>
         <!-- Baby Clothes product cards -->
-        <div class="product-card">
-          <img src="/static/images/baby-onesies.jpg" alt="Baby Onesies" class="product-image" />
-          <h3 class="product-title">Onesies</h3>
-        </div>
-        <div class="product-card">
-          <img src="/static/images/baby-sleepwear.jpg" alt="Baby Sleepwear" class="product-image" />
-          <h3 class="product-title">Sleepwear</h3>
-        </div>
-        <div class="product-card">
-          <img src="/static/images/baby-outerwear.jpg" alt="Baby Outerwear" class="product-image" />
-          <h3 class="product-title">Outerwear</h3>
-        </div>
+        <!-- Onsies -->
+        <a href="{% url 'products' %}?category=onesies" class="product-card-link">
+          <div class="product-card">
+            <img src="/static/images/baby-onesies.jpg" alt="Baby Onesies" class="product-image" />
+            <h3 class="product-title">Onesies</h3>
+          </div>
+        </a>
+
+        <!-- Sleepwear -->
+        <a href="{% url 'products' %}?category=sleepwear" class="product-card-link">
+          <div class="product-card">
+            <img src="/static/images/baby-sleepwear.jpg" alt="Baby Sleepwear" class="product-image" />
+            <h3 class="product-title">Sleepwear</h3>
+          </div>
+        </a>
+
+        <!-- Outerwear -->
+        <a href="{% url 'products' %}?category=outerwear" class="product-card-link">
+          <div class="product-card">
+            <img src="/static/images/baby-outerwear.jpg" alt="Baby Outerwear" class="product-image" />
+            <h3 class="product-title">Outerwear</h3>
+          </div>
+        </a>
         <div class="product-card">
           <img src="/static/images/baby-accessories.jpg" alt="Baby Accessories" class="product-image" />
           <h3 class="product-title">Accessories</h3>

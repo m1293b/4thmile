@@ -3,7 +3,7 @@
 {% block content_main %}
   <div class="page-title-container">
     <h1 class="page-title">Detailed view of {{ product.name }}</h1>
-    <p class="page-subtitle">which is a {{ product.description }}</p>
+    <p class="page-subtitle">which is in the category of {{ product.category.friendly_name }}</p>
   </div>
   <div class="product-detail-container">
     <div class="product-detail-container-header">
@@ -12,7 +12,6 @@
       {% else %}
         <img src="{% static 'assets/img/no-clothes-picture.jpg' %}" alt="{{ product.name }}" class="product-detail-image" />
       {% endif %}
-      <h3 class="category-title">{{ category.name }}</h3>
     </div>
     <div class="product-detail-section">
       <p>Price: £{{ product.price }}</p>
@@ -23,22 +22,16 @@
       <p>Description: {{ product.description }}</p>
 
       <p>
-        Size:{% if product.sizes %}
-          {% for size in product.sizes.all %}
-            {{ size }}{% if not forloop.last %}, {% endif %}
-          {% endfor %}
+        Size:{% if product.size %}
+          {{ product.size }}
         {% else %}
           N/A
         {% endif %}
       </p>
 
       <p>
-        Color:{% if product.colors %}
-          {% for color in product.colors.all %}
-            {{ color.name }}
-            <img src="{{ color.image.url }}" alt="{{ color.name }}" width="20" height="20" />
-            {% if not forloop.last %}, {% endif %}
-          {% endfor %}
+        Color:{% if product.color %}
+          {{ product.color }}
         {% else %}
           N/A
         {% endif %}
@@ -68,7 +61,9 @@
         <ul>
           {% for review in reviews %}
             <li class="review-item">
-              <p class="col-span-2">{{ review.rating }} stars - {{ review.comment }}</p>
+              <p class="col-span-2">
+                <span class="px-2 font-bold bg-red-600 rounded-lg">{{ review.rating }}</span> out of 5 stars - <br />{{ review.comment }}
+              </p>
               <small>By: {{ review.user.username }}</small>
               <small>Posted on: {{ review.created_at }}</small>
             </li>

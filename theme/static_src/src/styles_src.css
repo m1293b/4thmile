@@ -60,11 +60,11 @@ body {
 }
 
 /* Hamburger menu */
-.hamburger-menu {
+.hamburger-menu-button {
   @apply z-10 bg-slate-100 rounded border-none cursor-pointer p-5 ml-5 mr-[30px] flex justify-center items-center w-8 h-6 outline-none transition-colors duration-300 md:hidden;
 }
 
-.hamburger-menu i {
+.hamburger-menu-button i {
   @apply text-gray-800 transition-transform duration-300;
 }
 
@@ -168,7 +168,7 @@ body {
 }
 
 .product-detail-section {
-  @apply grid content-center gap-4 py-4 justify-items-center;
+  @apply grid content-center gap-4 p-8 justify-items-center;
 }
 
 .product-detail-section form {
@@ -222,7 +222,7 @@ body.theme-boys div.product-detail-container p.light-text {
 }
 
 .message-container {
-  @apply fixed grid content-center bottom-[20px] right-[20px] bg-theme-primary-light p-4 shadow-md rounded-lg ease-out transition-all duration-300 outline-2 outline-dotted outline-white outline-offset-2;
+  @apply fixed grid content-center bottom-[20px] right-[20px] bg-theme-primary-light p-4 shadow-md rounded-lg ease-out transition-all duration-300 outline-2 outline-dotted outline-red-600 outline-offset-2;
 }
 
 .message {
@@ -238,6 +238,10 @@ body.theme-boys div.product-detail-container p.light-text {
 }
 
 .page-title-container {
+  @apply container grid grid-cols-1 px-4 pt-16 pb-4 mx-auto mt-16 sm:py-6 md:py-8;
+}
+
+.products-page-title-container {
   @apply container grid grid-cols-2 px-4 pt-16 pb-4 mx-auto mt-16 sm:py-6 md:py-8;
 }
 
@@ -258,11 +262,11 @@ body.theme-boys div.product-detail-container p.light-text {
 }
 
 .page-section {
-  @apply bg-[var(--theme-primary-dark)] py-6 sm:py-8 md:py-10;
+  @apply container rounded bg-[var(--theme-primary-dark)] py-6 sm:py-8 md:py-10;
 }
 
 .page-section-light {
-  @apply bg-[var(--theme-primary-light)] py-6 sm:py-8 md:py-10;
+  @apply container rounded bg-[var(--theme-primary-light)] py-6 sm:py-8 md:py-10;
 }
 
 .page-grid {
@@ -283,6 +287,10 @@ body.theme-boys div.product-detail-container p.light-text {
 
 .category-image {
   @apply rounded-md max-w-[10%];
+}
+
+.products-section {
+  @apply grid grid-flow-col gap-4 justify-items-center col-span-full sm:gap-6 md:gap-8;
 }
 
 .product-card {

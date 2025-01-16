@@ -2,19 +2,21 @@
 
 <nav class="navbar">
   <div class="navbar-container">
-    <button id="hamburger-menu" class="hamburger-menu">
+    <button id="hamburger-menu-button" class="hamburger-menu-button">
       <i class="fas fa-bars"></i>
       <i class="fas fa-chevron-down"></i>
     </button>
-    <div class="logo-container">
-      <img src="{% static 'assets/img/blue_logo.png' %}" alt="Baby Suite Logo" class="logo" />
-      <span class="brand-name">Baby Suite</span>
-    </div>
+    <a href="{% url 'home' %}">
+      <div class="logo-container">
+        <img src="{% static 'assets/img/blue_logo.png' %}" alt="Baby Suite Logo" class="logo" />
+        <span class="brand-name">Baby Suite</span>
+      </div>
+    </a>
 
     <!-- Navigation Links -->
     <div class="nav-links">
-      <a href="{% url 'products' %}?category=clothes" class="nav-link">Clothes</a>
-      <a href="{% url 'products' %}?category=toys" class="nav-link">Toys</a>
+      <a href="{% url 'products' %}?main_category=clothes" class="nav-link">Clothes</a>
+      <a href="{% url 'products' %}?main_category=toys" class="nav-link">Toys</a>
       <a href="{% url 'about' %}" class="nav-link">About</a>
       <a href="{% url 'contact' %}" class="nav-link">Contact</a>
       <a href="{% url 'account_login' %}" class="hidden login-btn">Login</a>
@@ -36,7 +38,7 @@
 
     <!-- Search Bar Section -->
     <div class="search-bar-container">
-      <button id="toggle-search-btn" class="search-toggle-button"><i class="fas fa-search"></i></button>
+      <button id="toggle-search-button" class="search-toggle-button"><i class="fas fa-search"></i></button>
       <form action="{% url 'products' %}" method="get" class="hidden search-form">
         <input type="text" name="q" placeholder="Search products..." class="search-input" />
         <button type="submit" class="search-submit-button"><i class="fas fa-search"></i></button>

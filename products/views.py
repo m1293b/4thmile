@@ -4,6 +4,7 @@ from .models import Product, Category, ProductImage
 from .forms import ProductForm, ProductImageForm
 from reviews.forms import ReviewForm
 from reviews.models import Review
+from django.contrib import messages
 
 # Create your views here.
 
@@ -21,29 +22,44 @@ def products(request):
         .all()
     )
 
-    categories = Category.objects.all()
+    categories = Category.objects.prefetch_related(
+        "product_set",
+    ).all()
 
+    main_category = None
     category = None
 
     query = None
     sort = None
-
-    print(sort)
+    products_list = []
 
     page_title = "View Products"
     page_description = "View all the products available in our store."
 
     if request.GET:
 
+        if "main_category" in request.GET:
+            main_category = request.GET["main_category"]
+            products = products.filter(category__main_category=main_category)
+            # if main_category:
+            #     categories = categories.filter(main_category=main_category)
+            #     for category_sub in categories:
+            #         if category_sub.main_category == main_category:
+            #             products.append(category_sub)
+            page_title = f"Products in main category: {main_category}"
+            page_description = f"View all the products available in our store that belong to the main category '{main_category}'."
+
         if "category" in request.GET:
-            category = request.GET["category"]
-            products = products.filter(category__main_category__in=category)
-            page_title = f"Products in Category: {category}"
-            page_description = f"View all the products available in our store that belong to the category '{category}'."
+            category_name = request.GET["category"]
+            products = products.filter(category__friendly_name=category_name)
+            categories = categories.filter(friendly_name=category_name)
+            if categories:
+                products = products.filter(category=category)
+                page_title = f"Products in category: {category.friendly_name}"
+                page_description = f"View all the products available in our store that belong to the category '{category.friendly_name}'."
 
         if "q" in request.GET:
             query = request.GET["q"]
-
             queries = Q(name__icontains=query) | Q(category__name__icontains=query)
             products = products.filter(queries)
             page_title = f"Search Results: {query}"
@@ -51,11 +67,21 @@ def products(request):
 
         if "sort" in request.GET:
             sort = request.GET.get("sort", "")
-            products = products.order_by(sort)
+            # Ensure safe sorting by checking valid fields
+            valid_sort_fields = [
+                "name",
+                "-name",
+                "price",
+                "-price",
+            ]  # Add more as needed
+            if sort in valid_sort_fields:
+                products = products.order_by(sort)
+            else:
+                sort = ""  # Reset to default if invalid
 
     context = {
         "products": products,
-        "categories": categories,
+        "main_category": main_category,
         "category": category,
         "search_term": query,
         "sort": sort,
@@ -69,7 +95,7 @@ def products(request):
 def add_product(request):
     if request.method == "POST":
         product_form = ProductForm(request.POST)
-        image_form = ProductImageForm(request.POST, request.FILES)
+        image_form = ProductImageForm(request.FILES)
 
         if product_form.is_valid() and image_form.is_valid():
             product_instance = product_form.save()
@@ -82,7 +108,7 @@ def add_product(request):
                 image_instance.save()
 
             messages.success(request, "Product added successfully!")
-            return redirect("product_detail", pk=image_instance.product.pk)
+            return redirect("product_detail", pk=product_instance.pk)
 
     else:
         product_form = ProductForm()
