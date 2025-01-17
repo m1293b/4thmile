@@ -18,20 +18,19 @@ def cart_summary(request):
 
 def add_to_cart(request):
     # Logic to add a product to the cart
-    
+    pk = int(request.POST.get('product_id'))
     cart = Cart(request)
-    messages.success(request, f"{product.name} added to cart.")
     
-    if request.POST.get('action') == 'post':
-        product_id = int(request.POST.get('product_id'))
-        product = get_object_or_404(Product,pk=product_id)
+    if request.POST:
+        product = get_object_or_404(Product,pk=pk)
         quantity = int(request.POST.get('quantity'))
-        print(product_id)
+        print(product)
         print(quantity)
         
-        cart.add(product=product, quantity=quantity)
-    
+        cart.add(product=product, quantity=quantity)    
         messages.success(request, f"{product.name} added to cart.")
+        
+    return JsonResponse({'status': 'success'})
 
 
 def update_cart(request, product_id, quantity):

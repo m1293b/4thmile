@@ -101,18 +101,12 @@
       // Send AJAX request to add product to cart
       $.ajax({
         type: 'POST',
-        url: "{% url 'add_to_cart' product.pk %}",
+        url: "{% url 'add_to_cart' %}",
         data: {
           product_id: product_id,
           quantity: quantity,
           csrfmiddlewaretoken: '{{ csrf_token }}'
         },
-        success: function (response) {
-          alert('Product added to cart!')
-        },
-        error: function (xhr, status, error) {
-          console.log(error)
-        }
       })
     })
   </script>
