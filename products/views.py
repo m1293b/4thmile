@@ -52,11 +52,9 @@ def products(request):
         if "category" in request.GET:
             category_name = request.GET["category"]
             products = products.filter(category__friendly_name=category_name)
-            categories = categories.filter(friendly_name=category_name)
-            if categories:
-                products = products.filter(category=category)
-                page_title = f"Products in category: {category.friendly_name}"
-                page_description = f"View all the products available in our store that belong to the category '{category.friendly_name}'."
+            category = categories.filter(friendly_name=category_name).first()
+            page_title = f"Products in category: {category.friendly_name}"
+            page_description = f"View all the products available in our store that belong to the category '{category.friendly_name}'."
 
         if "q" in request.GET:
             query = request.GET["q"]

@@ -13,31 +13,3 @@ def about(request):
 
 def contact(request):
     return render(request, "contact.html")
-
-
-def baby_clothes(request):
-    return render(request, "baby_clothes.html")
-
-
-def baby_toys(request):
-    return render(request, "baby_toys.html")
-
-
-def cart(request):
-    return render(request, "cart.html")
-
-
-def login(request):
-    return render(request, "login.html")
-
-
-def profile(request):
-    return render(request, "profile.html")
-
-
-def signup(request):
-    return render(request, "signup.html")
-
-
-def register(request):
-    return render(request, "register.html")

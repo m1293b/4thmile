@@ -2354,6 +2354,14 @@ select {
   inset-inline-end: 0.25rem;
 }
 
+.left-\[-5px\] {
+  left: -5px;
+}
+
+.left-\[45px\] {
+  left: 45px;
+}
+
 .isolate {
   isolation: isolate;
 }
@@ -3905,6 +3913,10 @@ select {
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
+}
+
+.text-\[60\%\] {
+  font-size: 60%;
 }
 
 .text-lg {
@@ -7153,6 +7165,7 @@ body {
 }
 
 .cart-icon {
+  display: grid;
   border-radius: 0.375rem;
   padding: 0.5rem;
   font-size: 1.25rem;

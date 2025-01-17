@@ -58,7 +58,7 @@ $(window).on("resize", function () {
   }
 });
 
-$("#toggle-search-btn").on("click", function () {
+$("#toggle-search-button").on("click", function () {
   const searchForm = document.querySelector(".search-form");
   if (searchForm.classList.contains("hidden")) {
     searchForm.classList.remove("hidden");

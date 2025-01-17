@@ -6,6 +6,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from products.models import Product
 
+
 class Cart(models.Model):
     """
     Represents a cart in the database.
@@ -16,13 +17,18 @@ class Cart(models.Model):
         created_at (datetime): The date and time the cart was created.
         updated_at (datetime): The date and time the cart was last updated.
     """
+
     cart_id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    active_cart = models.BooleanField(default=True)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=999.99)
+    total_items = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     def __str__(self):
-        return f'Cart of {self.user.username}'
+        return f"Cart of {self.user.username}"
+
 
 class CartItem(models.Model):
     """
@@ -38,11 +44,12 @@ class CartItem(models.Model):
     Returns:
         str: A string representation of the cart item.
     """
+
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     def __str__(self):
-        return f'{self.product.name} x {self.quantity}'
+        return f"{self.product.name} x {self.quantity}"
