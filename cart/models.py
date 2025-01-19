@@ -1,8 +1,5 @@
 from django.db import models
-
-# Create your models here.
-
-from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User
 from products.models import Product
 
@@ -17,9 +14,10 @@ class Cart(models.Model):
         created_at (datetime): The date and time the cart was created.
         updated_at (datetime): The date and time the cart was last updated.
     """
-
     cart_id = models.AutoField(primary_key=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True
+    )
     active_cart = models.BooleanField(default=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=999.99)
     total_items = models.IntegerField(default=0)
@@ -45,7 +43,7 @@ class CartItem(models.Model):
         str: A string representation of the cart item.
     """
 
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="items")
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)

@@ -12,8 +12,12 @@ class Cart:
 
         self.cart = cart
         
+    def __len__(self):
+        return len(self.cart)
+        
     def add(self, product, quantity):
         # Check if the product is already in the cart
+        
         if str(product.pk) in self.cart:
             self.cart[str(product.pk)]["quantity"] += int(quantity)
         else:
@@ -27,3 +31,8 @@ class Cart:
            del self.cart[str(product.pk)]
            
         self.session.modified = True
+        
+    def update(self, product, quantity):
+        # Update the quantity of a product in the cart
+        if str(product.pk) in self.cart:
+            self.cart[str(product.pk)]["quantity"] = int(quantity)

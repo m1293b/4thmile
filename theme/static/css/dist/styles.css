@@ -2358,10 +2358,6 @@ select {
   left: -5px;
 }
 
-.left-\[45px\] {
-  left: 45px;
-}
-
 .isolate {
   isolation: isolate;
 }
@@ -3913,10 +3909,6 @@ select {
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
-}
-
-.text-\[60\%\] {
-  font-size: 60%;
 }
 
 .text-lg {
@@ -7186,6 +7178,13 @@ body {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
   }
+}
+
+.cart-len {
+  position: absolute;
+  left: 45px;
+  font-size: 60%;
+  font-weight: 700;
 }
 
 .login-btn {

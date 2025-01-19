@@ -145,6 +145,10 @@ body {
   @apply grid text-xl p-2 md:px-2 md:py-1 rounded-md transition-colors duration-300 hover:bg-[var(--theme-primary-dark)];
 }
 
+.cart-len {
+  @apply absolute left-[45px] text-[60%] font-bold;
+}
+
 .login-btn {
   @apply p-2 md:px-2 md:py-1 rounded-md cursor-pointer transition-colors duration-75 hover:bg-[var(--theme-primary-dark)] font-bold text-sm md:text-lg whitespace-nowrap;
 }
