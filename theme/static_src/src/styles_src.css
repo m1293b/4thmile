@@ -200,7 +200,7 @@ body {
 }
 
 .product-detail-section button {
-  @apply px-4 py-2 rounded-md bg-[var(--txt-light)] border-theme-primary-light hover:bg-theme-primary-light hover:border-[var(--txt-light)] hover:text-white focus:outline-none text-theme-primary-dark;
+  @apply px-4 py-2 rounded-md bg-theme-primary-light border-2 border-[var(--txt-light)] hover:bg-theme-primary-dark hover:text-white focus:outline-none transition-all duration-300;
 }
 
 body.theme-girls div.product-detail-container p.dark-text {
@@ -230,7 +230,7 @@ body.theme-boys div.product-detail-container p.light-text {
 }
 
 .cart-product-link {
-  @apply grid justify-items-center max-w-[20%] ;
+  @apply grid justify-items-center max-w-[20%];
 }
 
 .cart-product-image {
@@ -287,16 +287,20 @@ body.theme-boys div.product-detail-container p.light-text {
   @apply container grid grid-cols-1 px-4 pt-16 pb-4 mx-auto mt-16 sm:py-6 md:py-8;
 }
 
-.products-page-title-container {
-  @apply container grid grid-cols-2 px-4 pt-16 pb-4 mx-auto mt-16 sm:py-6 md:py-8;
-}
-
 .page-title {
   @apply text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--theme-primary-dark)] mt-10 mb-2 sm:mb-3 md:mb-4;
 }
 
 .sort-products {
-  @apply grid content-center grid-cols-2 row-span-2 text-theme-primary-dark;
+  @apply grid content-center row-span-2 justify-items-end text-theme-primary-dark;
+}
+
+.sort-products form {
+  @apply grid grid-cols-1 text-center max-w-[50%] gap-x-3 gap-y-1 sm:gap-x-5 sm:gap-y-2 md:gap-x-7 md:gap-y-3;
+}
+
+.sort-products .sort-button {
+  @apply px-4 py-2 mt-2 text-sm font-bold text-white transition duration-300 ease-in-out border rounded-md border-theme-primary-dark bg-theme-primary-light hover:bg-theme-primary-dark;
 }
 
 .page-subtitle {
@@ -335,6 +339,10 @@ body.theme-boys div.product-detail-container p.light-text {
   @apply rounded-md max-w-[10%];
 }
 
+.products-page-title-container {
+  @apply container grid grid-cols-2 px-4 pt-16 pb-4 mx-auto mt-16 sm:py-6 md:py-8;
+}
+
 .products-section {
   @apply grid grid-flow-col gap-4 justify-items-center col-span-full sm:gap-6 md:gap-8;
 }
@@ -357,4 +365,10 @@ body.theme-boys div.product-detail-container p.light-text {
 
 .separator {
   @apply py-4 bg-white sm:py-6 md:py-8;
+}
+
+/* Profile page styling */
+
+#clear-all-carts-button {
+  @apply relative px-3 py-1 text-sm font-semibold border rounded-md top-[-12px] left-2 bg-theme-primary-light hover:bg-theme-primary-dark transition-all duration-300 focus:outline-none focus:ring-2;
 }

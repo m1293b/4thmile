@@ -13,22 +13,17 @@ $(document).ready(function () {
   });
 }),
   // Hamburger menu script
-
   $("#hamburger-menu-button").on("click", function () {
     this.classList.toggle("active");
-
     const navLinks = $(".nav-links");
     const navMid = $(".nav-mid");
-
     $(".fa-bars").is(":visible")
       ? $(".fa-bars").slideUp(100)
       : $(".fa-bars").slideDown(100);
     $(".fa-chevron-down").is(":visible")
       ? $(".fa-chevron-down").slideUp(100)
       : $(".fa-chevron-down").slideDown(100);
-
     //
-
     if (navLinks.hasClass("nav-links-down")) {
       navLinks.removeClass("nav-links-down").addClass("nav-links-up");
       navMid.removeClass("nav-mid-down").addClass("nav-mid-up");
@@ -68,3 +63,60 @@ $("#toggle-search-button").on("click", function () {
     searchForm.classList.remove("grid");
   }
 });
+
+
+// To clear all carts, you can use the following code:(needs fixing before activation)
+
+// $("#clear-all-carts-button").on("click", function () {
+//   $.ajax({
+//     url: "{{ clear_all_carts_url }}",
+//     method: "POST",
+//     data: {
+//       csrfmiddlewaretoken: "{{ csrf_token }}",
+//     },
+//     success: function (response) {
+//       $(".cart-len").text("0");
+//       $(".cart-products-section").text("You have no activate carts.");
+//     },
+//     error: function (xhr) {
+//       console.error("Error:", xhr.responseText);
+//     },
+//   });
+// });
+
+
+// To add a product to the cart, you can use the following code:(needs fixing before activation)
+
+// $("#add-to-cart").on("click", function () {
+//   const product_id = $(this).val();
+//   const quantity = $("#quantity").val();
+
+//   $.ajax({
+//     type: "POST",
+//     url: "{% url 'add_to_cart' %}",
+//     data: {
+//       product_id: product_id,
+//       quantity: quantity,
+//       csrfmiddlewaretoken: "{{ csrf_token }}",
+//     },
+//     success: function (response) {
+//       $(".cart-len").text(response.cart_len);
+
+//       if ($(".message-container").length === 0) {
+//         $("header").append($("<div>", { class: "message-container" }));
+//       }
+//       if ($(".message").length === 0) {
+//         $(".message-container").append(
+//           $("<div>", { class: "message", text: response.message })
+//         );
+//       } else {
+//         $(".message").text(response.message);
+//       }
+
+//       $(".message-container").show().delay(3000).fadeOut();
+//     },
+//     error: function () {
+//       alert("Error adding product to cart!");
+//     },
+//   });
+// });

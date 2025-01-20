@@ -20,8 +20,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from payments.views import StripeCheckoutView
-
 urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path("admin/", admin.site.urls),
@@ -29,17 +27,10 @@ urlpatterns = [
     path("users/", include("allauth.urls")),
     path("", include("home.urls")),
     path("accounts/", include("accounts.urls")),
-    path("analytics/", include("analytics.urls")),
     path("cart/", include("cart.urls")),
-    path("inventory/", include("inventory.urls")),
-    path("notifications/", include("notifications.urls")),
     path("orders/", include("orders.urls")),
-    path("payments/", include("payments.urls")),
     path("products/", include("products.urls")),
-    path("promotions/", include("promotions.urls")),
     path("reviews/", include("reviews.urls")),
-    path("shipping/", include("shipping.urls")),
-    path("stripe/", StripeCheckoutView.as_view(), name="stripe"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

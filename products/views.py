@@ -86,33 +86,8 @@ def products(request):
 
 
 def add_product(request):
-    if request.method == "POST":
-        product_form = ProductForm(request.POST)
-        image_form = ProductImageForm(request.FILES)
-
-        if product_form.is_valid() and image_form.is_valid():
-            product_instance = product_form.save()
-
-            # Handle multiple images
-            for file in request.FILES.getlist("image"):
-                image_instance = image_form.save(commit=False)
-                image_instance.product = product_instance
-                image_instance.image = file
-                image_instance.save()
-
-            messages.success(request, "Product added successfully!")
-            return redirect("product_detail", pk=product_instance.pk)
-
-    else:
-        product_form = ProductForm()
-        image_form = ProductImageForm()
-
-    context = {
-        "product_form": product_form,
-        "image_form": image_form,
-    }
-
-    return render(request, "products/add_product.html", context)
+    
+    return render(request, "products/add_product.html")
 
 
 def product_detail(request, pk):

@@ -6,12 +6,10 @@ class Cart:
         self.session = request.session
 
         # Initialize the cart if it does not exist in session
-        cart = self.session.get("cart", {})
-
-        if "cart" not in request.session:
+        if "cart" not in self.session:
             self.session["cart"] = {}
 
-        self.cart = cart
+        self.cart = self.session.get("cart", {})
 
     def __len__(self):
         return sum(item["quantity"] for item in self.cart.values())
@@ -30,10 +28,9 @@ class Cart:
                 self.cart[str(product.pk)]["quantity"] += int(quantity)
                 self.cart[str(product.pk)]["total"] = int(product.price) * int(quantity)
             else:
-                # Optionally cap at available stock or raise an error
-                print("Cannot add more than the available stock")
                 return False
         else:
+            # Add the product to the cart with the specified quantity
             if product.stock >= int(quantity):
                 self.cart[str(product.pk)] = {
                     "id": product.pk,
@@ -42,7 +39,6 @@ class Cart:
                     "total": int(product.price) * int(quantity),
                 }
             else:
-                print("Cannot add more than the available stock")
                 return False
 
         self.session.modified = True
@@ -61,3 +57,8 @@ class Cart:
             self.cart[str(product.pk)]["quantity"] = int(quantity)
 
         self.session.modified = True
+
+    def clear(self, request):
+        # Clear all items from the cart
+        del request.session["cart"]
+        request.session.modified = True

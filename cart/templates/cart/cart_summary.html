@@ -6,6 +6,7 @@
     <p class="page-subtitle">{{ page_description }}</p>
   </div>
   <div class="page-section">
+    <button id="clear-all-carts-button">Clear All</button>
     <div class="page-container">
       <div class="page-grid">
         <div class="cart-products-section">
@@ -25,12 +26,13 @@
               </div>
               <form class="cart-product-details-form">
                 <p>
-                  Quantity: <input type="number" name="quantity" value="{{ cart_product.quantity }}" min="1" max="{{ cart_product.product.stock|default:0 }}" required class="cart-product-quantity" />
+                  Quantity:<input type="number" name="quantity" value="{{ cart_product.quantity }}" min="1" max="{{ cart_product.product.stock|default:0 }}" required class="cart-product-quantity" id="{{ cart_product.product.pk }}" />
                 </p>
                 <p>Total Price: £{{ cart_product.total|floatformat:2 }}</p>
                 <div class="cart-product-actions">
-                  <button type="button" value="remove_from_cart" class="btn btn-danger remove-from-cart-btn">Remove</button>
-                  <button type="button" value="update_cart" class="btn btn-primary update-cart-btn">Update</button>
+                  <input type="hidden" value="{{ cart_product.product.pk }}" id="{{ cart_product.product.pk }}" />
+                  <button type="button" value="{% url 'remove_from_cart' %}" id="remove_from_cart">Remove</button>
+                  <button type="button" value="{% url 'update_cart' %}" id="update_cart">Update</button>
                 </div>
               </form>
             </div>
@@ -46,4 +48,62 @@
       </div>
     </div>
   </div>
+
+  <script>
+    $('#remove_from_cart, #update_cart').on('click', function () {
+      const productId = $(this).siblings($('input[type="hidden"]')).val()
+      const quantity = $('input[type="number"][id="' + productId + '"]').val()
+      const url = $(this).val()
+      // Send AJAX request to update cart
+      $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+          product_id: productId,
+          quantity: quantity,
+          csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function (response) {
+          // Update cart count on page
+          $('.cart-len').text(response.cart_len)
+          $('.cart-products-section').text('You have no items in your cart.')
+    
+          if ($('.message-container').length === 0) {
+            // Create and append message-container div to header only if it doesn't exist
+            $('header').append($('<div>', { class: 'message-container' }))
+          }
+          if ($('.message').length === 0) {
+            // Create and append message div to message-container only if it doesn't exist
+            $('.message-container').append($('<div>', { class: 'message', text: response.message }))
+          } else {
+            // Update existing message div with new message text
+            $('.message').text(response.message)
+          }
+          // Show the message container, wait 3000ms, then fade out
+          $('.message-container').show().delay(3000).fadeOut()
+        },
+        error: function (error) {
+          alert('Error while updating the cart!')
+        }
+      })
+    })
+    $(document).ready(function () {
+      $('#clear-all-carts-button').on('click', function () {
+        $.ajax({
+          url: "{% url 'clear-all-carts' %}",
+          method: 'POST',
+          data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+          },
+          success: function (response) {
+            $('.cart-len').text('0')
+            $('.cart-products-section').text('You have no activate carts.')
+          },
+          error: function (xhr) {
+            console.error('Error:', xhr.responseText)
+          }
+        })
+      })
+    })
+  </script>
 {% endblock %}

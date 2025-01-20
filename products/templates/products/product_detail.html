@@ -17,7 +17,7 @@
       <p>Price: £{{ product.price }}</p>
 
       {% if product.is_on_sale == True %}
-        <p>Sale Price: £{{ product.sale_price }}</p>
+        <p class="font-bold">Sale Price: £{{ product.sale_price }}</p>
       {% endif %}
       <p>Description: {{ product.description }}</p>
 

@@ -11,7 +11,6 @@ class Order(models.Model):
 
     Attributes:
         order_id (int): A unique identifier for the order.
-        customer (Customer): The customer who placed the order.
         order_date (date): The date the order was placed.
         total (float): The total cost of the order.
         status (str): The status of the order (e.g. "pending", "shipped", etc.).
@@ -23,7 +22,6 @@ class Order(models.Model):
         str: A string representation of the order.
     """
     order_id = models.AutoField(primary_key=True)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     order_date = models.DateField()
     total = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=50)

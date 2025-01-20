@@ -8,7 +8,6 @@ class Customer(models.Model):
     Represents a customer in the database.
 
     Attributes:
-        account_id (int): The customer's account ID.
         first_name (str): The customer's first name.
         last_name (str): The customer's last name.
         email (str): The customer's email address.
@@ -21,7 +20,6 @@ class Customer(models.Model):
     Returns:
         str: A string representation of the customer.
     """
-    account_id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     username = models.CharField(max_length=255)
     first_name = models.CharField(max_length=255)
@@ -31,9 +29,6 @@ class Customer(models.Model):
     address = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    theme_preference = models.CharField(
-        max_length=255, choices=[('light', 'Light'), ('dark', 'Dark')], default='dark'
-    )
     notes = models.TextField(blank=True)
 
     def __str__(self):
