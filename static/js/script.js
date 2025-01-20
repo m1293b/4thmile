@@ -14,7 +14,7 @@ $(document).ready(function () {
 }),
   // Hamburger menu script
 
-  $("#hamburger-menu").on("click", function () {
+  $("#hamburger-menu-button").on("click", function () {
     this.classList.toggle("active");
 
     const navLinks = $(".nav-links");

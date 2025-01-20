@@ -2,60 +2,48 @@
 {% load static %}
 {% block content_main %}
   <div class="page-title-container">
-    <h1 class="page-title">{{ page_title }}</h1>
+    <h1 class="text-center page-title">Cart</h1>
     <p class="page-subtitle">{{ page_description }}</p>
   </div>
-  {% if products %}
-    <div class="page-section">
-      <div class="page-container">
-        <div class="page-grid">
-          <div class="category-card">
-            {% if product.category.image %}
-              <img src="{{ product.category.image }}" alt="{{ product.category.name }}" class="category-image" />
-            {% else %}
-              <img src="{% static 'assets/img/no-clothes-picture.jpg' %}" alt="{{ product.category.name }}" class="category-image" />
-            {% endif %}
-            <h3 class="category-title">{{ product.category.name }}</h3>
-          </div>
-          <div class="products-section">
-            {% for product in products %}
-              <div class="product-card">
-                <a href="{% url 'product_detail' pk=product.pk %}" class="product-link">
-                  {% if product.productimage_set.exists %}
-                    <img src="{{ product.productimage_set.first.image.url }}" alt="{{ product.name }}" class="product-image" />
+  <div class="page-section">
+    <div class="page-container">
+      <div class="page-grid">
+        <div class="cart-products-section">
+          {% for cart_product in cart_products %}
+            <div class="cart-product-card">
+              <div class="cart-product-link">
+                <a href="{% url 'product_detail' pk=cart_product.product.pk %}">
+                  {% if cart_product.product.productimage_set.exists %}
+                    <img src="{{ cart_product.product.productimage_set.first.image.url }}" alt="{{ cart_product.product.name }}" class="cart-product-image" />
                   {% else %}
-                    <img src="{% static 'assets/img/no-clothes-picture.jpg' %}" alt="{{ product.name }}" class="product-image" />
+                    <img src="{% static 'assets/img/no-clothes-picture.jpg' %}" alt="{{ cart_product.product.name }}" class="cart-product-image" />
                   {% endif %}
-                  <h3 class="product-title">{{ product.name }}</h3>
-                  <p class="product-price">£{{ product.price }}</p>
                 </a>
-                {% if product.is_on_sale == True %}
-                  <p>
-                    <span class="on-sale">{{ product.sale_price }}$</span>
-                  </p>
-                {% endif %}
               </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-    </div>
-  {% else %}
-    <div class="page-section">
-      <div class="page-container">
-        <div class="page-grid">
-          <div class="category-card">
-            {% if user.is_authenticated %}
-              <h3 class="category-title">There are no products in you cart yet. Please add some!</h3>
-            {% else %}
-              <h3 class="category-title">No products found</h3>
+              <div class="cart-product-title">
+                <h3>{{ cart_product.product.name }}</h3>
+              </div>
+              <form class="cart-product-details-form">
+                <p>
+                  Quantity: <input type="number" name="quantity" value="{{ cart_product.quantity }}" min="1" max="{{ cart_product.product.stock|default:0 }}" required class="cart-product-quantity" />
+                </p>
+                <p>Total Price: £{{ cart_product.total|floatformat:2 }}</p>
+                <div class="cart-product-actions">
+                  <button type="button" value="remove_from_cart" class="btn btn-danger remove-from-cart-btn">Remove</button>
+                  <button type="button" value="update_cart" class="btn btn-primary update-cart-btn">Update</button>
+                </div>
+              </form>
+            </div>
+            <hr class="horizontal-rule" />
+            {% if forloop.last %}
+              <button type="button" value="checkout" class="btn btn-primary checkout-btn">Checkout</button>
             {% endif %}
-          </div>
+          {% empty %}
+            <h3>No products in your cart</h3>
+            <hr class="horizontal-rule" />
+          {% endfor %}
         </div>
       </div>
-      {% if not forloop.last %}
-        <div class="separator"></div>
-      {% endif %}
     </div>
-  {% endif %}
+  </div>
 {% endblock %}

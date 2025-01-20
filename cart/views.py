@@ -4,17 +4,27 @@ from django.http import JsonResponse
 from .cart import Cart as cart_session
 from products.models import Product
 from .models import Cart, CartItem
-from .forms import CartForm, CartItemForm
-
-
-# Create your views here.
 
 
 def cart_summary(request):
-    
     # Logic to retrieve and display the cart items
+    cart = cart_session(request)
     
-    return render(request, "cart/cart_summary.html")
+    # Ensure get_cart_items returns a list of dictionaries with all required details
+    cart_products = [
+        {
+            'product': product,
+            'quantity': cart.cart[str(product.pk)]["quantity"],
+            'total': cart.cart[str(product.pk)]["total"]
+    }
+        for product in cart.get_cart_items()
+    ]
+    
+    context = {
+        'cart_products': cart_products,
+    }
+    
+    return render(request, "cart/cart_summary.html", context)
 
 
 def add_to_cart(request):
@@ -24,7 +34,7 @@ def add_to_cart(request):
 
     if request.POST:
 
-        product = get_object_or_404(Product,pk=pk)
+        product = get_object_or_404(Product, pk=pk)
         quantity = int(request.POST.get('quantity'))
 
         if request.user.is_authenticated:
@@ -67,11 +77,13 @@ def add_to_cart(request):
                     total_items=0
                 )
 
-        cart_sess.add(product=product, quantity=quantity)
+        if not cart_sess.add(product=product, quantity=quantity):
+            message = "Cannot add more than the available stock."
+
+        else:
+            message = f"{quantity} {product.name} added to cart."
 
         cart_len = cart_sess.__len__()
-        
-        message = f"{product.name} added to cart."
 
     return JsonResponse({"cart_len":cart_len, "message": message,})
 

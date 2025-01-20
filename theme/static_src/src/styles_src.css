@@ -146,7 +146,7 @@ body {
 }
 
 .cart-len {
-  @apply absolute left-[45px] text-[60%] font-bold;
+  @apply absolute left-[52px] md:left-[45px] text-[60%] font-bold;
 }
 
 .login-btn {
@@ -215,6 +215,48 @@ body.theme-boys div.product-detail-container p.light-text {
   @apply grid items-center content-center grid-cols-2 p-3 mb-1 border-2 rounded border-sky-100;
 }
 
+/* Cart summary styling */
+
+.cart-products-section {
+  @apply grid grid-flow-row gap-4 col-span-full sm:gap-6 md:gap-8 justify-items-center;
+}
+
+.cart-products-section button {
+  @apply p-2 text-white transition-all duration-300 border-2 border-white rounded bg-theme-primary-light hover:bg-theme-primary-dark;
+}
+
+.cart-product-card {
+  @apply grid items-center grid-flow-row md:grid-flow-col md:grid-cols-3 justify-items-center;
+}
+
+.cart-product-link {
+  @apply grid justify-items-center max-w-[20%] ;
+}
+
+.cart-product-image {
+  @apply block object-cover mb-2 rounded-lg max-w-[100%];
+}
+
+.cart-product-title {
+  @apply text-lg font-semibold sm:text-xl md:text-2xl;
+}
+
+.cart-product-details-form {
+  @apply grid grid-cols-1 gap-2;
+}
+
+.cart-product-quantity {
+  @apply px-1 py-2 font-bold text-center text-white rounded-md bg-theme-primary-dark;
+}
+
+.cart-product-actions {
+  @apply grid grid-cols-2 gap-1 mt-2 justify-items-center;
+}
+
+.cart-separator {
+  @apply py-1 bg-white max-w-[80%] rounded-lg;
+}
+
 /* General page styling */
 
 .background-container {
@@ -266,7 +308,7 @@ body.theme-boys div.product-detail-container p.light-text {
 }
 
 .page-section {
-  @apply container rounded bg-[var(--theme-primary-dark)] py-6 sm:py-8 md:py-10;
+  @apply container rounded bg-[var(--theme-primary-dark)] py-6 sm:py-8 md:py-10 mb-4;
 }
 
 .page-section-light {

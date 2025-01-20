@@ -41,11 +41,6 @@ def products(request):
         if "main_category" in request.GET:
             main_category = request.GET["main_category"]
             products = products.filter(category__main_category=main_category)
-            # if main_category:
-            #     categories = categories.filter(main_category=main_category)
-            #     for category_sub in categories:
-            #         if category_sub.main_category == main_category:
-            #             products.append(category_sub)
             page_title = f"Products in main category: {main_category}"
             page_description = f"View all the products available in our store that belong to the main category '{main_category}'."
 
