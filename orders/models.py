@@ -1,7 +1,5 @@
 from django.db import models
 from products.models import Product
-from accounts.models import Customer
-import datetime
 
 # Create your models here.
 
