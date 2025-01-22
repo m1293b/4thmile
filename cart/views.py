@@ -53,10 +53,9 @@ def add_to_cart(request):
                 for item_id, quantity_data in cart_sess.cart.items():
                     product = Product.objects.get(pk=item_id)
                     quantity = int(quantity_data["quantity"])
-                    
+
                     cart_item, created = CartItem.objects.update_or_create(
-                        cart=cart, product=product,
-                        defaults={"quantity": quantity}
+                        cart=cart, product=product, defaults={"quantity": quantity}
                     )
 
                 # Recalculate total price and items in the cart
@@ -162,6 +161,7 @@ def update_cart(request):
         {
             "cart_len": cart_len,
             "message": message,
+            "total": round(cart_sess.cart[str(product.pk)]["total"], 2),
         }
     )
 
@@ -219,12 +219,11 @@ def clear_all_carts(request):
 # Allow users without an account to checkout
 def checkout(request):
     user = request.user if request.user.is_authenticated else None
-    cart_items = CartItem.objects.filter(cart__user=user) if user else []
+    cart_sess = cart_session(request)
 
     # If no user, get the session cart instead
     if not user:
         cart_sess = cart_session(request)
-        cart_items = [item for item in cart_sess.get_cart_items()]
     else:
         customer, created = Customer.objects.get_or_create(user=user)
 
@@ -246,15 +245,31 @@ def checkout(request):
         customer.address = address or customer.address
         customer.save()
 
+        cart_products = [
+            {
+                "product": product,
+                "quantity": cart_sess.cart[str(product.pk)]["quantity"],
+                "total": cart_sess.cart[str(product.pk)]["total"],
+            }
+            for product in cart_sess.get_cart_items()
+        ]
         context = {
-            "cart_products": cart_items,
+            "cart_products": cart_products,
             "customer": customer,
         }
         # Redirect to payment processing view after saving shipping details
         return redirect("process_payment", context)
 
+    cart_products = [
+        {
+            "product": product,
+            "quantity": cart_sess.cart[str(product.pk)]["quantity"],
+            "total": cart_sess.cart[str(product.pk)]["total"],
+        }
+        for product in cart_sess.get_cart_items()
+    ]
     context = {
-        "cart_products": cart_items,
+        "cart_products": cart_products,
         "customer": customer,
     }
     return render(request, "cart/checkout.html", context)

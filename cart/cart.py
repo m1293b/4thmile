@@ -28,7 +28,9 @@ class Cart:
                 new_quantity = current_quantity + int(quantity)
                 self.cart[str(product.pk)]["quantity"] = new_quantity
                 # Update the total to reflect the new quantity
-                self.cart[str(product.pk)]["total"] = int(product.price) * new_quantity
+                self.cart[str(product.pk)]["total"] = round(
+                    float(product.price) * new_quantity, 2
+                )
             else:
                 return False
         else:
@@ -38,8 +40,9 @@ class Cart:
                     "id": product.pk,
                     "name": product.name,
                     "quantity": int(quantity),
-                    "total": int(product.price)
-                    * int(quantity),  # Total is price times quantity
+                    "total": round(
+                        float(product.price) * int(quantity), 2
+                    ),  # Total is price times quantity
                 }
             else:
                 return False
@@ -59,8 +62,9 @@ class Cart:
         if str(product.pk) in self.cart:
             self.cart[str(product.pk)] = {
                 "quantity": int(quantity),
-                "total": int(product.price)
-                * int(quantity),  # Total is price times quantity
+                "total": round(
+                    float(product.price) * int(quantity), 2
+                ),  # Total is price times quantity
             }
 
         self.session.modified = True

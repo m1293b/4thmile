@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content_main %}
+  <div class="page-title-container">
+    <h1 class="text-center page-title">Checkout</h1>
+    <p class="page-subtitle">{{ page_description }}</p>
+  </div>
+
+  <form>
+    {% csrf_token %}
+    <div class="checkout-page-section">
+      <h2 class="page-section-title">Shipping Information</h2>
+      <div class="form-group-grid">
+        <div class="form-group">
+          <label for="first_name">First Name</label>
+          <input type="text" id="first_name" name="first_name" value="{{ customer.first_name }}" required />
+        </div>
+
+        <div class="form-group">
+          <label for="last_name">Last Name</label>
+          <input type="text" id="last_name" name="last_name" value="{{ customer.last_name }}" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" value="{{ customer.email }}" />
+        </div>
+
+        <div class="form-group">
+          <label for="phone_number">Phone Number</label>
+          <input type="text" id="phone_number" name="phone_number" value="{{ customer.phone_number }}" required />
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea id="address" name="address" required>{{ customer.address }}</textarea>
+        </div>
+      </div>
+      <button type="button" id="next-step" class="check-out-page-button">Next Step</button>
+    </div>
+    <div class="hidden page-section" id="checkout-products-section">
+      <h2 class="page-section-title">Your Cart Items</h2>
+      <div class="page-container">
+        <div class="page-grid">
+          <div class="cart-products-section">
+            {% for cart_product in cart_products %}
+              <div class="cart-product-card">
+                <div class="cart-product-link">
+                  <a href="{% url 'product_detail' pk=cart_product.product.pk %}">
+                    {% if cart_product.product.image %}
+                      <img src="{{ cart_product.product.image.url }}" alt="{{ cart_product.product.name }}" class="cart-product-image" />
+                    {% else %}
+                      <img src="{% static 'assets/img/no-clothes-picture.jpg' %}" alt="{{ cart_product.product.name }}" class="cart-product-image" />
+                    {% endif %}
+                  </a>
+                </div>
+                <div class="cart-product-title">
+                  <h3>{{ cart_product.product.name }}</h3>
+                </div>
+                <p>Quantity: {{ cart_product.quantity }}</p>
+                <p>Total Price: £{{ cart_product.total|floatformat:2 }}</p>
+              </div>
+              <hr class="horizontal-rule" />
+            {% empty %}
+              <h3>No items in your cart</h3>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="cart-summary">
+        <h4>Total Amount: £{{ total_amount|floatformat:2 }}</h4>
+      </div>
+      <button type="button" value="{% url 'checkout' %}" id="{{ cart.id }}" class="place-order">Place Order</button>
+    </div>
+  </form>
+
+  <script>
+    $(document).ready(function () {
+      $('.place-order').click(function (e) {
+        e.preventDefault()
+    
+        var formData = {}
+        $('.form-group input, .form-group textarea').each(function () {
+          formData[$(this).attr('name')] = $(this).val()
+        })
+    
+        $.ajax({
+          type: 'POST',
+          url: '{% url "checkout" %}',
+          data: JSON.stringify(formData),
+          success: function (response) {
+            alert('Order placed successfully!')
+          },
+          error: function (xhr, status, error) {
+            alert('Error placing order. Please try again.')
+          }
+        })
+      })
+    })
+  </script>
+{% endblock %}

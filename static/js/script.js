@@ -12,7 +12,6 @@ $(document).ready(function () {
     $(this).removeClass("message-container");
   });
 }),
-  // Hamburger menu script
   $("#hamburger-menu-button").on("click", function () {
     this.classList.toggle("active");
     const navLinks = $(".nav-links");
@@ -32,6 +31,11 @@ $(document).ready(function () {
       navMid.removeClass("nav-mid-up").addClass("nav-mid-down");
     }
   });
+  
+$("#next-step").on("click", function () {
+  const checkoutNextStep = $("#checkout-products-section");
+  checkoutNextStep.removeClass("hidden");
+});
 
 $(window).on("resize", function () {
   const win = $(this);
@@ -64,7 +68,6 @@ $("#toggle-search-button").on("click", function () {
   }
 });
 
-
 // To clear all carts, you can use the following code:(needs fixing before activation)
 
 // $("#clear-all-carts-button").on("click", function () {
@@ -83,7 +86,6 @@ $("#toggle-search-button").on("click", function () {
 //     },
 //   });
 // });
-
 
 // To add a product to the cart, you can use the following code:(needs fixing before activation)
 
