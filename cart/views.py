@@ -258,7 +258,7 @@ def checkout(request):
             "customer": customer,
         }
         # Redirect to payment processing view after saving shipping details
-        return redirect("process_payment", context)
+        return redirect("process_payment")
 
     cart_products = [
         {

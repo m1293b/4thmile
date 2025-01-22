@@ -38,7 +38,7 @@
       </div>
       <button type="button" id="next-step" class="check-out-page-button">Next Step</button>
     </div>
-    <div class="hidden page-section" id="checkout-products-section">
+    <div class="page-section" id="checkout-products-section">
       <h2 class="page-section-title">Your Cart Items</h2>
       <div class="page-container">
         <div class="page-grid">
@@ -68,10 +68,12 @@
         </div>
       </div>
 
-      <div class="cart-summary">
-        <h4>Total Amount: £{{ total_amount|floatformat:2 }}</h4>
+      <div class="check-out-button-div">
+        <div class="cart-summary">
+          <h4>Total Amount: £{{ total_amount|floatformat:2 }}</h4>
+        </div>
+        <button type="button" value="{% url 'checkout' %}" id="{{ cart.id }}" class="place-order check-out-page-button">Place Order</button>
       </div>
-      <button type="button" value="{% url 'checkout' %}" id="{{ cart.id }}" class="place-order">Place Order</button>
     </div>
   </form>
 
@@ -80,20 +82,24 @@
       $('.place-order').click(function (e) {
         e.preventDefault()
     
-        var formData = {}
-        $('.form-group input, .form-group textarea').each(function () {
-          formData[$(this).attr('name')] = $(this).val()
-        })
+        var formData = new FormData();
+        $('.form-group input[name], .form-group textarea[name]').each(function () {
+          formData.append($(this).attr('name'), $(this).val());
+        });
+        // Add the CSRF token to the form data
+        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
     
         $.ajax({
           type: 'POST',
           url: '{% url "checkout" %}',
-          data: JSON.stringify(formData),
+          contentType: false,
+          processData: false,
+          data: formData,
           success: function (response) {
-            alert('Order placed successfully!')
+            alert('Order placed successfully!');
           },
           error: function (xhr, status, error) {
-            alert('Error placing order. Please try again.')
+            alert('Error placing order. Please try again.');
           }
         })
       })

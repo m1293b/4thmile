@@ -1,28 +1,48 @@
 {% extends 'base.html' %}
 {% block content_main %}
-<div class="page-title-container">
-    <h1 class="text-center page-title">Payment</h1>
-</div>
+  {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
 
-<form action="{% url 'process_payment' %}" method="post">
+  <form action="{% url 'process_payment' %}" method="post">
     {% csrf_token %}
-    <script src="https://js.stripe.com/v3/"></script>
-    <button id="checkout-button" class="btn btn-primary">Pay with Stripe</button>
+    <div id="card-element">
+      <!-- A Stripe Element will be inserted here. -->
+    </div>
 
-    <script>
-        var stripe = Stripe('{{ stripe_key }}');
-        var checkoutButton = document.getElementById('checkout-button');
+    <button type="submit" class="btn btn-primary">Pay</button>
+  </form>
 
-        checkoutButton.addEventListener('click', function () {
-            stripe.redirectToCheckout({
-                sessionId: '{{ session_id }}'
-            }).then(function (result) {
-                if (result.error) {
-                    alert(result.error.message);
-                }
-            });
-        });
-    </script>
-</form>
-
+  <script>
+    const stripe = Stripe('{{ stripe_key }}')
+    const elements = stripe.elements()
+    
+    // Create an instance of the card Element
+    const cardElement = elements.create('card')
+    
+    // Add an instance of the card Element into the `card-element` div
+    cardElement.mount('#card-element')
+    
+    // Handle form submission
+    const form = document.querySelector('form')
+    form.addEventListener('submit', function (event) {
+      event.preventDefault()
+    
+      stripe.createToken(cardElement).then(function (result) {
+        if (result.error) {
+          // Inform the user if there was an error
+          console.log(result.error.message)
+        } else {
+          // Send the token to your server
+          const hiddenInput = document.createElement('input')
+          hiddenInput.setAttribute('type', 'hidden')
+          hiddenInput.setAttribute('name', 'stripeToken')
+          hiddenInput.setAttribute('value', result.token.id)
+          form.appendChild(hiddenInput)
+    
+          form.submit()
+        }
+      })
+    })
+  </script>
 {% endblock %}
