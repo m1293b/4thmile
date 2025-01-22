@@ -1,10 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from .cart import Cart as cart_session
 from products.models import Product
 from .models import Cart, CartItem
+from accounts.models import Customer
 
 
 def cart_summary(request):
@@ -27,6 +28,7 @@ def cart_summary(request):
 
     return render(request, "cart/cart_summary.html", context)
 
+
 def add_to_cart(request):
     pk = int(request.POST.get("product_id"))
     cart_sess = cart_session(request)
@@ -46,24 +48,20 @@ def add_to_cart(request):
                 cart, created = Cart.objects.get_or_create(
                     user=request.user, active_cart=True
                 )
-                
+
+                # Update or create each cart item with the correct quantity
                 for item_id, quantity_data in cart_sess.cart.items():
                     product = Product.objects.get(pk=item_id)
-                    cart_item, created = CartItem.objects.get_or_create(
-                        cart=cart, product=product, quantity=quantity_data["quantity"]
-                    )
+                    quantity = int(quantity_data["quantity"])
                     
-                    # Update or set the quantity of the cart item
-                    if not created:
-                        cart_item.quantity += int(quantity_data["quantity"])
-                    else:
-                        cart_item.quantity = int(quantity_data["quantity"])
-
-                    cart_item.save()
+                    cart_item, created = CartItem.objects.update_or_create(
+                        cart=cart, product=product,
+                        defaults={"quantity": quantity}
+                    )
 
                 # Recalculate total price and items in the cart
-                cart.total_price = sum(
-                    item.product.price * item.quantity for item in cart.items.all()
+                cart.total_price = float(
+                    sum(item.product.price * item.quantity for item in cart.items.all())
                 )
                 cart.total_items = sum(item.quantity for item in cart.items.all())
                 cart.save()
@@ -73,6 +71,13 @@ def add_to_cart(request):
                 pass
 
         cart_len = len(cart_sess)
+
+        return JsonResponse(
+            {
+                "cart_len": cart_len,
+                "message": message,
+            }
+        )
     else:
         message = "No POST data received."
         cart_len = 0
@@ -84,9 +89,81 @@ def add_to_cart(request):
         }
     )
 
+
 def update_cart(request):
-    # Logic to update the quantity of a product in the cart
-    return render(request, "cart/cart.html")
+    pk = int(request.POST.get("product_id"))
+    new_quantity = int(request.POST.get("quantity"))
+
+    # Retrieve the session cart
+    cart_sess = cart_session(request)
+    if str(pk) in cart_sess.cart:
+        current_product = Product.objects.get(pk=pk)
+
+        # Check stock availability
+        if new_quantity <= current_product.stock:
+            cart_sess.update(product=current_product, quantity=new_quantity)
+            message = f"Quantity updated to {new_quantity} for {current_product.name}."
+            if new_quantity == 0:
+                cart_sess.remove(product=current_product)
+                message = f"{current_product.name} removed from the cart."
+        else:
+            # Add only as much as the available stock allows
+            total_quantity = current_product.stock
+            cart_sess.update(product=current_product, quantity=total_quantity)
+            message = f"Added {current_product.stock} to reach maximum available stock for {current_product.name}."
+    else:
+        message = "Product not found in the cart."
+
+    # Update database cart for authenticated users
+    if request.user.is_authenticated:
+        try:
+            cart, created = Cart.objects.get_or_create(
+                user=request.user, active_cart=True
+            )
+
+            product = Product.objects.get(pk=pk)
+            cart_item, created = CartItem.objects.get_or_create(
+                cart=cart, product=product
+            )
+
+            # Calculate the new total quantity after update
+            current_quantity = cart_item.quantity
+
+            # Determine how much to add based on available stock
+            if str(pk) in cart_sess.cart:
+                max_addable = product.stock - current_quantity
+                final_quantity = min(new_quantity, current_quantity + max_addable)
+
+                if final_quantity > 0 and max_addable >= 0:
+                    # Update or set the quantity of the cart item
+                    cart_item.quantity = final_quantity
+                    message = (
+                        f"Quantity updated to {final_quantity} for {product.name}."
+                    )
+                else:
+                    message = "Cannot exceed available stock."
+
+            # Save the changes to the cart item
+            cart_item.save()
+
+            # Recalculate total price and items in the cart
+            cart.total_price = sum(
+                item.product.price * item.quantity for item in cart.items.all()
+            )
+            cart.total_items = sum(item.quantity for item in cart.items.all())
+            cart.save()
+
+        except Cart.DoesNotExist:
+            pass
+
+    cart_len = len(cart_sess)
+
+    return JsonResponse(
+        {
+            "cart_len": cart_len,
+            "message": message,
+        }
+    )
 
 
 def remove_from_cart(request):
@@ -139,11 +216,45 @@ def clear_all_carts(request):
     )
 
 
+# Allow users without an account to checkout
 def checkout(request):
-    # Logic for handling the checkout process
-    return render(request, "cart/checkout.html")
+    user = request.user if request.user.is_authenticated else None
+    cart_items = CartItem.objects.filter(cart__user=user) if user else []
 
+    # If no user, get the session cart instead
+    if not user:
+        cart_sess = cart_session(request)
+        cart_items = [item for item in cart_sess.get_cart_items()]
+    else:
+        customer, created = Customer.objects.get_or_create(user=user)
 
-def order_summary(request):
-    # Logic to display the summary of an order
-    return render(request, "cart/order_summary.html")
+    if request.method == "POST":
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        email = request.POST.get("email", user.email if user else None)
+        phone_number = request.POST.get("phone_number")
+        address = request.POST.get("address")
+
+        # Create a new customer if not authenticated
+        if not user:
+            customer, created = Customer.objects.get_or_create(email=email)
+
+        customer.first_name = first_name or customer.first_name
+        customer.last_name = last_name or customer.last_name
+        customer.email = email or customer.email
+        customer.phone_number = phone_number or customer.phone_number
+        customer.address = address or customer.address
+        customer.save()
+
+        context = {
+            "cart_products": cart_items,
+            "customer": customer,
+        }
+        # Redirect to payment processing view after saving shipping details
+        return redirect("process_payment", context)
+
+    context = {
+        "cart_products": cart_items,
+        "customer": customer,
+    }
+    return render(request, "cart/checkout.html", context)

@@ -1,12 +1,7 @@
-from django.shortcuts import get_object_or_404, render, redirect
-from django.db.models import Q
-from .models import Product, Category, ProductImage
-from .forms import ProductForm, ProductImageForm
-from reviews.forms import ReviewForm
+from django.shortcuts import get_object_or_404, render
+from django.db.models import Q, Prefetch
+from .models import Product, Category
 from reviews.models import Review
-from django.contrib import messages
-
-# Create your views here.
 
 
 def products(request):
@@ -14,24 +9,14 @@ def products(request):
     This function is used to display all the products in the database. It also allows users to search for products by name or category.
     """
 
-    products = (
-        Product.objects.select_related("category")
-        .prefetch_related(
-            "productimage_set",
-        )
-        .all()
-    )
-
-    categories = Category.objects.prefetch_related(
-        "product_set",
-    ).all()
+    # Define base queryset for products with potential sorting applied later
+    product_queryset = Product.objects.all()
 
     main_category = None
-    category = None
+    categories = Category.objects.all()  # Initialize categories
 
     query = None
-    sort = None
-    products_list = []
+    sort = request.GET.get("sort", "")
 
     page_title = "View Products"
     page_description = "View all the products available in our store."
@@ -40,42 +25,56 @@ def products(request):
 
         if "main_category" in request.GET:
             main_category = request.GET["main_category"]
-            products = products.filter(category__main_category=main_category)
+            categories = (
+                Category.objects.prefetch_related(
+                    Prefetch("product_set", queryset=product_queryset)
+                )
+                .all()
+                .filter(main_category=main_category)
+            )
             page_title = f"Products in main category: {main_category}"
             page_description = f"View all the products available in our store that belong to the main category '{main_category}'."
 
         if "category" in request.GET:
             category_name = request.GET["category"]
-            products = products.filter(category__friendly_name=category_name)
-            category = categories.filter(friendly_name=category_name).first()
-            page_title = f"Products in category: {category.friendly_name}"
-            page_description = f"View all the products available in our store that belong to the category '{category.friendly_name}'."
+            categories = (
+                Category.objects.prefetch_related(
+                    Prefetch("product_set", queryset=product_queryset)
+                )
+                .all()
+                .filter(friendly_name=category_name)
+            )
+            page_title = f"Products in category: {categories.first().friendly_name}"
+            page_description = f"View all the products available in our store that belong to the category '{categories.first().friendly_name}'."
 
         if "q" in request.GET:
             query = request.GET["q"]
-            queries = Q(name__icontains=query) | Q(category__name__icontains=query)
-            products = products.filter(queries)
-            page_title = f"Search Results: {query}"
-            page_description = f"View all the products available in our store that match your search term '{query}'."
+            page_title = f"Search result for '{query}'"
+            page_description = ""
+            # Corrected filtering on Product fields
+            product_queryset = product_queryset.filter(
+                Q(name__icontains=query)
+                | Q(category__name__icontains=query),
+            ).filter(stock__gt=0)  # Assuming 'stock' is the field you want to filter by
 
-        if "sort" in request.GET:
-            sort = request.GET.get("sort", "")
-            # Ensure safe sorting by checking valid fields
-            valid_sort_fields = [
-                "name",
-                "-name",
-                "price",
-                "-price",
-            ]  # Add more as needed
-            if sort in valid_sort_fields:
-                products = products.order_by(sort)
-            else:
-                sort = ""  # Reset to default if invalid
+            categories = categories.prefetch_related(
+                Prefetch("product_set", queryset=product_queryset)
+            )
+
+        # Prepare a sorted product queryset only if valid sort parameter is provided
+        valid_sort_fields = ["name", "-name", "price", "-price"]
+        if sort in valid_sort_fields:
+            product_queryset = product_queryset.order_by(sort)
+            page_description += f" Sorted by {sort}"
+
+    products_found = any(category.product_set.exists() for category in categories)
+
+    # Apply the potentially sorted product queryset to prefetch_related
 
     context = {
-        "products": products,
+        "products_found": products_found,
+        "categories": categories,
         "main_category": main_category,
-        "category": category,
         "search_term": query,
         "sort": sort,
         "page_title": page_title,
@@ -84,13 +83,19 @@ def products(request):
 
     return render(request, "products/products.html", context)
 
-
 def add_product(request):
-    
+    """
+    This view is used to display the form for adding a new product.
+    """
+
     return render(request, "products/add_product.html")
 
 
 def product_detail(request, pk):
+    """
+    This view displays the details of a specific product based on its primary key (pk).
+    """
+
     product = get_object_or_404(Product, pk=pk)
     reviews = Review.objects.filter(product=product).order_by("-created_at")[:3]
 
@@ -100,13 +105,3 @@ def product_detail(request, pk):
     }
 
     return render(request, "products/product_detail.html", context)
-
-
-# def add_to_cart(request, pk):
-#     product = get_object_or_404(Product, pk=pk)
-#     cart_item, created_at = CartItem.objects.get_or_create(
-#         user=request.user, product=product
-#     )
-#     cart_item.quantity += 1
-#     cart_item.save()
-#     return redirect("cart")  # Redirect to the cart page

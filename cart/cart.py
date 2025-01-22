@@ -25,8 +25,10 @@ class Cart:
             current_quantity = self.cart[str(product.pk)]["quantity"]
             max_addable_quantity = product.stock - current_quantity
             if max_addable_quantity >= int(quantity):
-                self.cart[str(product.pk)]["quantity"] += int(quantity)
-                self.cart[str(product.pk)]["total"] = int(product.price) * int(quantity)
+                new_quantity = current_quantity + int(quantity)
+                self.cart[str(product.pk)]["quantity"] = new_quantity
+                # Update the total to reflect the new quantity
+                self.cart[str(product.pk)]["total"] = int(product.price) * new_quantity
             else:
                 return False
         else:
@@ -36,7 +38,8 @@ class Cart:
                     "id": product.pk,
                     "name": product.name,
                     "quantity": int(quantity),
-                    "total": int(product.price) * int(quantity),
+                    "total": int(product.price)
+                    * int(quantity),  # Total is price times quantity
                 }
             else:
                 return False
@@ -54,7 +57,11 @@ class Cart:
     def update(self, product, quantity):
         # Update the quantity of a product in the cart
         if str(product.pk) in self.cart:
-            self.cart[str(product.pk)]["quantity"] = int(quantity)
+            self.cart[str(product.pk)] = {
+                "quantity": int(quantity),
+                "total": int(product.price)
+                * int(quantity),  # Total is price times quantity
+            }
 
         self.session.modified = True
 

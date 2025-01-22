@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content_main %}
+<div class="page-title-container">
+    <h1 class="text-center page-title">Payment</h1>
+</div>
+
+<form action="{% url 'process_payment' %}" method="post">
+    {% csrf_token %}
+    <script src="https://js.stripe.com/v3/"></script>
+    <button id="checkout-button" class="btn btn-primary">Pay with Stripe</button>
+
+    <script>
+        var stripe = Stripe('{{ stripe_key }}');
+        var checkoutButton = document.getElementById('checkout-button');
+
+        checkoutButton.addEventListener('click', function () {
+            stripe.redirectToCheckout({
+                sessionId: '{{ session_id }}'
+            }).then(function (result) {
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            });
+        });
+    </script>
+</form>
+
+{% endblock %}

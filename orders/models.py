@@ -19,13 +19,13 @@ class Order(models.Model):
     Returns:
         str: A string representation of the order.
     """
-    order_id = models.AutoField(primary_key=True)
     order_date = models.DateField()
     total = models.DecimalField(max_digits=10, decimal_places=2)
     status = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     notes = models.TextField(blank=True)
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 
     def __str__(self):
         return f"Order {self.id} for {self.customer}"
@@ -46,7 +46,6 @@ class OrderItem(models.Model):
     Returns:
         str: A string representation of the order item.
     """
-    order_item_id = models.AutoField(primary_key=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

@@ -120,7 +120,7 @@ DATABASES = {
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
         'HOST': 'localhost',  # or your database server address
-        'PORT': '',           # default PostgreSQL port is 5432
+        'PORT': '5432',           # default PostgreSQL port is 5432
     }
 }
 
@@ -143,7 +143,7 @@ AUTH_PASSWORD_VALIDATORS = [
 CSRF_TRUSTED_ORIGINS = ["https://babysuite.m1293b.com"]
 
 # Internationalization
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en-uk"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True

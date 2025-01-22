@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product, Category, ProductImage
+from .models import Product, Category
 
 class ProductForm(forms.ModelForm):
     
@@ -15,9 +15,4 @@ class ProductForm(forms.ModelForm):
         friendly_names = {(category.id, category.get_friendly_name()) for category in categories}
         
         self.fields['category'].choices = friendly_names
-        
-class ProductImageForm(forms.ModelForm):
-    class Meta:
-        model = ProductImage
-        fields = ['image', 'alt_text']
         

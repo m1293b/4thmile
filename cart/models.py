@@ -14,7 +14,6 @@ class Cart(models.Model):
         created_at (datetime): The date and time the cart was created.
         updated_at (datetime): The date and time the cart was last updated.
     """
-    cart_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True
     )

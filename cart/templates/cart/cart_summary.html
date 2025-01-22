@@ -14,8 +14,8 @@
             <div class="cart-product-card">
               <div class="cart-product-link">
                 <a href="{% url 'product_detail' pk=cart_product.product.pk %}">
-                  {% if cart_product.product.productimage_set.exists %}
-                    <img src="{{ cart_product.product.productimage_set.first.image.url }}" alt="{{ cart_product.product.name }}" class="cart-product-image" />
+                  {% if cart_product.product.image %}
+                    <img src="{{ cart_product.product.image.url }}" alt="{{ cart_product.product.name }}" class="cart-product-image" />
                   {% else %}
                     <img src="{% static 'assets/img/no-clothes-picture.jpg' %}" alt="{{ cart_product.product.name }}" class="cart-product-image" />
                   {% endif %}
@@ -38,7 +38,7 @@
             </div>
             <hr class="horizontal-rule" />
             {% if forloop.last %}
-              <button type="button" value="checkout" class="btn btn-primary checkout-btn">Checkout</button>
+              <button type="button" value="checkout" id="checkout"><a href="{% url 'checkout' %}">Checkout</a></button>
             {% endif %}
           {% empty %}
             <h3>No products in your cart</h3>
@@ -66,7 +66,9 @@
         success: function (response) {
           // Update cart count on page
           $('.cart-len').text(response.cart_len)
-          $('.cart-products-section').text('You have no items in your cart.')
+          if (response.cart_len === 0) {
+            $('.cart-products-section').text('You have no items in your cart.')
+          }
     
           if ($('.message-container').length === 0) {
             // Create and append message-container div to header only if it doesn't exist
@@ -87,22 +89,21 @@
         }
       })
     })
-    $(document).ready(function () {
-      $('#clear-all-carts-button').on('click', function () {
-        $.ajax({
-          url: "{% url 'clear-all-carts' %}",
-          method: 'POST',
-          data: {
-            csrfmiddlewaretoken: '{{ csrf_token }}'
-          },
-          success: function (response) {
-            $('.cart-len').text('0')
-            $('.cart-products-section').text('You have no activate carts.')
-          },
-          error: function (xhr) {
-            console.error('Error:', xhr.responseText)
-          }
-        })
+    
+    $('#clear-all-carts-button').on('click', function () {
+      $.ajax({
+        url: "{% url 'clear-all-carts' %}",
+        method: 'POST',
+        data: {
+          csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function (response) {
+          $('.cart-len').text('0')
+          $('.cart-products-section').text('You have no active carts.')
+        },
+        error: function (xhr) {
+          console.error('Error:', xhr.responseText)
+        }
       })
     })
   </script>

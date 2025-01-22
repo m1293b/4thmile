@@ -23,10 +23,10 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path("admin/", admin.site.urls),
-    path("accounts/", include("accounts.urls")),
+    path("accounts/", include("allauth.urls")),
     path("users/", include("allauth.urls")),
     path("", include("home.urls")),
-    path("accounts/", include("accounts.urls")),
+    path("customers/", include("accounts.urls")),
     path("cart/", include("cart.urls")),
     path("orders/", include("orders.urls")),
     path("products/", include("products.urls")),
