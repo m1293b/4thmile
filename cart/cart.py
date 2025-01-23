@@ -1,4 +1,5 @@
 from products.models import Product
+import stripe
 
 
 class Cart:
@@ -62,14 +63,20 @@ class Cart:
         if str(product.pk) in self.cart:
             self.cart[str(product.pk)] = {
                 "quantity": int(quantity),
-                "total": round(
-                    float(product.price) * int(quantity), 2
-                ),  # Total is price times quantity
+                "total": round(float(product.price) * int(quantity), 2),
+                # Total is price times quantity
             }
 
         self.session.modified = True
+
+    def get_total(self):
+        return sum(item["total"] for item in self.cart.values())
 
     def clear(self, request):
         # Clear all items from the cart
         del request.session["cart"]
         request.session.modified = True
+
+    def client_secret(self):
+        # Generate a client secret for Stripe payment processing
+        return 

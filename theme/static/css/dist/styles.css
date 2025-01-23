@@ -7520,6 +7520,7 @@ body.theme-boys div.product-detail-container p.light-text {
 .cart-product-details-form {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
+  justify-items: center;
   gap: 0.5rem;
 }
 
@@ -8436,6 +8437,7 @@ body #sort-button:hover {
 
 .form-group input,
 textarea {
+  max-width: 40dvw;
   border-radius: 0.375rem;
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
@@ -8481,4 +8483,26 @@ textarea {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity, 1));
   color: var(--theme-primary-dark);
+}
+
+/* Payment page styling */
+
+.payment-page-grid {
+  margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  justify-items: center;
+  gap: 1rem;
+}
+
+#card-element {
+  margin-bottom: 1rem;
+  width: 80%;
+  border-radius: 0.375rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(204 204 204 / var(--tw-border-opacity, 1));
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity, 1));
+  padding: 10px;
 }

@@ -110,24 +110,7 @@
           csrfmiddlewaretoken: '{{ csrf_token }}'
         },
         success: function (response) {
-          // Update cart count on page
-          $('.cart-len').text(response.cart_len);
-    
-          if ($('.message-container').length === 0) {
-            // Create and append message-container div to header only if it doesn't exist
-            $('header').append($('<div>', { class: 'message-container' }));
-          }
-          
-          if ($('.message').length === 0) {
-            // Create and append message div to message-container only if it doesn't exist
-            $('.message-container').append($('<div>', { class: 'message', text: response.message }));
-          } else {
-            // Update existing message div with new message text
-            $('.message').text(response.message);
-          }
-          
-          // Show the message container, wait 3000ms, then fade out
-          $('.message-container').show().delay(3000).fadeOut();
+          updatePage(response);
         },
         error: function () {
           alert('Error adding product to cart!');

@@ -1,5 +1,4 @@
 from django.db import models
-from django.conf import settings
 from django.contrib.auth.models import User
 from products.models import Product
 
@@ -9,13 +8,14 @@ class Cart(models.Model):
     Represents a cart in the database.
 
     Attributes:
-        cart_id (int): A unique identifier for the cart.
         user (User): The user who owns the cart.
+        total_price (DecimalField): The total price of all items in the cart.
+        total_items (IntegerField): The total number of items in the cart.
         created_at (datetime): The date and time the cart was created.
         updated_at (datetime): The date and time the cart was last updated.
     """
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True
+        User, on_delete=models.CASCADE, null=True, blank=True
     )
     active_cart = models.BooleanField(default=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=999.99)

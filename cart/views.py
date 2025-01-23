@@ -230,20 +230,20 @@ def checkout(request):
     if request.method == "POST":
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
-        email = request.POST.get("email", user.email if user else None)
+        email = request.POST.get("email") or (user.email if user else None)
         phone_number = request.POST.get("phone_number")
         address = request.POST.get("address")
 
         # Create a new customer if not authenticated
         if not user:
             customer, created = Customer.objects.get_or_create(email=email)
-
-        customer.first_name = first_name or customer.first_name
-        customer.last_name = last_name or customer.last_name
-        customer.email = email or customer.email
-        customer.phone_number = phone_number or customer.phone_number
-        customer.address = address or customer.address
-        customer.save()
+        
+        if created:
+            customer.first_name = first_name
+            customer.last_name = last_name
+            customer.email = email
+            customer.phone_number = phone_number
+            customer.address = address
 
         cart_products = [
             {
@@ -270,6 +270,7 @@ def checkout(request):
     ]
     context = {
         "cart_products": cart_products,
-        "customer": customer,
+        "customer": customer if user else cart_sess,
+        "cart_total": cart_sess.get_total()
     }
     return render(request, "cart/checkout.html", context)

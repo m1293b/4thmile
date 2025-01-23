@@ -8,7 +8,7 @@ from django.core.management.commands.runserver import Command as runserver
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('DJANGO_SECRET_KEY')
+SECRET_KEY = config("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -85,6 +85,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "babysuite.urls"
@@ -114,13 +115,13 @@ WSGI_APPLICATION = "babysuite.wsgi.application"
 
 # Database
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': 'localhost',  # or your database server address
-        'PORT': '5432',           # default PostgreSQL port is 5432
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASSWORD"),
+        "HOST": "localhost",  # or your database server address
+        "PORT": "5432",  # default PostgreSQL port is 5432
     }
 }
 
@@ -175,5 +176,15 @@ LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/"
 
 # Stripe keys from .env file
-STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
-STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+FREE_DELIVERY_THRESHOLD = config("FREE_DELIVERY_THRESHOLD")
+STANDARD_DELIVERY_PERCENTAGE = config("STRIPE_STANDARD_DELIVERY_PERCENTAGE")
+# STRIPE_PRICE_ID = config("STRIPE_PRICE_ID")
+STRIPE_DEFAULT_CURRENCY = "gbp"
+# STRIPE_CHECKOUT_SESSION_ID = config("STRIPE_CHECKOUT_SESSION_ID")
+# STRIPE_SUCCESS_URL = config("STRIPE_SUCCESS_URL")
+# STRIPE_CANCEL_URL = config("STRIPE_CANCEL_URL")
+# STRIPE_CHECKOUT_SESSION_URL = config("STRIPE_CHECKOUT_SESSION_URL")
+# STRIPE_SESSION_ID = config("STRIPE_SESSION_ID")
+# STRIPE_WEBHOOK_SECRET = config("STRIPE_WEBHOOK_SECRET")
+STRIPE_SECRET_KEY = config("STRIPE_SECRET_KEY")
+STRIPE_PUBLISHABLE_KEY = config("STRIPE_PUBLISHABLE_KEY")

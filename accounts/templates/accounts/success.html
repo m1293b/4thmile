@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content_main %}
+  <div class="page-title-container">
+    <h1 class="text-center page-title">Cart</h1>
+    <p class="page-subtitle">{{ page_description }}</p>
+  </div>
+  <div class="page-section">
+    <button id="clear-all-carts-button">Clear All</button>
+    <div class="page-container">
+      <div class="page-grid">
+        <div class="cart-products-section">
+          <div class="order-details">
+            <h2>Order Details</h2>
+            {% for order in orders %}
+              <div class="order-card">
+                <p>
+                  <strong>Order ID:</strong> {{ order.id }}
+                </p>
+                <p>
+                  <strong>Status:</strong> {{ order.status }}
+                </p>
+                <p>
+                  <strong>Total:</strong> £{{ order.total|floatformat:2 }}
+                </p>
+                <p>
+                  <strong>Date Created:</strong> {{ order.created_at }}
+                </p>
+                <p>
+                  <strong>Last Updated:</strong> {{ order.updated_at }}
+                </p>
+                <h3>Order Items</h3>
+                {% for item in order.orderitem_set.all %}
+                  <div class="order-item">
+                    <p>
+                      <strong>Product:</strong> {{ item.product.name }}
+                    </p>
+                    <p>
+                      <strong>Quantity:</strong> {{ item.quantity }}
+                    </p>
+                    <p>
+                      <strong>Price:</strong> £{{ item.price|floatformat:2 }}
+                    </p>
+                  </div>
+                {% endfor %}
+              </div>
+            {% empty %}
+              <p>No orders found.</p>
+            {% endfor %}
+            <a href="{% url 'profile' %}" class="check-out-page-button">Go to Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

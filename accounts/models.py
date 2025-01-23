@@ -20,7 +20,7 @@ class Customer(models.Model):
     Returns:
         str: A string representation of the customer.
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     username = models.CharField(max_length=255)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)

@@ -1,48 +1,36 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content_main %}
   {% if error %}
     <div class="alert alert-danger">{{ error }}</div>
   {% endif %}
 
-  <form action="{% url 'process_payment' %}" method="post">
-    {% csrf_token %}
-    <div id="card-element">
-      <!-- A Stripe Element will be inserted here. -->
+  <div class="page-title-container">
+    <h1 class="page-title">Taking payment for {{ product.name }}</h1>
+    <p class="page-subtitle">which is in the category of {{ product.category.friendly_name }}</p>
+  </div>
+
+  <div class="page-container">
+    <div class="page-section">
+      <form action="{% url 'process_payment' %}" method="post" id="payment-form">
+        {% csrf_token %}
+        <div class="payment-page-grid">
+          <!-- Create a container for the card element -->
+          <div id="card-element" data-stripe="elements">
+            <!-- The card Element will be inserted here by JavaScript -->
+          </div>
+          <button type="submit" class="check-out-page-button" id="pay-button">Pay £{{ to_pay }}</button>
+        </div>
+      </form>
     </div>
+  </div>
+{% endblock %}
 
-    <button type="submit" class="btn btn-primary">Pay</button>
-  </form>
+{% block post_load_js %}
+  {{ block.super }}
+  {{ stripe_public_key|json_script:'id_stripe_public_key' }}
+  {{ client_secret|json_script:'id_client_secret' }}
+  <script type="text/javascript" src="{% static 'js/stripe_elements.js' %}?v=0.8"></script>
 
-  <script>
-    const stripe = Stripe('{{ stripe_key }}')
-    const elements = stripe.elements()
-    
-    // Create an instance of the card Element
-    const cardElement = elements.create('card')
-    
-    // Add an instance of the card Element into the `card-element` div
-    cardElement.mount('#card-element')
-    
-    // Handle form submission
-    const form = document.querySelector('form')
-    form.addEventListener('submit', function (event) {
-      event.preventDefault()
-    
-      stripe.createToken(cardElement).then(function (result) {
-        if (result.error) {
-          // Inform the user if there was an error
-          console.log(result.error.message)
-        } else {
-          // Send the token to your server
-          const hiddenInput = document.createElement('input')
-          hiddenInput.setAttribute('type', 'hidden')
-          hiddenInput.setAttribute('name', 'stripeToken')
-          hiddenInput.setAttribute('value', result.token.id)
-          form.appendChild(hiddenInput)
-    
-          form.submit()
-        }
-      })
-    })
-  </script>
+  <script src="https://js.stripe.com/v3/"></script>
 {% endblock %}
