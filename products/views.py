@@ -83,13 +83,6 @@ def products(request):
 
     return render(request, "products/products.html", context)
 
-def add_product(request):
-    """
-    This view is used to display the form for adding a new product.
-    """
-
-    return render(request, "products/add_product.html")
-
 
 def product_detail(request, pk):
     """

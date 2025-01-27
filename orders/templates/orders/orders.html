@@ -2,7 +2,7 @@
 {% load static %}
 {% block content_main %}
   <div class="page-title-container">
-    <h1 class="text-center page-title">Latest order</h1>
+    <h1 class="text-center page-title">My Orders</h1>
     <p class="page-subtitle">{{ page_description }}</p>
   </div>
   <div class="page-section">
@@ -11,7 +11,7 @@
         <div class="cart-products-section">
           <div class="order-details">
             <h2 class="text-center">Order Details</h2>
-            {% for order in orderz %}
+            {% for order in orders %}
               <div class="order-card">
                 <p>
                   <strong>Order ID:</strong> {{ order.id }}

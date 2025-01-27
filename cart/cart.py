@@ -1,5 +1,4 @@
 from products.models import Product
-import stripe
 
 
 class Cart:
@@ -16,15 +15,17 @@ class Cart:
         return sum(item["quantity"] for item in self.cart.values())
 
     def get_cart_items(self):
+        # Retrieve all products from the session's cart
         product_ids = self.cart.keys()
         products = Product.objects.filter(pk__in=product_ids)
         return products
 
     def add(self, product, quantity):
-        # Ensure the added quantity does not exceed available stock
+        # Check if the product is already in the cart
         if str(product.pk) in self.cart:
             current_quantity = self.cart[str(product.pk)]["quantity"]
             max_addable_quantity = product.stock - current_quantity
+            # Check if adding more than stock allows
             if max_addable_quantity >= int(quantity):
                 new_quantity = current_quantity + int(quantity)
                 self.cart[str(product.pk)]["quantity"] = new_quantity
@@ -73,10 +74,6 @@ class Cart:
         return sum(item["total"] for item in self.cart.values())
 
     def clear(self, request):
-        # Clear all items from the cart
+        # Clear all items from the session's cart
         del request.session["cart"]
         request.session.modified = True
-
-    def client_secret(self):
-        # Generate a client secret for Stripe payment processing
-        return 

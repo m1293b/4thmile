@@ -36,7 +36,7 @@
           <textarea id="address" name="address" required>{{ customer.address }}</textarea>
         </div>
       </div>
-      <button type="button" id="next-step" class="check-out-page-button">Next Step</button>
+      <button type="button" id="next-step" class="checkout-page-button">Next Step</button>
     </div>
     <div class="hidden page-section" id="checkout-products-section">
       <h2 class="page-section-title">Your Cart Items</h2>
@@ -68,11 +68,11 @@
         </div>
       </div>
 
-      <div class="check-out-button-div">
+      <div class="checkout-button-div">
         <div class="cart-summary">
           <h4>Total Amount: £{{ cart_total|floatformat:2 }}</h4>
         </div>
-        <button type="submit" value="{% url 'checkout' %}" id="{{ cart.id }}" class="place-order check-out-page-button">Place Order</button>
+        <button type="submit" value="{% url 'checkout' %}" id="{{ cart.id }}" class="place-order checkout-page-button">Place Order</button>
       </div>
     </div>
   </form>

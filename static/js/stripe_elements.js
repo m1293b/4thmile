@@ -49,17 +49,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Handle form submission
-$("#payment-form").on("submit", function (e) {
+$("#payment-form").on("submit", async function (e) {
   e.preventDefault();
-  paytButton = $('#pay-button')
-  paytButton.html('Processing...').prop('disabled', true);
+  paytButton = $("#pay-button");
+  paytButton.html("Processing...");
   // Change the displayed text and disable the button once it has been clicked.
   cardElement.update({ disabled: true });
-  // Handle form submission using Stripe.js
-  var form = document.getElementById("payment-form");
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
 
+  try {
     const { error } = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card: cardElement,
@@ -69,14 +66,36 @@ $("#payment-form").on("submit", function (e) {
     if (error) {
       // Display error.message in your UI
       console.log(error.message);
-      paytButton.html('Pay').attr('disabled', true);
-      cardElement.update({ disabled: false });
+      $(".message-container").show().delay(3000).fadeOut();
+      paytButton
+        .html("Pay")
+        .attr("disabled", true)
+        .delay(3000)
+        .attr("disabled", false);
+      cardElement.update({ disabled: true });
     } else {
       // The payment has been processed!
-      window.URL.redirect("/success")
-      form.submit();
+      // Trigger form submission
+      paytButton.attr("disabled", true);
+      $(".message").text("Payment successful!");
+      $(".message-container").show().delay(3000).fadeOut();
+      paytButton.html("Pay").delay(3000);
+      paytButton
+        .replaceWith(
+          "<a href='" +
+            $("#payment-form").attr("action") +
+            "' class='checkout-page-button' id='pay-button'>Continuing to checkout...</a>"
+        )
+        .attr("disabled", false)
+        .delay(1000);
+      paytButton.click();
     }
-  });
+  } catch (err) {
+    console.error(err);
+    $(".message-container").show().delay(3000).fadeOut();
+    paytButton.html("Pay").attr("disabled", false);
+    cardElement.update({ disabled: false });
+  }
 });
 
 // Stripe.setPublishableKey(stripe_public_key);

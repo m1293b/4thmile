@@ -172,11 +172,11 @@ body {
 }
 
 .product-detail-section {
-  @apply grid content-center gap-4 p-8 justify-items-center;
+  @apply grid content-center gap-4 p-4 justify-items-center text-wrap;
 }
 
 .product-detail-section form {
-  @apply grid content-center gap-4 text-center justify-items-center;
+  @apply grid content-center justify-center gap-4 text-center justify-items-center;
 }
 
 .product-detail-section input,
@@ -196,7 +196,7 @@ body {
 }
 
 .product-detail-section textarea {
-  @apply h-[120px] w-[330px] md:h-[150px] md:w-[400px] resize max-h-[160px] max-w-[700px] overflow-hidden;
+  @apply h-[120px] w-[330px] max-w-[330px] md:h-[150px] md:max-w-[337px] lg:w-[400px] resize max-h-[160px] lg:max-w-[700px] overflow-hidden;
 }
 
 .product-detail-section button {
@@ -223,6 +223,10 @@ body.theme-boys div.product-detail-container p.light-text {
 
 .cart-products-section button {
   @apply p-2 text-white transition-all duration-300 border-2 border-white rounded bg-theme-primary-light hover:bg-theme-primary-dark;
+}
+
+#clear-all-carts-button {
+  @apply relative px-3 py-1 text-sm font-semibold border rounded-md top-[-12px] left-2 bg-theme-primary-light hover:bg-theme-primary-dark transition-all duration-300 focus:outline-none focus:ring-2;
 }
 
 .cart-product-card {
@@ -277,6 +281,10 @@ body.theme-boys div.product-detail-container p.light-text {
 
 .horizontal-rule {
   @apply my-10 text-white w-[80%];
+}
+
+.horizontal-rule-profile {
+  @apply w-full my-10 text-white;
 }
 
 .horizontal-rule-message {
@@ -377,9 +385,39 @@ body #sort-button {
 
 /* Profile page styling */
 
-#clear-all-carts-button {
-  @apply relative px-3 py-1 text-sm font-semibold border rounded-md top-[-12px] left-2 bg-theme-primary-light hover:bg-theme-primary-dark transition-all duration-300 focus:outline-none focus:ring-2;
+.profile-section {
+  @apply container rounded bg-[var(--theme-primary-dark)] py-6 sm:py-8 md:py-10 mb-4 justify-items-center col-span-full;
 }
+
+.profile-form:last-of-type p:nth-of-type(1) {
+  @apply col-span-full;
+}
+
+.profile-form {
+  @apply grid grid-cols-1 gap-4 align-middle md:grid-cols-2 justify-items-center md:gap-6 col-span-full;
+}
+
+.profile-form span {
+  @apply text-xs;
+}
+
+.profile-form p {
+  @apply grid content-center grid-cols-1 gap-1 align-middle justify-items-center;
+}
+
+.profile-form input {
+  @apply p-2 transition-all duration-300 border-2 border-white rounded-md justify-items-center bg-theme-primary-light hover:bg-white;
+}
+
+.profile-form button {
+  @apply col-span-full;
+}
+
+.profile-button {
+  @apply p-2 text-white transition-all duration-300 border-2 border-white rounded-md bg-theme-primary-light hover:bg-theme-primary-dark;
+}
+
+
 
 /* Check out page styling */
 
@@ -408,12 +446,12 @@ textarea {
   @apply w-[270px] h-[100px] overflow-auto resize;
 }
 
-.check-out-button-div {
+.checkout-button-div {
   @apply grid grid-cols-1 gap-4 mb-6 justify-items-center;
 }
 
-.check-out-page-button {
-  @apply px-4 py-2 mt-2 text-sm font-bold text-white transition duration-300 ease-in-out border border-white rounded-md bg-theme-primary-light hover:bg-yellow-500 hover:text-theme-primary-dark;
+.checkout-page-button {
+  @apply px-4 py-2 mt-2 text-sm font-bold text-white transition duration-300 ease-in-out border border-white rounded-md bg-theme-primary-light hover:bg-yellow-500 hover:text-white;
 }
 
 /* Payment page styling */
@@ -424,4 +462,8 @@ textarea {
 
 #card-element {
   @apply w-[80%] p-[10px] border-[color:#ccc] border rounded-md mb-4 bg-slate-50;
+}
+
+.order-details {
+  @apply grid grid-cols-1 gap-2 justify-items-center;
 }

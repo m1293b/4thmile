@@ -38,7 +38,7 @@
             </div>
             <hr class="horizontal-rule" />
             {% if forloop.last %}
-              <button type="button" value="checkout" id="checkout"><a href="{% url 'checkout' %}">Checkout</a></button>
+              <a href="{% url 'checkout' %}"><button type="button" value="checkout" id="checkout">Checkout</button></a>
             {% endif %}
           {% empty %}
             <h3>No products in your cart</h3>
@@ -94,7 +94,7 @@
     
     $('#clear-all-carts-button').on('click', function () {
       $.ajax({
-        url: "{% url 'clear-all-carts' %}",
+        url: "{% url 'clear_all_carts' %}",
         method: 'POST',
         data: {
           csrfmiddlewaretoken: '{{ csrf_token }}'

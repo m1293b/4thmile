@@ -31,6 +31,9 @@ def cart_summary(request):
 
 def add_to_cart(request):
     pk = int(request.POST.get("product_id"))
+    if not pk:
+        # Handle error: return a response indicating failure
+        return JsonResponse({"error": "Product ID is required"}, status=400)
     cart_sess = cart_session(request)
     if request.POST:
         product = get_object_or_404(Product, pk=pk)
@@ -177,7 +180,7 @@ def remove_from_cart(request):
     cart_sess.remove(product)
     cart_len = cart_sess.__len__()
 
-    # Removing product from database
+    # Removing product from database if found
     try:
         for cart_item in CartItem.objects.filter(product=product_id):
             cart_item.delete()
@@ -208,7 +211,7 @@ def clear_all_carts(request):
 
     # Clear session cart if it exists
     cart_sess = cart_session(request)
-    cart_sess.clear(request)  # Ensure method is called correctly with `request`
+    cart_sess.clear(request)
     return JsonResponse(
         {
             "message": "All carts, cart items, and the session cart have been cleared successfully."
@@ -237,7 +240,7 @@ def checkout(request):
         # Create a new customer if not authenticated
         if not user:
             customer, created = Customer.objects.get_or_create(email=email)
-        
+
         if created:
             customer.first_name = first_name
             customer.last_name = last_name
@@ -271,6 +274,6 @@ def checkout(request):
     context = {
         "cart_products": cart_products,
         "customer": customer if user else cart_sess,
-        "cart_total": cart_sess.get_total()
+        "cart_total": cart_sess.get_total(),
     }
     return render(request, "cart/checkout.html", context)

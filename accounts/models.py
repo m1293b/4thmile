@@ -8,6 +8,8 @@ class Customer(models.Model):
     Represents a customer in the database.
 
     Attributes:
+        user (User): The Django User object associated with the customer.
+        username (str): The customer's username.
         first_name (str): The customer's first name.
         last_name (str): The customer's last name.
         email (str): The customer's email address.

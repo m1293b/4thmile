@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import PasswordChangeForm
 from .models import Customer
 
 
@@ -15,8 +16,6 @@ class UserUpdateForm(forms.ModelForm):
         address (text): The user's address.
         notes (text, optional): Any additional notes about the user.
 
-    Returns:
-        None
     """
 
     class Meta:
@@ -30,3 +29,39 @@ class UserUpdateForm(forms.ModelForm):
             "address",
             "notes",
         ]
+
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    """
+    A custom form for changing a user's password.
+
+    This form extends the default Django PasswordChangeForm to customize
+    the behavior or presentation of the password change process if needed.
+
+    Attributes:
+        old_password (char): The user's current password.
+        new_password1 (char): The user's new password.
+        new_password2 (char): The user's new password confirmation.
+
+    """
+
+    old_password = forms.CharField(
+        label="Current password",
+        widget=forms.PasswordInput(attrs={"autocomplete": "current-password"}),
+        help_text="Enter your current password to confirm it.",
+    )
+
+    new_password1 = forms.CharField(
+        label="New password",
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        help_text=(
+            "New passwords must be at least 8 characters, and include a number, an uppercase letter, "
+            "a lowercase letter, and a special character (e.g., !@#$%^&*)."
+        ),
+    )
+
+    new_password2 = forms.CharField(
+        label="New password confirmation",
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        help_text="Enter the same password as above, for verification purposes.",
+    )

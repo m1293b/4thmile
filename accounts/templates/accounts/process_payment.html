@@ -12,14 +12,14 @@
 
   <div class="page-container">
     <div class="page-section">
-      <form action="{% url 'process_payment' %}" method="post" id="payment-form">
+      <form action="{% url 'success' %}" method="post" id="payment-form">
         {% csrf_token %}
         <div class="payment-page-grid">
           <!-- Create a container for the card element -->
           <div id="card-element" data-stripe="elements">
             <!-- The card Element will be inserted here by JavaScript -->
           </div>
-          <button type="submit" class="check-out-page-button" id="pay-button">Pay £{{ to_pay }}</button>
+          <button type="submit" class="checkout-page-button" id="pay-button" aria-label="Pay button">Pay £{{ to_pay }}</button>
         </div>
       </form>
     </div>
@@ -30,7 +30,7 @@
   {{ block.super }}
   {{ stripe_public_key|json_script:'id_stripe_public_key' }}
   {{ client_secret|json_script:'id_client_secret' }}
-  <script type="text/javascript" src="{% static 'js/stripe_elements.js' %}?v=0.8"></script>
+  <script type="text/javascript" src="{% static 'js/stripe_elements.js' %}?v=0.31"></script>
 
   <script src="https://js.stripe.com/v3/"></script>
 {% endblock %}
