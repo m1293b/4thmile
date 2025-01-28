@@ -43,8 +43,3 @@ def add_review(request, pk):
     }
 
     return render(request, "products/product_detail.html", context)
-
-
-def review_list(request):
-    reviews = Review.objects.all()
-    return render(request, "reviews/review_list.html", {"reviews": reviews})
