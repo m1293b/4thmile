@@ -364,7 +364,7 @@ body #sort-button {
 }
 
 .product-card {
-  @apply text-center cursor-pointer;
+  @apply grid text-center cursor-pointer justify-items-center;
 }
 
 .product-link {

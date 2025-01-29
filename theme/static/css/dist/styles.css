@@ -8315,7 +8315,9 @@ body #sort-button:hover {
 }
 
 .product-card {
+  display: grid;
   cursor: pointer;
+  justify-items: center;
   text-align: center;
 }
 

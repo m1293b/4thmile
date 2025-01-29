@@ -4,8 +4,6 @@
 
 - User stories
 - Design choices
-- Business goals
-- Developer goals
 - Wireframes
 - Data schema
 
@@ -16,14 +14,21 @@
 
 ## Technologies used
 
+- Languages used
+- Frameworks, Libraries & Programs used
+- Websites used
+
 ## Bugs
+
+- Sort function
+- Payment with Stripe javascript
+- Javascript file not updating
 
 ## Testing
 
 - Testing with validators
 - Manual testing
-- Room category selection
-- Add extras
+- Automated testing
 
 ## Credits
 
@@ -31,7 +36,10 @@
 - Media
 - Code
 
-## Deployment
+## Deployment#
+
+- Using Docker
+- Cloning github, deploying locally
 
 # UX
 
@@ -69,136 +77,149 @@
 
 - ## Design choices
 
-  I chose a warm color palette to create a welcoming atmosphere. The use of the Tailwind framework enabled me to build a responsive and fast-loading website, enhancing user experience across all devices.
+  I chose a darker and a lighter color palette, which the customer is free to choose from, to create a welcoming atmosphere. I used a framework to create a responsive website, that provide a better user experience across all devices.
 
 - ## Wireframes
 
-| **index.html** | **products.html** | **cart.html** |
-|----------------|--------------------|---------------|
-
-- ## Design choices
-
-  I quite like the dark blue and it goes well with the curved edges. I used the Tailwind framework as it allowed me to quickly and efficiently build a responsive website. As the CSS file is compact, loading times are faster as well.
-
-- ## Wireframes
-
-| **index.html** | **home.html** | **recipes.html** |
-|----------------|---------------|------------------|
-| ![A picture of the index.html desktop version.](./readme_files/wireframe_index_desktop_tablet.png "Desktop version of index.html") | ![A picture of the home.html desktop version.](./readme_files/wireframe_home_desktop_tablet.png "Desktop version of hotel.html") | ![A picture of the recipes.html desktop version.](./readme_files/wireframe_recipes_desktop_tablet.png "Desktop version of recipes.html") |
-| ![A picture of the index.html tablet version.](./readme_files/wireframe_index_desktop_tablet.png "Tablet version of index.html") | ![A picture of the home.html tablet version.](./readme_files/wireframe_home_desktop_tablet.png "Tablet version of home.html") | ![A picture of the recipes.html tablet version.](./readme_files/wireframe_recipes_desktop_tablet.png "Tablet version of recipes.html") |
-| ![A picture of the index.html mobile version.](./readme_files/wireframe_index_mobile.png "Mobile version of index.html") | ![A picture of the home.html mobile version.](./readme_files/wireframe_home_mobile.png "Mobile version of home.html") | ![A picture of the recipes.html mobile version.](./readme_files/wireframe_recipes_mobile.png "Mobile version of recipes.html") |
+  | **home.html** | **home.html** | **recipes.html** |
+  |----------------|---------------|------------------|
+  | ![A picture of the home.html desktop version.](./readme_files/wireframe_home_desktop_tablet.png "Desktop version of home.html") | ![A picture of the products.html desktop version.](./readme_files/  wireframe_products_desktop_tablet.png "Desktop version of products.html") | ![A picture of the product_detail.html desktop version.](./readme_files/wireframe_product_detail_desktop_tablet.png "Desktop version of   product_detail.html") |
+  | ![A picture of the home.html tablet version.](./readme_files/wireframe_home_desktop_tablet.png "Tablet version of home.html") | ![A picture of the products.html tablet version.](./readme_files/ wireframe_products_desktop_tablet.png "Tablet version of products.html") | ![A picture of the product_detail.html tablet version.](./readme_files/wireframe_product_detail_desktop_tablet.png "Tablet version of product_detail. html") |
+  | ![A picture of the home.html mobile version.](./readme_files/wireframe_home_mobile.png "Mobile version of home.html") | ![A picture of the products.html mobile version.](./readme_files/wireframe_products_mobile.png "Mobile  version of products.html") | ![A picture of the product_detail.html mobile version.](./readme_files/wireframe_product_detail_mobile.png "Mobile version of product_detail.html") |
 
 
-| **my_recipes.html** | **sign_in.html** | **sign_up.html** |
-|---------------------|------------------|------------------|
-| ![A picture of the my_recipes.html desktop version.](./readme_files/wireframe_my_recipes_desktop_tablet.png "Desktop version of my_recipes.html") | ![A picture of the sign_in.html desktop version.](./readme_files/wireframe_sign_in_desktop_tablet.png "Desktop version of sign_in.html") | ![A picture of the sign_up.html desktop version.](./readme_files/wireframe_sign_up_desktop_tablet.png "Desktop version of sign_up.html") |
-| ![A picture of the my_recipes.html tablet version.](./readme_files/wireframe_my_recipes_desktop_tablet.png "Tablet version of my_recipes.html") | ![A picture of the sign_in.html tablet version.](./readme_files/wireframe_sign_in_desktop_tablet.png "Tablet version of sign_in.html") | ![A picture of the sign_up.html tablet version.](./readme_files/wireframe_sign_up_desktop_tablet.png "Tablet version of sign_up.html") |
-| ![A picture of the my_recipes.html mobile version.](./readme_files/wireframe_my_recipes_mobile.png "Mobile version of my_recipes.html") | ![A picture of the sign_in.html mobile version.](./readme_files/wireframe_sign_in_mobile.png "Mobile version of sign_in.html") | ![A picture of the sign_up.html mobile version.](./readme_files/wireframe_sign_up_mobile.png "Mobile version of sign_up.html") |
+  | **cart_summary.html** | **checkout.html** | **profile.html** |
+  |---------------------|------------------|------------------|
+  | ![A picture of the cart_summary.html desktop version.](./readme_files/wireframe_cart_summary_desktop_tablet.png "Desktop version of cart_summary.html") | ![A picture of the checkout.html desktop version.](./readme_files/  wireframe_checkout_desktop_tablet.png "Desktop version of checkout.html") | ![A picture of the profile.html desktop version.](./readme_files/wireframe_profile_desktop_tablet.png "Desktop version of profile.html") |
+  | ![A picture of the cart_summary.html tablet version.](./readme_files/wireframe_cart_summary_desktop_tablet.png "Tablet version of cart_summary.html") | ![A picture of the checkout.html tablet version.](./readme_files/ wireframe_checkout_desktop_tablet.png "Tablet version of checkout.html") | ![A picture of the profile.html tablet version.](./readme_files/wireframe_profile_desktop_tablet.png "Tablet version of profile.html") |
+  | ![A picture of the cart_summary.html mobile version.](./readme_files/wireframe_cart_summary_mobile.png "Mobile version of cart_summary.html") | ![A picture of the checkout.html mobile version.](./readme_files/ wireframe_checkout_mobile.png "Mobile version of checkout.html") | ![A picture of the profile.html mobile version.](./readme_files/wireframe_profile_mobile.png "Mobile version of profile.html") |
+
+  | **process_payment.html** | **success.html** | **orders.html** |
+  |---------------------|------------------|------------------|
+  | ![A picture of the process_payment.html desktop version.](./readme_files/wireframe_process_payment_desktop_tablet.png "Desktop version of process_payment.html") | ![A picture of the success.html desktop version.](./ readme_files/wireframe_success_desktop_tablet.png "Desktop version of success.html") | ![A picture of the orders.html desktop version.](./readme_files/wireframe_orders_desktop_tablet.png "Desktop version of orders.html") |
+  | ![A picture of the process_payment.html tablet version.](./readme_files/wireframe_process_payment_desktop_tablet.png "Tablet version of process_payment.html") | ![A picture of the success.html tablet version.](./  readme_files/wireframe_success_desktop_tablet.png "Tablet version of success.html") | ![A picture of the orders.html tablet version.](./readme_files/wireframe_orders_desktop_tablet.png "Tablet version of orders.html") |
+  | ![A picture of the process_payment.html mobile version.](./readme_files/wireframe_process_payment_mobile.png "Mobile version of process_payment.html") | ![A picture of the success.html mobile version.](./readme_files/ wireframe_success_mobile.png "Mobile version of success.html") | ![A picture of the orders.html mobile version.](./readme_files/wireframe_orders_mobile.png "Mobile version of orders.html") |
 
 
-## Database Schema
+ - ## Data Schema
 
-This project uses a relational database to manage `Users` and `Recipes`. Below is a detailed description of the data schema for each table and the relationships between them.
+    ### Accounts App
 
-### Users Model (`users`)
+    #### Models
 
-| **Column Name**   | **Data Type**   | **Constraints**                      | **Description**                                                |
-|-------------------|-----------------|--------------------------------------|----------------------------------------------------------------|
-| `user_id`         | `Integer`       | `Primary Key`, `Auto Increment`      | Unique identifier for each user.                               |
-| `username`        | `String`        | `Unique`, `Not Null`                 | User's chosen username, must be unique.                        |
-| `password_hash`   | `String`        | `Not Null`                           | Hashed password for secure storage.                            |
-| `email_address`   | `String`        | `Not Null`                           | User's email address, required for communication.              |
-| `points`          | `Integer`       |                                      | User's points, representing rewards or system credit.          |
-| `liked_recipes`   | `ARRAY(Integer)`|                                      | Array of `recipe_id`s that the user has liked.                 |
-| `admin`           | `Boolean`       |                                      | Flag indicating if the user has admin privileges. To be implemented|
+    - **Customer**
+      - `user`: ForeignKey to User (Django's built-in User model)
+      - `username`: CharField, max_length=255
+      - `first_name`: CharField, max_length=255
+      - `last_name`: CharField, max_length=255
+      - `email`: EmailField, unique=True
+      - `phone_number`: CharField, max_length=20
+      - `address`: TextField
+      - `created_at`: DateTimeField, auto_now_add=True
+      - `updated_at`: DateTimeField, auto_now=True
+      - `notes`: TextField (optional)
 
-#### Relationships:
-- **One-to-Many with Recipes**: A user can create multiple recipes. This relationship is facilitated by the `user_id` foreign key in the `recipes` table, which references the `user_id` in the `users` table.
+    ### Cart App
 
----
+    #### Models
 
-### Recipes Model (`recipes`)
+    - **Cart**
+      - `user`: ForeignKey to User, null=True, blank=True
+      - `active_cart`: BooleanField, default=True
+      - `total_price`: DecimalField, max_digits=10, decimal_places=2, default=999.99
+      - `total_items`: IntegerField, default=0
+      - `created_at`: DateTimeField, auto_now_add=True
+      - `updated_at`: DateTimeField, auto_now=True
 
-| **Column Name**     | **Data Type**     | **Constraints**                     | **Description**                                                |
-|---------------------|-------------------|-------------------------------------|----------------------------------------------------------------|
-| `recipe_id`         | `Integer`         | `Primary Key`, `Auto Increment`     | Unique identifier for each recipe.                             |
-| `recipe_name`       | `String(20)`      | `Unique`, `Not Null`                | Name of the recipe, must be unique and less than 20 characters. |
-| `course`            | `String`          | `Not Null`                          | Course type, e.g., starter, main course, etc.                |
-| `picture`           | `String`          |                                     | URL or path to the recipe's picture.                           |
-| `user_id`           | `Integer`         | `Foreign Key(users.user_id)`        | Links the recipe to the user who created it.                   |
-| `ingredients`       | `String`          | `Not Null`                          | List of ingredients used in the recipe.                        |
-| `instructions`      | `String`          | `Not Null`                          | Cooking instructions for the recipe.                           |
-| `vegetarian`        | `String`          | `Default='no'`                      | Indicates if the recipe is vegetarian (yes/no).                |
-| `gluten_free`       | `String`          | `Default='no'`                      | Indicates if the recipe is gluten-free (yes/no).               |
-| `nut_free`          | `String`          | `Default='no'`                      | Indicates if the recipe is nut-free (yes/no).                  |
-| `shellfish_free`    | `String`          | `Default='no'`                      | Indicates if the recipe is shellfish-free (yes/no).            |
+    - **CartItem**
+      - `cart`: ForeignKey to Cart, related_name="items"
+      - `product`: ForeignKey to Product
+      - `quantity`: PositiveIntegerField
+      - `created_at`: DateTimeField, auto_now_add=True
+      - `updated_at`: DateTimeField, auto_now=True
 
-#### Relationships:
-- **Many-to-One with Users**: The `user_id` is a foreign key that establishes a relationship with the `users` table, indicating that each recipe is created by one user.
+    ### Orders App
 
----
+    #### Models
 
-### Entity-Relationship (ER) Overview
+    - **Order**
+      - `total`: DecimalField, max_digits=10, decimal_places=2
+      - `status`: CharField, max_length=50
+      - `created_at`: DateTimeField, auto_now_add=True
+      - `updated_at`: DateTimeField, auto_now=True
+      - `notes`: TextField (optional)
+      - `user`: ForeignKey to User, null=True, blank=True
+      - `email`: EmailField, null=True, blank=True
 
-- **Users (`users`)**: Users have unique profiles identified by `user_id`. They can like multiple recipes (stored in `liked_recipes`) and create multiple recipes. A user can also have admin privileges(to be implemented).
-- **Recipes (`recipes`)**: Each recipe is identified by `recipe_id` and is created by a specific user (`user_id`). Recipes also contain essential information such as name, ingredients, instructions, and dietary labels (vegetarian, gluten-free, nut-free, shellfish-free).
+    - **OrderItem**
+      - `order`: ForeignKey to Order, related_name="order_items"
+      - `price`: DecimalField, max_digits=10, decimal_places=2
+      - `product`: ForeignKey to Product
+      - `quantity`: IntegerField
+      - `created_at`: DateTimeField, auto_now_add=True
+      - `updated_at`: DateTimeField, auto_now=True
 
----
+    ### Products App
 
-### Relationships
+    #### Models
 
-1. **One-to-Many Relationship (Users to Recipes)**: Each user can have multiple recipes associated with them. This is facilitated by the `user_id` foreign key in the `recipes` table, which references the `user_id` in the `users` table.
-   
-2. **Optional Liked Recipes**: Users can store an array of liked recipe IDs (`liked_recipes`) in their profile, which allows tracking which recipes the user has liked. This array contains references to the `recipe_id` from the `recipes` table.
+    - **Category**
+      - `name`: CharField, max_length=100
+      - `friendly_name`: CharField, max_length=100 (optional)
+      - `main_category`: CharField, max_length=100
+      - `description`: TextField (optional)
+      - `created_at`: DateTimeField, auto_now_add=True
+      - `updated_at`: DateTimeField, auto_now=True
 
----
+    - **Tag**
+      - `name`: CharField, max_length=50, unique=True
 
-### SQL Representation
+    - **Product**
+      - `name`: CharField, max_length=100, default="New product"
+      - `description`: TextField (required)
+      - `image`: ImageField, upload_to="products/images/"
+      - `price`: DecimalField, max_digits=10, decimal_places=2
+      - `stock`: PositiveIntegerField
+      - `category`: ForeignKey to Category, on_delete=models.CASCADE, default=1
+      - `color`: CharField, max_length=50 (optional)
+      - `size`: CharField, max_length=10 (optional)
+      - `tags`: ManyToManyField to Tag, related_name="products"
+      - `created_at`: DateTimeField, auto_now_add=True
+      - `updated_at`: DateTimeField, auto_now=True
+      - `notes`: TextField (optional)
+      - `smiles`: IntegerField, default=0
+      - `purchases`: IntegerField, default=0
+      - `views`: IntegerField, default=0
+      - `sales`: IntegerField, default=0
+      - `is_on_sale`: BooleanField, default=False
+      - `sale_price`: DecimalField, max_digits=10, decimal_places=2, default=999
 
-```sql
-CREATE TABLE users (
-    user_id SERIAL PRIMARY KEY,
-    username VARCHAR(255) UNIQUE NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
-    email_address VARCHAR(255) NOT NULL,
-    points INTEGER,
-    liked_recipes INTEGER[],
-    admin BOOLEAN
-);
+    ### Reviews App
 
-CREATE TABLE recipes (
-    recipe_id SERIAL PRIMARY KEY,
-    recipe_name VARCHAR(20) UNIQUE NOT NULL,
-    course VARCHAR(255) NOT NULL,
-    picture VARCHAR(255),
-    user_id INTEGER REFERENCES users(user_id),
-    ingredients TEXT NOT NULL,
-    instructions TEXT NOT NULL,
-    vegetarian VARCHAR(3) DEFAULT 'no',
-    gluten_free VARCHAR(3) DEFAULT 'no',
-    nut_free VARCHAR(3) DEFAULT 'no',
-    shellfish_free VARCHAR(3) DEFAULT 'no'
-);
-```
----
+    #### Models
 
-This schema captures the relationships and attributes for managing user data, their associated recipes, and dietary options.
+    - **Review**
+      - `review_id`: AutoField (primary key)
+      - `product`: ForeignKey to Product, on_delete=models.CASCADE
+      - `user`: ForeignKey to User, on_delete=models.CASCADE
+      - `rating`: PositiveIntegerField, choices=[(1, "1 Star"), (2, "2 Stars"), (3, "3 Stars"), (4, "4 Stars"), (5, "5 Stars")]
+      - `comment`: TextField
+      - `created_at`: DateTimeField, auto_now_add=True
 
 # Features
 
 - ## Existing features
 
-* The user can register an account for themselves, so they can also create, edit and delete their recipes, not just view other's.
-* After the user left the website or logged out, they are able to log back in to open a new session where they can alter their recipes.(Update/Delete)
-* The main page showcases the newest recipe in it's category. The recipes page showcases the top 4 newest recipes. Users can view all recipes by clicking on the View All button next to the categories' name.
+* The user can add products to their cart, view their cart, update quantities of items and remove items from their cart.
+* The user can register an account for themselves, so they can save, update their details and delete their cart(s) if they wish.
+* There is a Django system in place to handle sessions, SessionMiddleware. This allows users without the need of an account to purchase goods.
+* The main page showcases the available categories for both baby clothes and baby toys. By clicking on any category, users can view all products in that category.
 
 - ## Features left to be implemented
 
-* I would like to add a new column for the Users table, so users can have a role assigned to them
-* After the roles have been assigned, I would like to add admin features to "My Profile" page.
-* Users will be able to send suggestions to admins
-* The admins will be able to accept suggestions and put them on a list.
-* These above mentioned tasks will be displayed on the main page to show users what updates to expect in the future.
+* Even though a not authenticated user can purchase goods, and at the success page can see their most recent order's details, they cannot search for their previous orders. Implement a search function for orders(by email address)
+* 
+* 
 
 # Technologies used
 
@@ -212,19 +233,21 @@ This schema captures the relationships and attributes for managing user data, th
 
 2. Frameworks, Libraries & Programs Used:
 
-- Tailwind - Used to create boxes for the main and footer sections, and to control some of the animations(e.g. navbar links while hovered over).
-- SQLAlchemy - Used to help creating SQL commands in a more pythonian way.
-- Flask - Used to run the backend, that have control over the frontend.
+- Django - Used to run the backend, that have control over the frontend.
+- Django-Tailwind - Used to create boxes for the main and footer sections, and to control some of the animations(e.g. navbar links while hovered over).
+- Django-Allauth - Used to handle authentication and registration.
+- jQuery - Used to handle animations and events.
+- FontAwesome - Used for icons.
 - GitHub - Used for making my files available on the web.
 - Visual Studio Code - Used for the programming environment
 
 3. Websites used
 
 - [I used stackoverflow to check for solution when I got tired/stuck.](https://stackoverflow.com/)
-- [I used w3schools to check for correct syntax whenever I had my code stop working.](https://www.w3schools.com/)
-- [The website I used to check if my website is responsive. I also included a screenshot in the testing section.](https://ui.dev/)
+- [I used YouTube to look for tutorials when I was stuck.](https://www.youtube.com/)
+- [The previously used website to show responsiveness didn't with this project, so I used a Chrome browser extension, called Mobile simulator.](https://chromewebstore.google.com/detail/mobile-simulator-responsi/ckejmhbmlajgoklhgbapkiccekfoccmk)
 - [I used Tailwind's website a lot, especially to get a better idea how to create "boxes" to visually separate areas.](https://tailwind.com/)
-- [I used Pexels to find appropriate photos and videos to fit in the subject of my website.](https://www.pexels.com)
+- [I used a self-hosted instance of Stable Diffusion to create images of the products and favicons.](https://stablediffusionweb.com/)
 
 # Bugs
 
@@ -281,21 +304,6 @@ It proved to be quite challenging to host my website, as I had trouble signing u
 
 ## Manual testing
 
-### Function testing
-
-| **Action** | **Image** |
-|------------|-----------|
-| Adding a new recipe | ![A picture of testing adding a new recipe.](./readme_files/testing_adding_new_recipe.png "Adding new recipe test.") |
-| Confirming deletion of a recipe | ![A picture of testing the need of confirmation before recipe deletion.](./readme_files/testing_confirmation_before_delete.png "Confirming before recipe deletion.") |
-| Recipe deletion | ![A picture of testing recipe deletion.](./readme_files/testing_deletion.png "Testing recipe deletion.") |
-| Updating recipe | ![A picture of testing updating recipe.](./readme_files/testing_updating_recipe.png "Updating recipe.") |
-| Form validation while adding new recipe | ![A picture of testing form validation while adding a new recipe.](./readme_files/testing_form_validation_add_recipe_page.png "Form validation test while trying to add new recipe.") |
-| Form validation(username) on sign up page. | ![A picture of testing form validation(username) on sign up page.](./readme_files/testing_form_validation_sign_up_username.png "Form validation(username) on sign up page.") |
-| Form validation(password) on sign up page. | ![A picture of testing form validation(password) on sign up page.](./readme_files/testing_form_validation_sign_up_password.png "Form validation(password) on sign up page.") |
-| Logging out of the session | ![A picture of testing the logout function..](./readme_files/testing_logout.png "Testing the logout function.") |
-| Testing models.py | ![A picture of testing models.py.](./readme_files/testing_models_py.png "Testing models.py") |
-| Testing routes.py | ![A picture of testing routes.py.](./readme_files/testing_routes_py.png "Adding new recipe test.") |
-
 ### User Stories
 
 #### As a newly found home cook
@@ -337,159 +345,142 @@ It proved to be quite challenging to host my website, as I had trouble signing u
 - StackOverflow helped me to see how others solved the issues their code had and I manage to use some of the solutions after customising them to fit my code.
 - Codeinstitute's walkthrough videos gave me some ideas of how best to manipulate databases with Python. I had to watch other videos as well to fully understand the purpose of the code.
 
-## Deployment
+# Deployment
 
 - I used GitHub for version control and Linode to deploy my website. I used Visual Studio Code to access code on my server and to push code to GitHub.
+- I have built a Docker container out of this app, which makes deployment easier for some. I also included deployment for those who do not user Docker.
 
-### 1. Server Setup
+## Development Procedure for Containerized Django App
 
-Ensure your server has Apache, Python, and necessary modules installed:
+This guide outlines how to set up a development environment for a containerized Django application using Docker, with the image available on Docker Hub.
 
-1. **Update your package list** and install Apache and necessary dependencies:
+### Prerequisites
 
-```bash
-sudo apt update
-sudo apt install apache2 python3 python3-venv libapache2-mod-wsgi-py3 git
-```
+- **Docker Installed**: Ensure Docker is installed and running on your system.
+- **PostgreSQL Available**: You can either run PostgreSQL locally or use a remote instance (e.g., AWS RDS).
+- **Access to Internet**: To pull the Docker image from Docker Hub.
 
-2. **Clone the GitHub repository** to your server:
+### Steps to Set Up
 
-Navigate to the desired directory where the application will be hosted and clone the repository:
+#### 1. Clone the Repository
 
-```bash
-cd /var/www/
-sudo git clone https://github.com/codeim1293b/3rd_milestone.git
-```
-
-3. **Set up the virtual environment:**
-
-Navigate to the application folder and create a virtual environment for the Flask app:
+If needed, clone the repository for any project files that are not included in the container.
 
 ```bash
-cd /var/www/your-flask-app
-python3 -m venv venv
-source venv/bin/activate
+git clone https://github.com/m1293b/babysuite.git
+cd babysuite
 ```
 
-4. **Install application dependencies:**
+#### 2. Create a `.env` File
 
-Use pip to install the required packages from the requirements.txt file:
+Create a file named `.env` in your project directory with necessary environment variables.
+
+**Example `.env` content:**
+
+```plaintext
+DATABASE_URL=postgresql://username:password@localhost/dbname
+SECRET_KEY=your_secret_key
+DEBUG=True
+```
+
+#### 3. Pull the Docker Image
+
+Pull the pre-built image from Docker Hub:
 
 ```bash
-pip install -r requirements.txt
+docker pull m1293b/babysuite
 ```
 
-5. **Set up environment variables:**
+#### 4. Run PostgreSQL Container (if needed locally)
 
-Create an .env file or export the necessary environment variables for Flask (e.g., SECRET_KEY, FLASK_APP, DATABASE_URI, etc.).
-
-### 2. Configure Apache
-
-1. **Create an Apache configuration file** for your Flask app:
-
-Open a new Apache configuration file for your Flask application:
+If you don't have a remote PostgreSQL database, run it in another container.
 
 ```bash
-sudo nano /etc/apache2/sites-available/your-flask-app.conf
+docker run --name postgres-container \
+  -e POSTGRES_USER=username \
+  -e POSTGRES_PASSWORD=password \
+  -e POSTGRES_DB=dbname \
+  -p 5432:5432 \
+  -d postgres
 ```
 
-Add the following configuration:
+#### 5. Run the Django Application Container
 
-```apache
-<VirtualHost *:443>
-    ServerName your_domain_or_ip
+Start your Django app using Docker Compose or directly with Docker.
 
-    WSGIDaemonProcess your-flask-app python-path=/var/www/your-flask-app:/var/www/your-flask-app/venv/lib/python3.8/site-packages
-    WSGIProcessGroup your-flask-app
-    WSGIScriptAlias / /var/www/your-flask-app/your-flask-app.wsgi
-    ProxyPass / http://server_IP:5000/
-    ProxyPassReverse / http://server_IP:5000/
+##### Using `docker-compose` (create a `docker-compose.yml` file):
 
+```yaml
+version: '3.8'
 
-    <Directory /var/www/your-flask-app>
-        Require all granted
-    </Directory>
+services:
+  web:
+    image: m1293b/babysuite
+    command: python manage.py runserver 0.0.0.0:5000
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgresql://username:password@postgres-container/dbname
+      - SECRET_KEY=your_secret_key
+      - DEBUG=True
 
-    Alias /static /var/www/your-flask-app/static
-    <Directory /var/www/your-flask-app/static>
-        Require all granted
-    </Directory>
-
-    ErrorLog ${APACHE_LOG_DIR}/your-flask-app-error.log
-    CustomLog ${APACHE_LOG_DIR}/your-flask-app-access.log combined
-</VirtualHost>
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dbname
 ```
 
-2. **Create a WSGI entry point for the Flask app:**
-
-In your application directory, create a your-flask-app.wsgi file:
+Then run:
 
 ```bash
-sudo nano /var/www/your-flask-app/your-flask-app.wsgi
+docker-compose up --build
 ```
 
-Add the following lines to the file:
+##### Run Directly with Docker:
 
-```python
-import sys
-import os
-
-# Activate your virtual environment
-activate_this = '/var/www/your-flask-app/venv/bin/activate_this.py'
-exec(open(activate_this).read(), dict(__file__=activate_this))
-
-sys.path.insert(0, '/var/www/your-flask-app')
-
-from app import app as application
-```
-
-3. **Enable the new site configuration and the WSGI module:**
+If you prefer not to use `docker-compose`, run the container directly.
 
 ```bash
-sudo a2ensite your-flask-app
-sudo a2enmod wsgi
+docker run -d \
+  --name babysuite-app \
+  -p 5000:5000 \
+  -v $(pwd):/app \
+  -e DATABASE_URL=postgresql://username:password@localhost/dbname \
+  -e SECRET_KEY=your_secret_key \
+  -e DEBUG=True \
+  m1293b/babysuite
 ```
 
-4. **Restart Apache to apply the changes:**
+#### 6. Access the Application
 
-```bash
-sudo systemctl restart apache2
-```
+Open your browser and navigate to `http://localhost:5000` to access your Django application.
 
-### 3. **Set Up Git for Version Control**
+### Additional Tips
 
-1. **Pull latest changes from GitHub:**
+- **Database Migrations**: Run database migrations inside the container if needed.
 
-If you make updates to your repository, pull the changes directly to the server:
+  ```bash
+  docker exec -it babysuite-app python manage.py migrate
+  ```
 
-```bash
-cd /var/www/your-flask-app
-sudo git pull origin main
-```
+- **Debugging**: Use Docker logs for debugging issues.
 
-### 4. **Set Up a Firewall**
+  ```bash
+  docker logs babysuite-app
+  ```
 
-Allow HTTP and HTTPS traffic by updating your firewall rules:
+- **Stopping Containers**:
 
-```bash
-sudo ufw allow 'Apache Full'
-```
+  To stop and remove containers, use:
 
-### 5. **Securing the Application**
+  ```bash
+  docker-compose down
+  # or
+  docker stop babysuite-app && docker rm babysuite-app
+  ```
 
-1. **Install and configure SSL** (optional but recommended):
-
-If using a domain, set up SSL for secure HTTPS access using Certbot:
-
-```bash
-sudo apt install certbot python3-certbot-apache
-sudo certbot --apache -d your_domain
-```
-
-### 6. **Final Checks**
-
-Once all steps are complete, your Flask application should be live and accessible at your server's IP address or domain. You can view the logs for any issues:
-
-```bash
-tail -f /var/log/apache2/your-flask-app-error.log
-```
+This setup allows you to quickly start your development environment using a pre-built Docker image. Adjust configurations as needed for production environments.
