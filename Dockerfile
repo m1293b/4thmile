@@ -1,5 +1,5 @@
 # Use the official Python image from the Docker Hub
-FROM python:3.11
+FROM python:3.11-slim-bookworm
 
 # Set environment variables to ensure Python output is sent straight to terminal
 ENV PYTHONUNBUFFERED 1
@@ -23,6 +23,10 @@ COPY . .
 
 # Expose the port that Django will run on
 EXPOSE 5000
+EXPOSE 5432
 
 # Command to start the application using Gunicorn (or another WSGI server)
 CMD ["python", "manage.py", "runserver", "0.0.0.0:5000"]
+
+
+## sudo docker build 
