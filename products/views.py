@@ -6,7 +6,7 @@ from reviews.models import Review
 
 def products(request):
     """
-    This function is used to display all the products in the database. It also allows users to search for products by name or category.
+    This function is used to display all the products in the database. It also allows users to search for products by name or category, and sorting them by price or name.
     """
 
     # Define base queryset for products with potential sorting applied later

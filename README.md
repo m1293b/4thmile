@@ -83,23 +83,7 @@
 
   | **home.html** | **home.html** | **recipes.html** |
   |----------------|---------------|------------------|
-  | ![A picture of the home.html desktop version.](./readme_files/wireframe_home_desktop_tablet.png "Desktop version of home.html") | ![A picture of the products.html desktop version.](./readme_files/  wireframe_products_desktop_tablet.png "Desktop version of products.html") | ![A picture of the product_detail.html desktop version.](./readme_files/wireframe_product_detail_desktop_tablet.png "Desktop version of   product_detail.html") |
-  | ![A picture of the home.html tablet version.](./readme_files/wireframe_home_desktop_tablet.png "Tablet version of home.html") | ![A picture of the products.html tablet version.](./readme_files/ wireframe_products_desktop_tablet.png "Tablet version of products.html") | ![A picture of the product_detail.html tablet version.](./readme_files/wireframe_product_detail_desktop_tablet.png "Tablet version of product_detail. html") |
-  | ![A picture of the home.html mobile version.](./readme_files/wireframe_home_mobile.png "Mobile version of home.html") | ![A picture of the products.html mobile version.](./readme_files/wireframe_products_mobile.png "Mobile  version of products.html") | ![A picture of the product_detail.html mobile version.](./readme_files/wireframe_product_detail_mobile.png "Mobile version of product_detail.html") |
-
-
-  | **cart_summary.html** | **checkout.html** | **profile.html** |
-  |---------------------|------------------|------------------|
-  | ![A picture of the cart_summary.html desktop version.](./readme_files/wireframe_cart_summary_desktop_tablet.png "Desktop version of cart_summary.html") | ![A picture of the checkout.html desktop version.](./readme_files/  wireframe_checkout_desktop_tablet.png "Desktop version of checkout.html") | ![A picture of the profile.html desktop version.](./readme_files/wireframe_profile_desktop_tablet.png "Desktop version of profile.html") |
-  | ![A picture of the cart_summary.html tablet version.](./readme_files/wireframe_cart_summary_desktop_tablet.png "Tablet version of cart_summary.html") | ![A picture of the checkout.html tablet version.](./readme_files/ wireframe_checkout_desktop_tablet.png "Tablet version of checkout.html") | ![A picture of the profile.html tablet version.](./readme_files/wireframe_profile_desktop_tablet.png "Tablet version of profile.html") |
-  | ![A picture of the cart_summary.html mobile version.](./readme_files/wireframe_cart_summary_mobile.png "Mobile version of cart_summary.html") | ![A picture of the checkout.html mobile version.](./readme_files/ wireframe_checkout_mobile.png "Mobile version of checkout.html") | ![A picture of the profile.html mobile version.](./readme_files/wireframe_profile_mobile.png "Mobile version of profile.html") |
-
-  | **process_payment.html** | **success.html** | **orders.html** |
-  |---------------------|------------------|------------------|
-  | ![A picture of the process_payment.html desktop version.](./readme_files/wireframe_process_payment_desktop_tablet.png "Desktop version of process_payment.html") | ![A picture of the success.html desktop version.](./ readme_files/wireframe_success_desktop_tablet.png "Desktop version of success.html") | ![A picture of the orders.html desktop version.](./readme_files/wireframe_orders_desktop_tablet.png "Desktop version of orders.html") |
-  | ![A picture of the process_payment.html tablet version.](./readme_files/wireframe_process_payment_desktop_tablet.png "Tablet version of process_payment.html") | ![A picture of the success.html tablet version.](./  readme_files/wireframe_success_desktop_tablet.png "Tablet version of success.html") | ![A picture of the orders.html tablet version.](./readme_files/wireframe_orders_desktop_tablet.png "Tablet version of orders.html") |
-  | ![A picture of the process_payment.html mobile version.](./readme_files/wireframe_process_payment_mobile.png "Mobile version of process_payment.html") | ![A picture of the success.html mobile version.](./readme_files/ wireframe_success_mobile.png "Mobile version of success.html") | ![A picture of the orders.html mobile version.](./readme_files/wireframe_orders_mobile.png "Mobile version of orders.html") |
-
+  | ![A picture of the desktop version.](./readme_files/wireframe_desktop_view.png "Desktop view") | ![A picture of the tablet version.](./readme_files/wireframe_tablet_view.png "Tablet view.") | ![A picture of the mobile version.](./readme_files/wireframe_mobile_view.png "Mobile view.") |
 
  - ## Data Schema
 
