@@ -311,6 +311,9 @@ These connections enable the application to manage data effectively across diffe
 
   3. Sorting function doesn't work properly.
     - While updating the code, I must have accidentally changed the sorting function's logic. It was supposed to sort by price from lowest to highest, but it was not sorting at all.
+  
+  4. JavaScript file not updating.
+    - Any changes in the JavaScript files are not being updated on the site. I have tried clearing the cache and refreshing the page, but it still didn't work. I found a workaround, by adding and updating "?v=1" at the end of the URL, the changes are reflected on a page refresh.
 
 # Testing
 
@@ -446,9 +449,13 @@ These connections enable the application to manage data effectively across diffe
 #### Test Result:
 - **Test Passed**: Registered customers have access to an order history section where they can view past orders, current statuses. The interface is user-friendly and provides accurate, up-to-date information on each order.
 
+## Automated testing
+
+  - **Tests Passed**: The automated tests are set up for each app to verify that all views work as expected.
+
 # Credits
 
-1. ## Content
+1. ## Media
 
 - All icons and images were generated using a locally ran Stable Diffusion instance.
 
