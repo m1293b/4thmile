@@ -277,6 +277,10 @@ body.theme-boys div.product-detail-container p.light-text {
   @apply py-1 bg-white max-w-[80%] rounded-lg;
 }
 
+.on-sale {
+  @apply font-bold text-red-500;
+}
+
 /* General page styling */
 
 .background-container {

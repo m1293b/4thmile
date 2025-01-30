@@ -55,7 +55,7 @@
                               <img src="{% static 'assets/img/no-clothes-picture.jpg' %}" alt="{{ product.name }}" class="product-image" />
                             {% endif %}
                             <h3 class="product-title">{{ product.name }}</h3>
-                            <p class="product-price">£{{ product.price }}</p>
+                            <p class="product-price {% if product.is_on_sale %}line-through text-xs{% endif %}">£{{ product.price }}</p>
                           </a>
                           {% if product.is_on_sale %}
                             <p>

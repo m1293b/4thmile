@@ -22,6 +22,7 @@ class Cart:
 
     def add(self, product, quantity):
         # Check if the product is already in the cart
+        product_price = product.sale_price if product.is_on_sale else product.price
         if str(product.pk) in self.cart:
             current_quantity = self.cart[str(product.pk)]["quantity"]
             max_addable_quantity = product.stock - current_quantity
@@ -31,7 +32,7 @@ class Cart:
                 self.cart[str(product.pk)]["quantity"] = new_quantity
                 # Update the total to reflect the new quantity
                 self.cart[str(product.pk)]["total"] = round(
-                    float(product.price) * new_quantity, 2
+                    float(product_price) * new_quantity, 2
                 )
             else:
                 return False
@@ -43,7 +44,7 @@ class Cart:
                     "name": product.name,
                     "quantity": int(quantity),
                     "total": round(
-                        float(product.price) * int(quantity), 2
+                        float(product_price) * int(quantity), 2
                     ),  # Total is price times quantity
                 }
             else:

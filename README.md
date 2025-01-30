@@ -62,7 +62,7 @@
 
   ### As someone interested in deals
 
-  - **I want** to see current promotions or discounts on items.
+  - **I want** to see current discounts on items.
   - **So that** I can save money while purchasing quality products.
   
   ### As a returning customer
@@ -257,7 +257,7 @@ It proved to be quite challenging to host my website, as I had trouble signing u
 
 ## Testing with validators
 
-### JSLint
+## JSLint
 
 1. script.js
   - Only issue I got is this: "Wrap a ternary expression in parens, with a line break after the left paren." Which is due to the formatting of the file. This warning does not break the code.  
@@ -268,15 +268,15 @@ It proved to be quite challenging to host my website, as I had trouble signing u
 3.  theme-switcher.js
   - 
 
-### Lighthouse
+## Lighthouse
 
   ### Lighthouse mobile
 
-- ![A screenshot of the Lighthouse results for the mobile version](./readme_files/lighthouse_mobile_test.png "Lighthouse test for the mobile version of the site.")
+- ![A screenshot of the Lighthouse results for the mobile version](./readme_files/lighthouse_mobile_test.jpg "Lighthouse test for the mobile version of the site.")
 
   ### Lighthouse desktop
 
-- ![A screenshot of the Lighthouse desktop result.](./readme_files/lighthouse_desktop_test.png "A screenshot of the Lighthouse desktop result.")
+- ![A screenshot of the Lighthouse desktop result.](./readme_files/lighthouse_desktop_test.jpg "A screenshot of the Lighthouse desktop result.")
 
 ## W3C HTML
 
@@ -327,41 +327,65 @@ It proved to be quite challenging to host my website, as I had trouble signing u
 ## W3C CSS(Jigsaw)
 
 - ![A screenshot of the CSS validation result.](./readme_files/css_validation.png "A screenshot of the CSS validation result.")
+- As using a library to control motions and animations in CSS, I got these errors. Does not brake the app, and it can be seen used on mobile view while opening the menu.
 
 ## Final website
 
-![A screenshot of the finished website on different screen sizes.](./readme_files/responsiveness.png "A screenshot of the finished website on different screen sizes.")
+![A screenshot of the finished website on different screen sizes.](./readme_files/responsiveness_mobile.png "A screenshot of the finished website on different screen sizes.")
+![A screenshot of the finished website on different screen sizes.](./readme_files/responsiveness_tablet.png "A screenshot of the finished website on different screen sizes.")
+![A screenshot of the finished website on different screen sizes.](./readme_files/responsiveness_desktop.png "A screenshot of the finished website on different screen sizes.")
 
 ## Manual testing
 
-### User Stories
+## User Stories Testing Results
 
-#### As a newly found home cook
+## As a new parent or guardian
+### Story: Browsing and Purchasing High-Quality Baby Products
+- **I want** to easily browse and purchase high-quality baby clothes and toys.
+- **So that** I can ensure my child has the best products.
 
-- **Story**: I want an easy way to find a recipe, so that I can start preparing my meal for the upcoming days.
-- **Test Result**: The first page the user gets to displays recipes straight away. It also gives options to the user to view more recipes.
+#### Test Result:
+- **Test Passed**: The product catalog is well-organized, allowing easy browsing by categories (clothes and toys). High-quality images and detailed descriptions are available for each item. Checkout process works seamlessly, indicating a successful purchase.
+  
+## As an experienced online shopper
+### Story: Smooth and Secure Checkout Process
+- **I want** a smooth and secure checkout process.
+- **So that** I can complete purchases quickly without concerns about security.
 
-#### As a parent
+#### Test Result:
+- **Test Passed**: The checkout process is intuitive with clear instructions. Security features such as SSL encryption, and payment gateway integration present, ensuring user data protection during transactions.
 
-- **Story**: I want to be able to find meals that are recommended for kids, so that I can prepare a meal for my child as quickly as possible.
-- **Test Result**: The Kid's meals are displayed on each site where recipes are shown.
+## As a parent looking for specific items
+### Story: Sorting Products by Type, Name, and Price
+- **I want** to sort products by type (clothes or toys), name, and price.
+- **So that** I can find the most suitable products for my baby's needs efficiently.
 
-#### As a first time view
+#### Test Result:
+- **Test Passed**: The website provides sorting options on product pages. Users can select filters such as type, name, and price without any issues, resulting in accurate and relevant product lists according to selected criteria. The search functionality also works as expected when filtering products by keywords.
 
-- **Story**: I want to be able to register an account for myself., so that I can post my recipes.
-- **Test Result**: As the user gets to the main page, they find the "Sign in" button on the top right corner. By clicking on it, the app takes them to the next page where they can either sign in, or register a new account.
+## As someone interested in deals
+### Story: Seeing Current Discounts
+- **I want** to see current discounts on items.
+- **So that** I can save money while purchasing quality products.
 
-#### As a returning registered user
+#### Test Result:
+- **Test Passed**: If the product is on sale, the discounted price shows in red, and the original price is crossed out.
 
-- **Story**: I want to be able to update my recipes, so that I can improve them.
-- **Test Result**: As the user signs in, they can view all of their recipes by clicking on the picture under the "My recipes" header. On the next page, under each displayed recipe there is an "Edit" button.
-  By clicking on it, the user is able to edit the selected recipe on the next page.
+## As a returning customer
+### Story: Account Registration and Detail Saving
+- **I want** to be able to register my account and save my details.
+- **So that** I can purchase products without needing to type in my details each time.
 
-#### As a returning registered user
+#### Test Result:
+- **Test Passed**: The registration process is straightforward, with confirmation emails sent successfully. Saved user details are accurately stored and recalled during subsequent visits, streamlining the checkout process for registered users.
 
-- **Story**: I want to be able to delete my recipes so that I don't have them anymore in my collection.
-- **Test Result**: The user could also delete any of their recipes by clicking on the "Delete" button under the recipe.
-  They will have to confirm this action by clicking on the next appearing "Confirm" button, or cancel the action by clicking on the "X".
+## As a registered customer
+### Story: Tracking Orders Efficiently
+- **I want** to be able to keep track of my orders.
+- **So that** I can easily check the status of my orders and manage them efficiently.
+
+#### Test Result:
+- **Test Passed**: Registered customers have access to an order history section where they can view past orders, current statuses, and expected delivery dates. The interface is user-friendly and provides accurate, up-to-date information on each order.
 
 # Credits
 

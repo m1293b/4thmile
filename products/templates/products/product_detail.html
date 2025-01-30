@@ -16,10 +16,10 @@
     </div>
 
     <div class="product-detail-section">
-      <p>Price: £{{ product.price }}</p>
+      <p class="{% if product.is_on_sale %}line-through text-xs{% endif %}">Price: £{{ product.price }}</p>
 
       {% if product.is_on_sale == True %}
-        <p class="font-bold">Sale Price: £{{ product.sale_price }}</p>
+        <p class="on-sale">Sale Price: £{{ product.sale_price }}</p>
       {% endif %}
 
       <p>Description: {{ product.description }}</p>

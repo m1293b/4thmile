@@ -40,7 +40,6 @@ def process_payment(request):
 
 
 def success(request):
-
     user = request.user if request.user.is_authenticated else None
     cart_session = cart_sess(request)
     order = None
@@ -56,7 +55,7 @@ def success(request):
                 order_item = OrderItem(
                     order=order,
                     product=item.product,
-                    price=item.product.price,
+                    price=item.product.sale_price if item.product.is_on_sale else item.product.price,
                     quantity=item.quantity,
                 )
                 order_item.save()

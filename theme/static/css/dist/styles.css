@@ -3934,6 +3934,11 @@ select {
   line-height: 1.75rem;
 }
 
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -7630,6 +7635,12 @@ body.theme-boys div.product-detail-container p.light-text {
   background-color: var(--white);
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+}
+
+.on-sale {
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
 }
 
 /* General page styling */
