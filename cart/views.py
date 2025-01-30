@@ -63,7 +63,15 @@ def add_to_cart(request):
 
                 # Recalculate total price and items in the cart
                 cart.total_price = float(
-                    sum(item.product.price * item.quantity for item in cart.items.all())
+                    sum(
+                        (
+                            item.product.sale_price
+                            if item.product.is_on_sale
+                            else item.product.price
+                        )
+                        * item.quantity
+                        for item in cart.items.all()
+                    )
                 )
                 cart.total_items = sum(item.quantity for item in cart.items.all())
                 cart.save()

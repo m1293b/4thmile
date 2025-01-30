@@ -205,6 +205,60 @@
       - `rating`: PositiveIntegerField, choices=[(1, "1 Star"), (2, "2 Stars"), (3, "3 Stars"), (4, "4 Stars"), (5, "5 Stars")]
       - `comment`: TextField
       - `created_at`: DateTimeField, auto_now_add=True
+ - ## Database Model Relationships
+
+    ### Products and Related Models
+
+    - **Product**
+      - **Category**: Each product belongs to a single category, represented by a `ForeignKey` relationship (`product = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)`).
+      - **Tag**: A Product can have multiple Tags associated with it using a `ManyToManyField` relationship (`tags = models.ManyToManyField(Tag, related_name="products")`).
+
+    - **Category**
+      - No direct relationships to other models besides being referenced by the `Product`.
+
+    - **Tag**
+      - Associated with multiple products via the `ManyToManyField` in the Product model.
+
+    ### User and Account Models
+
+    - **User**: This is a Django built-in User model used across various models for user information.
+
+    - **Customer** (from `accounts/models.py`)
+      - **User**: Each customer has an optional associated User (`user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)`), allowing the linkage of Django's authentication system to a more detailed    Customer model.
+
+    ### Reviews
+
+    - **Review**
+      - **Product**: Each review is linked to one product using a `ForeignKey` relationship (`product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="Product")`).
+      - **User**: Each review is associated with one user via a `ForeignKey` relationship (`user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")`).
+
+    ### Orders and Related Models
+
+    - **Order**
+      - **User**: An order can be linked to an optional User object (`user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)`).
+
+    - **OrderItem** (from `orders/models.py`)
+      - **Order**: Each OrderItem is associated with one order using a `ForeignKey` relationship (`order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_items")`).
+      - **Product**: An OrderItem represents a specific product included in an order, linked via a `ForeignKey` (`product = models.ForeignKey(Product, on_delete=models.CASCADE)`).
+
+    ### Cart and Related Models
+
+    - **Cart**
+      - **User**: A cart is associated with an optional User, allowing for both authenticated and guest users to have carts (`user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)`).
+
+    - **CartItem** (from `cart/models.py`)
+      - **Cart**: Each CartItem belongs to one cart using a `ForeignKey` relationship (`cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="items")`).
+      - **Product**: A CartItem includes a specific product linked via a `ForeignKey` (`product = models.ForeignKey(Product, on_delete=models.CASCADE)`).
+
+## Summary
+
+The above relationships illustrate how these models interact within the Django project:
+
+- Products are central to multiple aspects of the application, linking with Categories and Tags for organization and Reviews for customer feedback.
+- Users can be associated with Customers for additional details, and they place Orders that include OrderItems linked to specific Products.
+- Carts allow registered users to store CartItems temporarily before converting them into an order.
+
+These connections enable the application to manage data effectively across different features like product management, user accounts, reviews, orders, and shopping carts.
 
 # Features
 
@@ -218,8 +272,7 @@
 - ## Features left to be implemented
 
 * Even though a not authenticated user can purchase goods, and at the success page can see their most recent order's details, they cannot search for their previous orders. Implement a search function for orders(by email address)
-* 
-* 
+* After doing the Lighthouse tests, it advised me to convert images to .webp format as it provides better performance and reduces file size.
 
 # Technologies used
 
@@ -229,9 +282,9 @@
 - CSS
 - JavaScript
 - Python
-- PostgresSQL
+- SQL (only when had to fix issues with the database at some point.)
 
-2. Frameworks, Libraries & Programs Used:
+1. Frameworks, Libraries & Programs Used:
 
 - Django - Used to run the backend, that have control over the frontend.
 - Django-Tailwind - Used to create boxes for the main and footer sections, and to control some of the animations(e.g. navbar links while hovered over).
@@ -247,11 +300,17 @@
 - [I used YouTube to look for tutorials when I was stuck.](https://www.youtube.com/)
 - [The previously used website to show responsiveness didn't with this project, so I used a Chrome browser extension, called Mobile simulator.](https://chromewebstore.google.com/detail/mobile-simulator-responsi/ckejmhbmlajgoklhgbapkiccekfoccmk)
 - [I used Tailwind's website a lot, especially to get a better idea how to create "boxes" to visually separate areas.](https://tailwind.com/)
-- [I used a self-hosted instance of Stable Diffusion to create images of the products and favicons.](https://stablediffusionweb.com/)
 
 # Bugs
 
-It proved to be quite challenging to host my website, as I had trouble signing up to Heroku with the Github Student Pack, so I ended up needing to host my app on another hosting service, called Linode. I learnt how to install an OS(Debian) to serve as my web server, host my website with Apache, create a domain and create A records so the user can reach my app with a domain name rather than the fix IP, route all requests through Cloudflare where I was able to enable Full(strict) mode after a lot of reading about how to get a certificate signed for HTTPS connections and get my Apache server to listen to these 443 requests. I quite enjoyed learning all about these, and I hope I could submit a well designed app too.
+  1. The Cart model's "total" doesn't get the sale price when product is on sale, but it stores the regular price.
+    - This issue is caused by the fact that the Cart model's "total" is calculated using the product's regular price, which is stored in the database. I added a ternary conditional operator, so it adds the sale price if the product is on sale, otherwise it sets it to the regular price to the total.
+  
+  2. The theme for the whole body, theme-boys or theme-girls, is not being applied correctly. When visiting the admin page, and clicking on "Visit site", most of the background is white instead of the selected theme color.
+    - This issue is caused by the Admin panel's theme being applied in the same way, so it overrides the JS file instructions for some reason. I have set the default class to be "theme-boys", and it sorted out the "blinding whitness issue."
+
+  3. Sorting function doesn't work properly.
+    - While updating the code, I must have accidentally changed the sorting function's logic. It was supposed to sort by price from lowest to highest, but it was not sorting at all.
 
 # Testing
 
@@ -266,7 +325,7 @@ It proved to be quite challenging to host my website, as I had trouble signing u
   - A couple of "Unexpected ','" at the end of the list. Also a "Undeclared 'Stripe'." and a "Move variable declaration to top of function or script.", even though I have declared Stripe in stripe_elements.js. These warnings do not break the code.
 
 3.  theme-switcher.js
-  - 
+  - 0 warnings.
 
 ## Lighthouse
 
@@ -377,7 +436,7 @@ It proved to be quite challenging to host my website, as I had trouble signing u
 - **So that** I can purchase products without needing to type in my details each time.
 
 #### Test Result:
-- **Test Passed**: The registration process is straightforward, with confirmation emails sent successfully. Saved user details are accurately stored and recalled during subsequent visits, streamlining the checkout process for registered users.
+- **Test Passed**: The registration process is straightforward. Saved user details are accurately stored and recalled during subsequent visits, streamlining the checkout process for registered users.
 
 ## As a registered customer
 ### Story: Tracking Orders Efficiently
@@ -385,23 +444,25 @@ It proved to be quite challenging to host my website, as I had trouble signing u
 - **So that** I can easily check the status of my orders and manage them efficiently.
 
 #### Test Result:
-- **Test Passed**: Registered customers have access to an order history section where they can view past orders, current statuses, and expected delivery dates. The interface is user-friendly and provides accurate, up-to-date information on each order.
+- **Test Passed**: Registered customers have access to an order history section where they can view past orders, current statuses. The interface is user-friendly and provides accurate, up-to-date information on each order.
 
 # Credits
 
 1. ## Content
 
-- [The colours used for the website were found on colorhunt.com](https://colorhunt.co/palette/22283131363f76abaeeeeeee)
+- All icons and images were generated using a locally ran Stable Diffusion instance.
 
 2. ## Code
 
 - Official site like W3School and Tailwind help to create a great layout that functions well.
 - StackOverflow helped me to see how others solved the issues their code had and I manage to use some of the solutions after customising them to fit my code.
-- Codeinstitute's walkthrough videos gave me some ideas of how best to manipulate databases with Python. I had to watch other videos as well to fully understand the purpose of the code.
+- Codeinstitute's walkthrough videos gave me some ideas of how best to manipulate databases with Python.
+- I also had to watch YouTube videos to understand how to use the session object in Python, how to set up Stripe to handle payments, and how to use jQuery Ajax to handle forms without refreshing the page.
+  - [Most particurarly this video playlist was very helpful](https://www.youtube.com/watch?v=u6R4vBa7ZK4&list=PLCC34OHNcOtpRfBYk-8y0GMO4i1p1zn50)
 
 # Deployment
 
-- I used GitHub for version control and Linode to deploy my website. I used Visual Studio Code to access code on my server and to push code to GitHub.
+- I used GitHub for version control and Hetzner to deploy my website. I used Visual Studio Code to access code on my server and to push code to GitHub.
 - I have built a Docker container out of this app, which makes deployment easier for some. I also included deployment for those who do not user Docker.
 
 ## Development Procedure for Containerized Django App
