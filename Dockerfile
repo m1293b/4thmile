@@ -23,7 +23,6 @@ COPY . .
 
 # Expose the port that Django will run on
 EXPOSE 5000
-EXPOSE 5432
 
 # Command to start the application using Gunicorn (or another WSGI server)
 CMD ["python", "manage.py", "runserver", "0.0.0.0:5000"]

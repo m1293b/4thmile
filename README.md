@@ -484,36 +484,7 @@ This guide outlines how to set up a development environment for a containerized 
 
 ### Steps to Set Up
 
-#### 1. Clone the Repository
-
-If needed, clone the repository for any project files that are not included in the container.
-
-```bash
-git clone https://github.com/m1293b/babysuite.git
-cd babysuite
-```
-
-#### 2. Create a `.env` File
-
-Create a file named `.env` in your project directory with necessary environment variables.
-
-**Example `.env` content:**
-
-```plaintext
-DATABASE_URL=postgresql://username:password@localhost/dbname
-SECRET_KEY=your_secret_key
-DEBUG=False
-```
-
-#### 3. Pull the Docker Image
-
-Pull the pre-built image from Docker Hub:
-
-```bash
-docker pull m1293b/babysuite
-```
-
-#### 4. Run PostgreSQL Container (if needed locally)
+#### 1. Run PostgreSQL Container (if needed locally)
 
 If you don't have a remote PostgreSQL database, run it in another container.
 
@@ -526,7 +497,7 @@ docker run --name postgres-container \
   -d postgres
 ```
 
-#### 5. Run the Django Application Container
+#### 2. Run the Django Application Container
 
 Start your Django app using Docker Compose or directly with Docker.
 
@@ -544,9 +515,16 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - DATABASE_URL=postgresql://username:password@postgres-container/dbname
-      - SECRET_KEY=your_secret_key
-      - DEBUG=False
+      - DATABASE_URL=postgresql://username:password@postgres-container/dbname # or postgress when using postgresql container 
+      - DJANGO_SECRET_KEY = '{your_secret_key}' \
+      - STRIPE_PUBLISHABLE_KEY= {your_publishable_key} \
+      - STRIPE_SECRET_KEY= {your_secret_key} \
+      - FREE_DELIVERY_THRESHOLD=50 \
+      - STRIPE_STANDARD_DELIVERY_PERCENTAGE=10 \
+      - DB_NAME = '{your_db_name}'
+      - DB_USER = '{your_db_user}'
+      - DB_PASSWORD = '{your_db_password}'
+      - DEBUG=False \
 
   db:
     image: postgres
@@ -571,13 +549,20 @@ docker run -d \
   --name babysuite-app \
   -p 5000:5000 \
   -v $(pwd):/app \
-  -e DATABASE_URL=postgresql://username:password@localhost/dbname \
-  -e SECRET_KEY=your_secret_key \
+  -e DATABASE_URL=postgresql://username:password@localhost/dbname # or postgress when using postgresql container \
+  -e DJANGO_SECRET_KEY = '{your_secret_key}' \
+  -e STRIPE_PUBLISHABLE_KEY= {your_publishable_key} \
+  -e STRIPE_SECRET_KEY= {your_secret_key} \
+  -e FREE_DELIVERY_THRESHOLD=50 \
+  -e STRIPE_STANDARD_DELIVERY_PERCENTAGE=10 \
+  -e DB_NAME = '{your_db_name}'
+  -e DB_USER = '{your_db_user}'
+  -e DB_PASSWORD = '{your_db_password}'
   -e DEBUG=False \
   m1293b/babysuite
 ```
 
-#### 6. Access the Application
+#### 3. Access the Application
 
 Open your browser and navigate to `http://localhost:5000` to access your Django application.
 
@@ -606,3 +591,109 @@ Open your browser and navigate to `http://localhost:5000` to access your Django 
   ```
 
 This setup allows you to quickly start your development environment using a pre-built Docker image. Adjust configurations as needed for production environments.
+
+## Deploying Locally
+
+To deploy the app by cloning the GitHub repository and running it on your local machine, follow these steps. This guide assumes you have Python and PostgreSQL installed and are not using Docker.
+
+## Prerequisites
+
+- **Python**: Ensure Python (and `pip`) is installed.
+- **PostgreSQL**: Install PostgreSQL locally or use a remote instance.
+- **Git**: Make sure Git is installed to clone the repository.
+
+## Steps to Deploy Locally
+
+### 1. Clone the Repository
+
+Clone the repository from GitHub:
+
+```bash
+git clone https://github.com/m1293b/babysuite.git
+cd babysuite
+```
+
+This command copies the project files to your local machine.
+
+### 2. Set Up Environment Variables
+
+Create an `.env` file in your project directory with necessary environment variables:
+
+**Example `.env` content:**
+
+```plaintext
+DJANGO_SECRET_KEY = '{your_django_secret_key}'
+
+STRIPE_SECRET_KEY = {your_stripe_secret_key}
+STRIPE_PUBLISHABLE_KEY = {your_stripe_publishable_key}
+FREE_DELIVERY_THRESHOLD = 50
+STRIPE_STANDARD_DELIVERY_PERCENTAGE = 10
+
+DB_NAME = '{your_db_name}'
+DB_USER = '{your_db_username}'
+DB_PASSWORD = '{your_db_password}'
+```
+
+Replace `username`, `password`, `dbname`, and `your_secret_key` with appropriate values.
+
+### 3. Install Dependencies
+
+Install required Python packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+This installs all dependencies listed in the `requirements.txt` file.
+
+### 4. Set Up PostgreSQL Database
+
+If running PostgreSQL locally, create a new database and configure it as per your `.env` settings:
+
+1. Start the PostgreSQL service.
+2. Create a new database and user with appropriate permissions:
+
+```bash
+psql -U postgres
+CREATE DATABASE dbname;
+CREATE USER username WITH PASSWORD 'password';
+GRANT ALL PRIVILEGES ON DATABASE dbname TO username;
+\q
+```
+
+Replace `dbname`, `username`, and `password` accordingly.
+
+### 5. Migrate Database
+
+Run Django migrations to set up the database schema:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+This creates necessary tables in your PostgreSQL database based on your Django models.
+
+### 6. Run the Development Server
+
+Start the Django development server:
+
+```bash
+python manage.py runserver
+```
+
+Access the app at `http://127.0.0.1:5000/`.
+
+## Additional Steps
+
+- **Create a Superuser**: To manage the application, create an admin user:
+
+  ```bash
+  python manage.py createsuperuser
+  ```
+
+- **Test the Application**: Ensure all features work by following any manual or automated tests described in the `README.md`.
+
+This guide provides basic setup instructions for running the Django app locally. For advanced configurations and production environments, refer to best practices for security and performance optimizations.
+
+If you encounter issues, review sections of the README related to bugs, testing, or deployment for further insights.
