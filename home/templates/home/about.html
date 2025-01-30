@@ -1,79 +1,36 @@
 {% extends 'base.html' %} {% block content_main %}
   <div class="page-title-container">
-    <h1 class="page-title">About Us</h1>
-    <p class="page-subtitle">A little bit of a history of this project</p>
+    <h1 class="page-title">About this project</h1>
+    <p class="page-subtitle"></p>
 
     <!-- Add more content here -->
   </div>
   <div class="page-section">
     <div class="page-container">
       <div class="page-grid">
-        <h3 class="page-heading">Shop Baby Clothes</h3>
-        <!-- Baby Clothes product cards -->
-        <!-- Onsies -->
-        <a href="{% url 'products' %}?category=onesies" class="product-card-link">
-          <div class="product-card">
-            <img src="/static/images/baby-onesies.jpg" alt="Baby Onesies" class="product-image" />
-            <h3 class="product-title">Onesies</h3>
-          </div>
-        </a>
+        <section class="contact-info">
+          <h2 class="underline">About Us</h2>
+          <p class="mb-4 text-center">We are a dedicated e-commerce platform focused on providing high-quality baby clothes and toys for new parents and guardians. Our mission is to make shopping for your baby's needs easy, secure, and enjoyable.</p>
 
-        <!-- Sleepwear -->
-        <a href="{% url 'products' %}?category=sleepwear" class="product-card-link">
-          <div class="product-card">
-            <img src="/static/images/baby-sleepwear.jpg" alt="Baby Sleepwear" class="product-image" />
-            <h3 class="product-title">Sleepwear</h3>
-          </div>
-        </a>
+          <h3 class="underline">Our Features</h3>
+          <ul class="contact-ulist">
+            <li>Product sorting by type (clothes/toys), name, and price</li>
+            <li>Current promotions and discounts</li>
+            <li>Account registration for returning customers</li>
+            <li>Order tracking system</li>
+            <li>Smooth and secure checkout process</li>
+          </ul>
 
-        <!-- Outerwear -->
-        <a href="{% url 'products' %}?category=outerwear" class="product-card-link">
-          <div class="product-card">
-            <img src="/static/images/baby-outerwear.jpg" alt="Baby Outerwear" class="product-image" />
-            <h3 class="product-title">Outerwear</h3>
-          </div>
-        </a>
-        <a href="{% url 'products' %}?category=accessories" class="product-card-link">
-          <div class="product-card">
-            <img src="/static/images/baby-accessories.jpg" alt="Baby Accessories" class="product-image" />
-            <h3 class="product-title">Accessories</h3>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="separator"></div>
-
-  <div class="page-section-light">
-    <div class="page-container">
-      <div class="page-grid">
-        <h3 class="page-heading">Shop Baby Toys</h3>
-        <!-- Baby Toy product cards -->
-        <a href="{% url 'products' %}?category=rattles" class="product-card-link">
-          <div class="product-card">
-            <img src="/static/images/baby-rattles.jpg" alt="Baby Rattles" class="product-image" />
-            <h3 class="product-title">Rattles</h3>
-          </div>
-        </a>
-        <a href="{% url 'products' %}?category=teethers" class="product-card-link">
-          <div class="product-card">
-            <img src="/static/images/baby-teethers.jpg" alt="Baby Teethers" class="product-image" />
-            <h3 class="product-title">Teethers</h3>
-          </div>
-        </a>
-        <a href="{% url 'products' %}?category=plushes" class="product-card-link">
-          <div class="product-card">
-            <img src="/static/images/baby-plush-toys.jpg" alt="Baby Plush Toys" class="product-image" />
-            <h3 class="product-title">Plush Toys</h3>
-          </div>
-        </a>
-        <a href="{% url 'products' %}?category=mobiles" class="product-card-link">
-          <div class="product-card">
-            <img src="/static/images/baby-mobiles.jpg" alt="Baby Mobiles" class="product-image" />
-            <h3 class="product-title">Mobiles</h3>
-          </div>
-        </a>
+          <h3 class="underline">Technology Stack</h3>
+          <ul class="contact-ulist">
+            <li>HTML/CSS for frontend development</li>
+            <li>JavaScript for interactive features</li>
+            <li>Python, using Django as the backend framework</li>
+            <li>Docker for deployment</li>
+            <li>Stripe for payment processing</li>
+            <!-- Add more technologies if available -->
+          </ul>
+        </section>
       </div>
     </div>
   </div>

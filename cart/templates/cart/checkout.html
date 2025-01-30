@@ -72,7 +72,7 @@
         <div class="cart-summary">
           <h4>Total Amount: £{{ cart_total|floatformat:2 }}</h4>
         </div>
-        <button type="submit" value="{% url 'checkout' %}" id="{{ cart.id }}" class="place-order checkout-page-button">Place Order</button>
+        <button type="submit" value="{% url 'checkout' %}" class="place-order checkout-page-button">Place Order</button>
       </div>
     </div>
   </form>

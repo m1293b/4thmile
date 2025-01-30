@@ -41,7 +41,6 @@ $("#next-step").on("click", function () {
 function updatePage(response) {
   // Update cart count on page
   $(".cart-len").text(response.cart_len);
-  
   if (response.cart_len === 0) {
     $(".cart-products-section").text("You have no items in your cart.");
   }
@@ -94,7 +93,8 @@ $("#toggle-search-button").on("click", function () {
   }
 });
 
-// To clear all carts, you can use the following code:(needs fixing before activation)
+// To clear all carts, you can use the following code:
+//(needs fixing before activation)
 
 // $("#clear-all-carts-button").on("click", function () {
 //   $.ajax({
@@ -113,7 +113,8 @@ $("#toggle-search-button").on("click", function () {
 //   });
 // });
 
-// To add a product to the cart, you can use the following code:(needs fixing before activation)
+// To add a product to the cart, you can use the following code:
+//(needs fixing before activation)
 
 // $("#add-to-cart").on("click", function () {
 //   const product_id = $(this).val();

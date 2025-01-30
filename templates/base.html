@@ -6,7 +6,7 @@
     {% tailwind_css %} {% block meta %}
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="description" content="" />
+      <meta name="description" content="An E-commerce website, selling baby clothes and toys." />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href="{% static 'assets/img/favicon_boys.ico' %}?v=0.1" />
     {% endblock %} {% block extra_meta %}
@@ -53,5 +53,11 @@
       <script src="{% static 'js/script.js' %}?v=0.2"></script>
     {% endblock %}
     {% django_browser_reload_script %}
+    <div class="separator"></div>
+    <footer class="footer">
+      <p>
+        Babysuite<small>&copy;</small> 2025
+      </p>
+    </footer>
   </body>
 </html>

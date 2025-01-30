@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var elements = stripe.elements();
   var style = {
     base: {
-      fontSize: "16px",
       color: "#32325d",
+      fontSize: "16px",
     },
   };
   cardElement = elements.create("card", { style });
@@ -28,11 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
         // Show the error message
 
         if ($(".message-container").length === 0) {
-          // Create and append message-container div to header only if it doesn't exist
+          // Create and append message-container div to header
+          // only if it doesn't exist
           $("header").append($("<div>", { class: "message-container" }));
         }
         if ($(".message").length === 0) {
-          // Create and append message div to message-container only if it doesn't exist
+          // Create and append message div to message-container
+          // only if it doesn't exist
           $(".message-container").append(
             $("<div>", { class: "message", text: event.error.message })
           );
@@ -53,7 +55,8 @@ $("#payment-form").on("submit", async function (e) {
   e.preventDefault();
   paytButton = $("#pay-button");
   paytButton.html("Processing...");
-  // Change the displayed text and disable the button once it has been clicked.
+  // Change the displayed text and disable the button
+  // once it has been clicked.
   cardElement.update({ disabled: true });
 
   try {
@@ -84,7 +87,8 @@ $("#payment-form").on("submit", async function (e) {
         .replaceWith(
           "<a href='" +
             $("#payment-form").attr("action") +
-            "' class='checkout-page-button' id='pay-button'>Continuing to checkout...</a>"
+            `' class='checkout-page-button' id='pay-button'>
+            Continuing to checkout...</a>`
         )
         .attr("disabled", false)
         .delay(1000);

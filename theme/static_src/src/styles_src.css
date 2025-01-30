@@ -205,14 +205,30 @@ body {
 
 body.theme-girls div.product-detail-container p.dark-text {
   color: var(--text-dark); /* Dark theme text */
+  @apply text-center;
 }
 
 body.theme-boys div.product-detail-container p.light-text {
   color: var(--text-light); /* Light theme text */
+  @apply text-center;
 }
 
 .review-item {
   @apply grid items-center content-center grid-cols-2 p-3 mb-1 border-2 rounded border-sky-100;
+}
+
+/* About and Contact page styling */
+
+.contact-info {
+  @apply grid grid-cols-1 gap-6 col-span-full justify-items-center;
+}
+
+.contact-ulist {
+  @apply grid grid-cols-1 gap-4 p-4 rounded-md md:grid-cols-2 bg-theme-primary-light;
+}
+
+.contact-ulist li {
+  @apply grid text-center;
 }
 
 /* Cart summary styling */
@@ -418,7 +434,6 @@ body #sort-button {
 }
 
 
-
 /* Check out page styling */
 
 .checkout-page-section {
@@ -466,4 +481,10 @@ textarea {
 
 .order-details {
   @apply grid grid-cols-1 gap-2 justify-items-center;
+}
+
+/* Footer styling */
+
+.footer {
+  @apply bottom-0 w-full h-12 transition-all duration-300 ease-in-out bg-[var(--theme-primary-dark)] shadow-xl text-center align-middle;
 }

@@ -1,9 +1,11 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", function () {
   const themeToggle = document.getElementById("theme-toggle");
   const body = document.body;
   const themeIcon = themeToggle.querySelector("i");
 
-  // This variable will help to serve the static files regardless which app is being used. This was the best way I found today
+  // This variable will help to serve the static files
+  // regardless which app is being used.
+  // This was the best way I found today
   // to use the theme-switcher without having to change the code in every app.
   const baseUrl = `${window.location.origin}`;
 
@@ -21,7 +23,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   body.classList.add(`theme-${currentTheme}`);
   updateThemeIcon(currentTheme);
 
-  themeToggle.addEventListener("click", () => {
+  themeToggle.addEventListener("click", function () {
     if (body.classList.contains("theme-boys")) {
       body.classList.replace("theme-boys", "theme-girls");
       localStorage.setItem("theme", "girls");

@@ -259,7 +259,14 @@ It proved to be quite challenging to host my website, as I had trouble signing u
 
 ### JSLint
 
-- ![A screenshot of the JSLint result.](./readme_files/jslint_result.png "A screenshot of the JSLint result.")
+1. script.js
+  - Only issue I got is this: "Wrap a ternary expression in parens, with a line break after the left paren." Which is due to the formatting of the file. This warning does not break the code.  
+
+2.  stripe_elements.js
+  - A couple of "Unexpected ','" at the end of the list. Also a "Undeclared 'Stripe'." and a "Move variable declaration to top of function or script.", even though I have declared Stripe in stripe_elements.js. These warnings do not break the code.
+
+3.  theme-switcher.js
+  - 
 
 ### Lighthouse
 
@@ -269,30 +276,53 @@ It proved to be quite challenging to host my website, as I had trouble signing u
 
   ### Lighthouse desktop
 
-- ![A screenshot of the initial Lighthouse desktop result.](./readme_files/lighthouse_desktop_test.png "A screenshot of the initial Lighthouse desktop result.")
+- ![A screenshot of the Lighthouse desktop result.](./readme_files/lighthouse_desktop_test.png "A screenshot of the Lighthouse desktop result.")
 
 ## W3C HTML
-
 
   ### home.html
 
 - ![A screenshot of the home.html validation result.](./readme_files/home_html_validation.png "A screenshot of the home.html validation result.")
 
-  ### index.html
+  ### contact.html
 
-- ![A screenshot of the index.html validation result.](./readme_files/index_html_validation.png "A screenshot of the index.html validation result.")
+- ![A screenshot of the contact.html validation result.](./readme_files/contact_html_validation.png "A screenshot of the contact.html validation result.")
 
-  ### recipes.html
+  ### about.html
 
-- ![A screenshot of the recipes.html validation result.](./readme_files/recipes_html_validation.png "A screenshot of the recipes.html validation result.")
+- ![A screenshot of the about.html validation result.](./readme_files/about_html_validation.png "A screenshot of the about.html validation result.")
 
-  ### sign_in.html
+  ### process_payment.html
 
-- ![A screenshot of the sign_in.html validation result.](./readme_files/sign_in_html_validation.png "A screenshot of the sign_in.html validation result.")
+- ![A screenshot of the process_payment.html validation result.](./readme_files/process_payment_html_validation.png "A screenshot of the process_payment.html validation result.")
 
-  ### sign_up.html
+  ### profile.html
 
-- ![A screenshot of the sign_up.html validation result.](./readme_files/sign_up_html_validation.png "A screenshot of the sign_up.html validation result.")
+- ![A screenshot of the profile.html validation result.](./readme_files/profile_html_validation.png "A screenshot of the profile.html validation result.")
+
+  ### success.html
+
+- ![A screenshot of the success.html validation result.](./readme_files/success_html_validation.png "A screenshot of the success.html validation result.")
+
+  ### cart_summary.html
+
+- ![A screenshot of the cart_summary.html validation result.](./readme_files/cart_summary_html_validation.png "A screenshot of the cart_summary.html validation result.")
+
+  ### checkout.html
+
+- ![A screenshot of the checkout.html validation result.](./readme_files/checkout_html_validation.png "A screenshot of the checkout.html validation result.")
+
+  ### orders.html
+
+- ![A screenshot of the orders.html validation result.](./readme_files/orders_html_validation.png "A screenshot of the siordersgn_up.html validation result.")
+
+  ### product_details.html
+
+- ![A screenshot of the product_details.html validation result.](./readme_files/product_details_html_validation.png "A screenshot of the product_details.html validation result.")
+
+  ### products.html
+
+- ![A screenshot of the products.html validation result.](./readme_files/products_html_validation.png "A screenshot of the products.html validation result.")
 
 ## W3C CSS(Jigsaw)
 
@@ -380,7 +410,7 @@ Create a file named `.env` in your project directory with necessary environment 
 ```plaintext
 DATABASE_URL=postgresql://username:password@localhost/dbname
 SECRET_KEY=your_secret_key
-DEBUG=True
+DEBUG=False
 ```
 
 #### 3. Pull the Docker Image
@@ -424,7 +454,7 @@ services:
     environment:
       - DATABASE_URL=postgresql://username:password@postgres-container/dbname
       - SECRET_KEY=your_secret_key
-      - DEBUG=True
+      - DEBUG=False
 
   db:
     image: postgres
@@ -451,7 +481,7 @@ docker run -d \
   -v $(pwd):/app \
   -e DATABASE_URL=postgresql://username:password@localhost/dbname \
   -e SECRET_KEY=your_secret_key \
-  -e DEBUG=True \
+  -e DEBUG=False \
   m1293b/babysuite
 ```
 
