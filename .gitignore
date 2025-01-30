@@ -6,4 +6,5 @@ __pycache__
 .env
 nohup.out
 node_modules
-production
+staticfiles
+node_modules
