@@ -29,31 +29,33 @@
     {% endblock %}
   </head>
   <body class="theme-boys">
-    <header>
-      <!-- Nav element to be placed here -->
-      {% include 'navbar.html' %}
-    </header>
-    {% if messages %}
-      <div class="message-container">
-        <!-- "Flash messages" to be displayed here -->
-        {% for message in messages %}
-          <div class="message {{ message.tags }}">{{ message }}</div>
-          {% if not forloop.last %}
-            <hr class="horizontal-rule-message" />
-          {% endif %}
-        {% endfor %}
-        <!-- End of "Flash messages" -->
-      </div>
-    {% endif %} {% block page_header %}
-      {% comment %}For pages to display their own header{% endcomment %}
-    {% endblock %} {% block content_main %}
-      {% comment %}main content for each page{% endcomment %}
-    {% endblock %} {% block post_load_js %}
-      {% comment %}Files to be loaded after the page has loaded in{% endcomment %}
-      <script src="{% static 'js/script.js' %}?v=0.2"></script>
-    {% endblock %}
-    {% django_browser_reload_script %}
-    <div class="separator"></div>
+    <div class="body-container">
+      <header>
+        <!-- Nav element to be placed here -->
+        {% include 'navbar.html' %}
+      </header>
+      {% if messages %}
+        <div class="message-container">
+          <!-- "Flash messages" to be displayed here -->
+          {% for message in messages %}
+            <div class="message {{ message.tags }}">{{ message }}</div>
+            {% if not forloop.last %}
+              <hr class="horizontal-rule-message" />
+            {% endif %}
+          {% endfor %}
+          <!-- End of "Flash messages" -->
+        </div>
+      {% endif %} {% block page_header %}
+        {% comment %}For pages to display their own header{% endcomment %}
+      {% endblock %} {% block content_main %}
+        {% comment %}main content for each page{% endcomment %}
+      {% endblock %} {% block post_load_js %}
+        {% comment %}Files to be loaded after the page has loaded in{% endcomment %}
+        <script src="{% static 'js/script.js' %}?v=0.2"></script>
+      {% endblock %}
+      {% django_browser_reload_script %}
+      <div class="separator"></div>
+    </div>
     <footer class="footer">
       <p>
         Babysuite<small>&copy;</small> 2025

@@ -34,7 +34,11 @@
 /* Theme toggle */
 
 body {
-  @apply text-[var(--txt-light)];
+  @apply text-[var(--txt-light)] grid;
+}
+
+.body-container {
+  @apply min-h-[95dvh] min-w-full;
 }
 
 .theme-toggle {
@@ -494,7 +498,7 @@ textarea {
 /* Footer styling */
 
 .footer {
-  @apply fixed bottom-0 w-full h-12 transition-all duration-300 ease-in-out bg-[var(--theme-primary-dark)] shadow-xl text-center align-middle;
+  @apply bottom-0 w-full h-[5dvh] transition-all duration-300 ease-in-out bg-[var(--theme-primary-dark)] shadow-xl text-center align-middle;
 }
 
 /* Login and sign up pages styling */
