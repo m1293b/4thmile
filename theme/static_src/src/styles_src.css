@@ -504,7 +504,7 @@ textarea {
 }
 
 .all-auth-menu ul {
-  @apply grid grid-cols-2 mb-4;
+  @apply grid grid-cols-2 gap-4 mb-4 justify-items-center;
 }
 
 .all-auth-menu strong {
