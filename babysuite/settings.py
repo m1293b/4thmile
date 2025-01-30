@@ -120,8 +120,8 @@ DATABASES = {
         "NAME": config("DB_NAME"),
         "USER": config("DB_USER"),
         "PASSWORD": config("DB_PASSWORD"),
-        "HOST": "localhost",  # or your database server address
-        "PORT": "5432",  # default PostgreSQL port is 5432
+        "HOST": config("DB_HOST"),  # or your database server address
+        "PORT": config("DB_PORT"),  # default PostgreSQL port is 5432
     }
 }
 

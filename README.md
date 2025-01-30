@@ -393,9 +393,9 @@ These connections enable the application to manage data effectively across diffe
 
 ## Final website
 
-![A screenshot of the finished website on different screen sizes.](./readme_files/responsiveness_mobile.png "A screenshot of the finished website on different screen sizes.")
-![A screenshot of the finished website on different screen sizes.](./readme_files/responsiveness_tablet.png "A screenshot of the finished website on different screen sizes.")
-![A screenshot of the finished website on different screen sizes.](./readme_files/responsiveness_desktop.png "A screenshot of the finished website on different screen sizes.")
+![A screenshot of the finished website on mobile screen.](./readme_files/responsiveness_mobile.png "A screenshot of the finished website on mobile screen.")
+![A screenshot of the finished website on tablet screen.](./readme_files/responsiveness_tablet.png "A screenshot of the finished website on tablet screen.")
+![A screenshot of the finished website on desktop screen.](./readme_files/responsiveness_desktop.png "A screenshot of the finished website on desktop screen.")
 
 ## Manual testing
 
@@ -521,6 +521,8 @@ services:
       - STRIPE_SECRET_KEY= {your_secret_key} \
       - FREE_DELIVERY_THRESHOLD=50 \
       - STRIPE_STANDARD_DELIVERY_PERCENTAGE=10 \
+      - DB_HOST= {your_db_host}'
+      - DB_PORT= {your_db_port}
       - DB_NAME = '{your_db_name}'
       - DB_USER = '{your_db_user}'
       - DB_PASSWORD = '{your_db_password}'
@@ -555,6 +557,8 @@ docker run -d \
   -e STRIPE_SECRET_KEY= {your_secret_key} \
   -e FREE_DELIVERY_THRESHOLD=50 \
   -e STRIPE_STANDARD_DELIVERY_PERCENTAGE=10 \
+  -e DB_HOST = '{your_db_host}' \
+  -e DB_PORT = '{your_db_port}' \
   -e DB_NAME = '{your_db_name}'
   -e DB_USER = '{your_db_user}'
   -e DB_PASSWORD = '{your_db_password}'
@@ -629,6 +633,8 @@ STRIPE_PUBLISHABLE_KEY = {your_stripe_publishable_key}
 FREE_DELIVERY_THRESHOLD = 50
 STRIPE_STANDARD_DELIVERY_PERCENTAGE = 10
 
+DB_HOST = '{your_db_host}'
+DB_PORT = '{your_db_port}'
 DB_NAME = '{your_db_name}'
 DB_USER = '{your_db_username}'
 DB_PASSWORD = '{your_db_password}'
