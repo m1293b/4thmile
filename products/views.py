@@ -53,9 +53,10 @@ def products(request):
             page_description = ""
             # Corrected filtering on Product fields
             product_queryset = product_queryset.filter(
-                Q(name__icontains=query)
-                | Q(category__name__icontains=query),
-            ).filter(stock__gt=0)  # Assuming 'stock' is the field you want to filter by
+                Q(name__icontains=query) | Q(category__name__icontains=query),
+            ).filter(
+                stock__gt=0
+            )  # Assuming 'stock' is the field you want to filter by
 
             categories = categories.prefetch_related(
                 Prefetch("product_set", queryset=product_queryset)
@@ -64,7 +65,15 @@ def products(request):
         # Prepare a sorted product queryset only if valid sort parameter is provided
         valid_sort_fields = ["name", "-name", "price", "-price"]
         if sort in valid_sort_fields:
-            product_queryset = product_queryset.order_by(sort)
+            # Prepare a sorted product queryset for the filtered categories
+            sorted_product_queryset = product_queryset.filter(
+                category__in=categories
+            ).order_by(sort)
+
+            # Update prefetch with the sorted queryset
+            categories = Category.objects.prefetch_related(
+                Prefetch("product_set", queryset=sorted_product_queryset)
+            ).filter(id__in=[category.id for category in categories])
             page_description += f" Sorted by {sort}"
 
     products_found = any(category.product_set.exists() for category in categories)
