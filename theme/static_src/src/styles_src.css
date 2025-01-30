@@ -498,7 +498,7 @@ textarea {
 /* Footer styling */
 
 .footer {
-  @apply bottom-0 w-full h-[5dvh] transition-all duration-300 ease-in-out bg-[var(--theme-primary-dark)] shadow-xl text-center align-middle;
+  @apply static bottom-0 w-full h-[5dvh] transition-all duration-300 ease-in-out bg-[var(--theme-primary-dark)] shadow-xl text-center align-middle;
 }
 
 /* Login and sign up pages styling */
