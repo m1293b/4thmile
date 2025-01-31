@@ -547,6 +547,11 @@ docker run -d \
   -e DB_USER = '{your_db_user}'
   -e DB_PASSWORD = '{your_db_password}'
   -e DEBUG=False \
+  -e AWS_ACCESS_KEY_ID = {your_aws_access_key_id}
+  -e AWS_SECRET_ACCESS_KEY = {your_aws_secret_key}
+  -e AWS_STORAGE_BUCKET_NAME = '{your_buckets_name}'
+  -e AWS_S3_REGION_NAME = '{your_buckets_region_name}'
+  
   m1293b/babysuite
 ```
 
@@ -622,6 +627,13 @@ DB_PORT = '{your_db_port}'
 DB_NAME = '{your_db_name}'
 DB_USER = '{your_db_username}'
 DB_PASSWORD = '{your_db_password}'
+
+AWS_ACCESS_KEY_ID = {your_aws_access_key_id}
+AWS_SECRET_ACCESS_KEY = {your_aws_secret_key}
+AWS_STORAGE_BUCKET_NAME = '{your_buckets_name}'
+AWS_S3_REGION_NAME = '{your_buckets_region_name}'
+
+USE_AWS = True
 ```
 
 Replace `username`, `password`, `dbname`, and `your_secret_key` with appropriate values.
