@@ -70,6 +70,49 @@ INSTALLED_APPS = [
     "widget_tweaks",
 ]
 
+if config("USE_AWS"):
+    INSTALLED_APPS += [
+        "storages",
+    ]
+    AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_REGION_NAME = config("AWS_S3_REGION_NAME")
+    # AWS_S3_SIGNATURE_NAME = config("AWS_S3_SIGNATURE_NAME")
+    AWS_S3_FILE_OWERSWRITE = False
+    AWS_S3_CUSTOM_DOMAIN = (
+        f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
+    )
+    AWS_S3_VERITY = True
+    DEFAULT_FILE_STORAGE = (
+        "storages.backends.s3boto3.S3Boto3Storage"  # Use S3 storage for static files
+    )
+
+
+# # Media files configuration
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"  # URL path for media access
+MEDIAFILES_STORAGE = "custom_storages.CustomMediaStorage"
+MEDIA_ROOT = os.path.join(
+    BASE_DIR, "media"
+)  # Local filesystem path for storing media files
+STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"  # URL path for static files
+STATICFILES_STORAGE = "custom_storages.CustomStaticStorage"
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]  # Additional locations of static files
+
+STORAGES = {
+    "default": {
+        "BACKEND": DEFAULT_FILE_STORAGE,
+    },
+    "staticfiles": {
+        "BACKEND": DEFAULT_FILE_STORAGE,
+    },
+}
+
+STATIC_ROOT = BASE_DIR / "staticfiles/"
+
+
 TAILWIND_APP_NAME = "theme"
 
 INTERNAL_IPS = ["127.0.0.1"]
@@ -149,10 +192,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
