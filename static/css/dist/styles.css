@@ -3768,6 +3768,11 @@ select {
      object-fit: scale-down;
 }
 
+.px-0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 .px-0\.5 {
   padding-left: 0.125rem;
   padding-right: 0.125rem;
@@ -8375,6 +8380,7 @@ body #sort-button:hover {
 
 .product-link {
   display: grid;
+  max-width: 50%;
   justify-items: center;
 }
 

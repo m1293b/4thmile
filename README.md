@@ -294,7 +294,7 @@ These connections enable the application to manage data effectively across diffe
     - This issue is caused by the Admin panel's theme being applied in the same way, so it overrides the JS file instructions for some reason. I have set the default class to be "theme-boys", and it sorted out the "blinding whitness issue."
 
   3. Sorting function doesn't work properly.
-    - While updating the code, I must have accidentally changed the sorting function's logic. It was supposed to sort by price from lowest to highest, but it was not sorting at all.
+    - While updating the code, I must have accidentally changed the sorting function's logic. It was supposed to sort by price from lowest to highest, but it was not sorting at all. This is now working, sorting items within the categories correctly based on the selected option.
   
   4. JavaScript file not updating.
     - Any changes in the JavaScript files are not being updated on the site. I have tried clearing the cache and refreshing the page, but it still didn't work. I found a workaround, by adding and updating "?v=1" at the end of the URL, the changes are reflected on a page refresh.

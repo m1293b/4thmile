@@ -396,7 +396,7 @@ body #sort-button {
 }
 
 .product-link {
-  @apply grid justify-items-center;
+  @apply grid justify-items-center max-w-[50%];
 }
 
 .product-image {
