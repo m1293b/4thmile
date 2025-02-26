@@ -9,18 +9,47 @@ from accounts.models import Customer
 
 
 def cart_summary(request):
-    # Logic to retrieve and display the cart items
-    cart_sess = cart_session(request)
 
-    # Ensure get_cart_items returns a list of dictionaries with all required details
-    cart_products = [
-        {
-            "product": product,
-            "quantity": cart_sess.cart[str(product.pk)]["quantity"],
-            "total": cart_sess.cart[str(product.pk)]["total"],
-        }
-        for product in cart_sess.get_cart_items()
-    ]
+    if request.user.is_authenticated:
+        try:
+            # Retrieve the active cart for the authenticated user if it exists
+            cart = Cart.objects.get(user=request.user, active_cart = True)
+
+            cart_products = [
+                {
+                    "product": item.product,
+                    "quantity": item.quantity,
+                    "total": item.quantity * item.product.price,
+                }
+                for item in cart.items.all()
+            ]
+        except Cart.DoesNotExist:
+            # If no active cart is found, create a new one and set it as the active cart for the user
+            cart = Cart.objects.create(user=request.user)
+            cart.active_cart = True
+            cart.save()
+            cart_products = [
+                {
+                    "product": item.product,
+                    "quantity": item.quantity,
+                    "total": item.quantity * item.product.price,
+                }
+                for item in cart.items.all()
+            ]
+
+    else:
+        # Logic to retrieve and display the cart items
+        cart_sess = cart_session(request)
+
+        # Ensure get_cart_items returns a list of dictionaries with all required details
+        cart_products = [
+            {
+                "product": product,
+                "quantity": cart_sess.cart[str(product.pk)]["quantity"],
+                "total": cart_sess.cart[str(product.pk)]["total"],
+            }
+            for product in cart_sess.get_cart_items()
+        ]
 
     context = {
         "cart_products": cart_products,
@@ -201,6 +230,8 @@ def remove_from_cart(request):
         {
             "cart_len": cart_len,
             "message": message,
+            "action": 'remove',
+            "product_id": product_id,
         }
     )
 

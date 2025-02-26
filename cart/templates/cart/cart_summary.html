@@ -51,6 +51,9 @@
 
   <script>
     $('.remove-from-cart, .update-cart').on('click', function () {
+      const product = $(this)
+      const productBox = product.closest('.cart-product-card')
+      const productHr = productBox.next('.horizontal-rule')
       const productId = $(this).siblings($('input[type="hidden"]')).val()
       const quantity = $('input[type="number"][id="' + productId + '"]').val()
       const total = $('p[id="' + productId + '"][class="total-price"]')
@@ -65,6 +68,10 @@
           csrfmiddlewaretoken: '{{ csrf_token }}'
         },
         success: function (response) {
+          if (response.action == 'remove') {
+            productBox.remove()
+            productHr.remove()
+          }
           // Update cart count on page
           $('.cart-len').text(response.cart_len)
           total.text('Total Price: £' + response.total)
