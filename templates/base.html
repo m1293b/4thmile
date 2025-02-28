@@ -1,4 +1,3 @@
-{% load django_browser_reload %}
 {% load static %} {% load tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +53,6 @@
         {% comment %}Files to be loaded after the page has loaded in{% endcomment %}
         <script src="{% static 'js/script.js' %}?v=0.2"></script>
       {% endblock %}
-      {% django_browser_reload_script %}
       <div class="separator"></div>
     </div>
     <footer class="footer">

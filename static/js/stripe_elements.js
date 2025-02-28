@@ -2,7 +2,8 @@ var cardElement = NaN;
 var stripePublicKey = NaN;
 var clientSecret = NaN;
 var stripe = NaN;
-var paytButton = NaN;
+var payButton = NaN;
+var successfulPayment = false;
 
 document.addEventListener("DOMContentLoaded", function () {
   stripePublicKey = $("#id_stripe_public_key").text().slice(1, -1);
@@ -53,8 +54,8 @@ document.addEventListener("DOMContentLoaded", function () {
 // Handle form submission
 $("#payment-form").on("submit", async function (e) {
   e.preventDefault();
-  paytButton = $("#pay-button");
-  paytButton.html("Processing...");
+  payButton = $("#pay-button");
+  payButton.html("Processing...");
   // Change the displayed text and disable the button
   // once it has been clicked.
   cardElement.update({ disabled: true });
@@ -70,7 +71,7 @@ $("#payment-form").on("submit", async function (e) {
       // Display error.message in your UI
       console.log(error.message);
       $(".message-container").show().delay(3000).fadeOut();
-      paytButton
+      payButton
         .html("Pay")
         .attr("disabled", true)
         .delay(3000)
@@ -79,25 +80,32 @@ $("#payment-form").on("submit", async function (e) {
     } else {
       // The payment has been processed!
       // Trigger form submission
-      paytButton.attr("disabled", true);
-      $(".message").text("Payment successful!");
-      $(".message-container").show().delay(3000).fadeOut();
-      paytButton.html("Pay").delay(3000);
-      paytButton
-        .replaceWith(
-          "<a href='" +
-            $("#payment-form").attr("action") +
-            `' class='checkout-page-button' id='pay-button'>
-            Continuing to checkout...</a>`
-        )
-        .attr("disabled", false)
-        .delay(1000);
-      paytButton.click();
+      payButton.replaceWith(
+        `<a href="${$("#payment-form").attr(
+          "action"
+        )}" class="checkout-page-button" id="pay-button">Continuing to checkout</a>`
+      );
+
+      let dotCount = 1;
+      const payButtonLink = $("#pay-button");
+
+      const intervalId = setInterval(() => {
+        if (dotCount <= 3) {
+          payButtonLink.html(`Continuing to checkout${".".repeat(dotCount)}`);
+          dotCount++;
+          console.log(`dotCount is ${dotCount}`);
+        } else {
+          console.log("clearing intervalId");
+          clearInterval(intervalId);
+          document.location = $("#pay-button").attr("href");
+          console.log("Payment completed successfully!");
+        }
+      }, 500); // Adjust the interval duration as needed
     }
   } catch (err) {
     console.error(err);
     $(".message-container").show().delay(3000).fadeOut();
-    paytButton.html("Pay").attr("disabled", false);
+    payButton.html("Pay").attr("disabled", false);
     cardElement.update({ disabled: false });
   }
 });
