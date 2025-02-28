@@ -55,16 +55,19 @@ class ReviewsTestCase(TestCase):
             reverse("add_review", args=[self.product.pk]), data=form_data
         )
         self.assertEqual(response.status_code, 200)  # Should display form errors
-        
+
     def test_remove_review(self):
         self.client.login(username="testuser", password="12345")
         review = Review.objects.create(
             product=self.product,
             user=self.user,
-            title="Great product",
-            content="I really liked it!",
+            comment="I really liked it!",
             rating=5,
         )
         response = self.client.post(reverse("remove_review", args=[review.pk]))
-        self.assertEqual(response.status_code, 302)  # Redirects after successful removal
-        self.assertFalse(Review.objects.filter(pk=review.pk).exists())  # Review should be deleted
+        self.assertEqual(
+            response.status_code, 302
+        )  # Redirects after successful removal
+        self.assertFalse(
+            Review.objects.filter(pk=review.pk).exists()
+        )  # Review should be deleted

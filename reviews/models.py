@@ -36,7 +36,7 @@ class Review(models.Model):
             (4, "4 Stars"),
             (5, "5 Stars"),
         ],
-    )
+    ) 
     comment = models.TextField(verbose_name="Comment")
     created_at = models.DateTimeField(auto_now_add=True)
 

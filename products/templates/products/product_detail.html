@@ -65,6 +65,9 @@
               </p>
               <small>By: {{ review.user.username }}</small>
               <small>Posted on: {{ review.created_at }}</small>
+              {% if user.is_authenticated and user == review.user %}
+                <a href="{% url 'remove_review' review.pk %}" type="button" class="text-sm text-center text-red-600 hover:text-red-800" data-product-id="{{ review.pk }}">Remove Review</a>
+              {% endif %}
             </li>
           {% endfor %}
         </ul>
@@ -97,9 +100,9 @@
 
   <script>
     $('#add-to-cart').on('click', function () {
-      const product_id = $(this).val();
-      const quantity = $('#quantity').val();
-      
+      const product_id = $(this).val()
+      const quantity = $('#quantity').val()
+    
       // Send AJAX request to add product to cart
       $.ajax({
         type: 'POST',
@@ -110,12 +113,12 @@
           csrfmiddlewaretoken: '{{ csrf_token }}'
         },
         success: function (response) {
-          updatePage(response);
+          updatePage(response)
         },
         error: function () {
-          alert('Error adding product to cart!');
+          alert('Error adding product to cart!')
         }
-      });
-    });
+      })
+    })
   </script>
 {% endblock %}

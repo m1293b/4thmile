@@ -43,3 +43,13 @@ def add_review(request, pk):
     }
 
     return render(request, "products/product_detail.html", context)
+
+@login_required
+def remove_review(request, pk):
+    review = get_object_or_404(Review, pk=pk)
+    if request.user == review.user:
+        review.delete()
+        messages.success(request, "Review removed successfully!")
+    else:
+        messages.error(request, "You do not have permission to delete this review.")
+    return redirect("product_detail", pk=review.product.pk)
