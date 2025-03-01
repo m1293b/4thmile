@@ -66,7 +66,7 @@
               <small>By: {{ review.user.username }}</small>
               <small>Posted on: {{ review.created_at }}</small>
               {% if user.is_authenticated and user == review.user %}
-                <a href="{% url 'remove_review' review.pk %}" type="button" class="col-span-2 mt-2 text-sm text-center text-red-600 border-white border-1 hover:text-red-800" data-product-id="{{ review.pk }}">Remove Review</a>
+                <a href="{% url 'remove_review' review.pk %}" type="button" class="col-span-2 px-2 mt-2 text-sm text-center text-red-600 transition-all border rounded-md justify-self-center border-theme-primary-dark hover:border-white hover:border motion-ease-in-quad" data-product-id="{{ review.pk }}">Remove Review</a>
               {% endif %}
             </li>
           {% endfor %}

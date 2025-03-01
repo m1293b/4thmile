@@ -3637,6 +3637,10 @@ select {
   border-color: var(--white);
 }
 
+.border-theme-primary-dark {
+  border-color: var(--theme-primary-dark);
+}
+
 .bg-\[rgb\(255\2c 0\2c 0\)\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 0 0 / var(--tw-bg-opacity, 1));
@@ -4380,6 +4384,12 @@ select {
   transition-duration: 150ms;
 }
 
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .ease-in {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
@@ -4813,6 +4823,11 @@ select {
 
 .motion-ease {
   --motion-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-perceptual-duration-multiplier: 1;
+}
+
+.motion-ease-in-quad {
+  --motion-timing: cubic-bezier(.55, .085, .68, .53);
   --motion-perceptual-duration-multiplier: 1;
 }
 
@@ -6362,6 +6377,14 @@ select {
   .dark\:prose :where(.dark\:prose > :last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
     margin-bottom: 0;
   }
+}
+
+.hover\:border:hover {
+  border-width: 1px;
+}
+
+.hover\:border-white:hover {
+  border-color: var(--white);
 }
 
 .hover\:font-bold:hover {
