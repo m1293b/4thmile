@@ -301,6 +301,12 @@ These connections enable the application to manage data effectively across diffe
 
 # Testing
 
+## Test Driver Development
+
+1. Created a test for the remove_review function. It failed due to not seeing the function itself, as it hasn't been created.
+2. Added the remove_review function and tested it again. It passed successfully.
+3. I then updated the styling of the remove_review button in the CSS file, and made sure it is only available when the review was left by the currently logged in user.
+
 ## Testing with validators
 
 ## JSLint
