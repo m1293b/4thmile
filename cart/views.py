@@ -267,7 +267,11 @@ def checkout(request):
     if not user:
         cart_sess = cart_session(request)
     else:
-        customer, created = Customer.objects.get_or_create(user=user)
+        try:
+            customer, created = Customer.objects.get_or_create(user=user)
+        except:
+            customer = None
+            messages.error(request, 'Please update customer details.')
 
     if request.method == "POST":
         first_name = request.POST.get("first_name")
@@ -281,6 +285,7 @@ def checkout(request):
             customer, created = Customer.objects.get_or_create(email=email)
 
         if created:
+            customer.user = request.user
             customer.first_name = first_name
             customer.last_name = last_name
             customer.email = email

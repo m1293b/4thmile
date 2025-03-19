@@ -1,4 +1,7 @@
 from products.models import Product
+from cart.models import Cart as current_cart, CartItem
+from django.dispatch import receiver
+from django.contrib.auth.signals import user_logged_in
 
 
 class Cart:
@@ -74,7 +77,47 @@ class Cart:
     def get_total(self):
         return sum(item["total"] for item in self.cart.values())
 
-    def clear(self, request):
+    def clear(self):
         # Clear all items from the session's cart
-        del request.session["cart"]
-        request.session.modified = True
+        del self.cart
+        self.session.modified = True
+
+    # @receiver(user_logged_in)
+    # def merge_carts_on_login(request, user, **kwargs):
+    #     # Update carts: session and model
+    #     cart_model, created = current_cart.objects.get_or_create(user=request.user, active_cart=True)
+    #     session_cart = request.session.get("cart", None)
+
+    #     # Check if the user already has an active cart
+    #     try:
+    #         user_cart = current_cart.objects.get(user=user, active_cart=True)
+    #     except current_cart.DoesNotExist:
+    #         user_cart = None
+
+    #     if session_cart:
+    #         if user_cart is None:
+    #             user_cart = current_cart.objects.create(user=user, active_cart=True)
+
+    #         # Update or create cart items
+    #         for item in session_cart:
+    #             product_id = item["product_id"]
+    #             quantity = item["quantity"]
+    #             try:
+    #                 cart_item = CartItem.objects.get(cart=user_cart, product_id=product_id)
+    #                 cart_item.quantity += quantity
+    #                 cart_item.save()
+    #             except CartItem.DoesNotExist:
+    #                 CartItem.objects.create(
+    #                     cart=user_cart, product_id=product_id, quantity=quantity
+    #                 )
+
+    #     else:
+    #         # If session cart is empty or non-existent, populate it with the user's active cart
+    #         if user_cart:
+    #             session_cart = []
+    #             cart_items = CartItem.objects.filter(cart=user_cart)
+    #             for item in cart_items:
+    #                 session_cart.append(
+    #                     {"product_id": item.product_id, "quantity": item.quantity}
+    #                 )
+    #             request.session["cart"] = session_cart

@@ -80,8 +80,8 @@
   <script>
     $(document).ready(function () {
       $('#next-step').click(function (e) {
-        e.preventDefault()
-    
+        e.preventDefault()        
+
         var formData = new FormData()
         $('.form-group input[name], .form-group textarea[name]').each(function () {
           formData.append($(this).attr('name'), $(this).val())

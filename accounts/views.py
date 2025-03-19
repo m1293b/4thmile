@@ -93,7 +93,8 @@ def success(request):
 def profile(request):
     if request.method == "POST":
         user = request.user
-        account = Customer.objects.get(user=user)
+        
+        account, created = Customer.objects.get_or_create(user=user, email=request.POST.get("email"))
         password_form = CustomPasswordChangeForm(
             user=request.user, data=request.POST or None
         )
@@ -121,7 +122,8 @@ def profile(request):
         user.save()
 
         messages.success(request, "User details updated successfully.")
-
+        
+        account.user = request.user
         account.username = username if username else account.username
         account.first_name = first_name if first_name else account.first_name
         account.last_name = last_name if last_name else account.last_name
@@ -133,8 +135,12 @@ def profile(request):
         messages.success(request, "Customer details updated successfully.")
 
     else:
-        user = request.user
-        account = Customer.objects.get(user=user)
+        try:
+            user = request.user
+            account = Customer.objects.get(user=user)
+        except Customer.DoesNotExist:
+            account = None
+            messages.error(request, 'Please update cutomer details.')
         password_form = CustomPasswordChangeForm(
             user=request.user, data=request.POST or None
         )
