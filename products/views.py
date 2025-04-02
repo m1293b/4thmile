@@ -13,7 +13,11 @@ def products(request):
     product_queryset = Product.objects.all()
 
     main_category = None
-    categories = Category.objects.all()  # Initialize categories
+
+    if "category" in request.GET:
+        categories = request.GET["category"]
+    else:
+        categories = Category.objects.all()  # Initialize categories
 
     query = None
     sort = request.GET.get("sort", "")
@@ -81,11 +85,13 @@ def products(request):
     # Apply the potentially sorted product queryset to prefetch_related
 
     context = {
+        "items": {
+            "categories": categories,
+            "main_category": main_category,
+            "search_term": query,
+            "sort": sort,
+        },
         "products_found": products_found,
-        "categories": categories,
-        "main_category": main_category,
-        "search_term": query,
-        "sort": sort,
         "page_title": page_title,
         "page_description": page_description,
     }

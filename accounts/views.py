@@ -77,7 +77,7 @@ def success(request):
             order_item.save()
             order = Order.objects.filter(user=None).order_by("-created_at")[:1]
 
-    cart_session.clear(request)  # Delete the cart session after payment is successful
+    cart_session.clear()  # Delete the cart session after payment is successful
     order_items = OrderItem.objects.filter(order=order).all()
 
     context = {

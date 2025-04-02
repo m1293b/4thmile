@@ -79,7 +79,7 @@ class Cart:
 
     def clear(self):
         # Clear all items from the session's cart
-        del self.cart
+        self.session["cart"] = {}
         self.session.modified = True
 
     # @receiver(user_logged_in)

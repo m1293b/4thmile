@@ -6,13 +6,9 @@
     <h1 class="page-title">{{ page_title }}</h1>
     <div class="sort-products">
       <form method="get" action="{% url 'products' %}">
-        {% if main_category %}
-          <input type="hidden" name="main_category" value="{{ main_category }}" />
-        {% endif %}
-
-        {% if search_term %}
-          <input type="hidden" name="q" value="{{ search_term }}" />
-        {% endif %}
+        {% for key, value in request.GET.items %}
+          <input type="hidden" name="{{ key }}" value="{{ value }}" />
+        {% endfor %}
         <label for="sort">Sort by:</label>
         <select name="sort" id="sort">
           <option value="" {% if sort == '' %}selected{% endif %}>Select a sort option</option>
@@ -29,7 +25,7 @@
 
   {% if products_found %}
     {% with products_found=False %}
-      {% for category in categories %}
+      {% for category in items.categories %}
         {% with product_count=category.product_set.count %}
           {% if product_count > 0 %}
             {% with products_found=True %}

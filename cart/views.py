@@ -236,21 +236,22 @@ def remove_from_cart(request):
     )
 
 
-@login_required
 def clear_all_carts(request):
-    # Get all carts for the logged-in user
-    user_carts = Cart.objects.filter(user=request.user)
+    
+    if request.user.is_authenticated:
+        # Get all carts for the logged-in user
+        user_carts = Cart.objects.filter(user=request.user)
 
-    # Delete all associated CartItems first to maintain integrity
-    for cart in user_carts:
-        CartItem.objects.filter(cart=cart).delete()
+        # Delete all associated CartItems first to maintain integrity
+        for cart in user_carts:
+            CartItem.objects.filter(cart=cart).delete()
 
-    # Then delete the Carts themselves
-    user_carts.delete()
+        # Then delete the Carts themselves
+        user_carts.delete()
 
     # Clear session cart if it exists
     cart_sess = cart_session(request)
-    cart_sess.clear(request)
+    cart_sess.clear()
     return JsonResponse(
         {
             "message": "All carts, cart items, and the session cart have been cleared successfully."
@@ -285,7 +286,6 @@ def checkout(request):
             customer, created = Customer.objects.get_or_create(email=email)
 
         if created:
-            customer.user = request.user
             customer.first_name = first_name
             customer.last_name = last_name
             customer.email = email

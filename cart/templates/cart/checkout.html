@@ -36,7 +36,7 @@
           <textarea id="address" name="address" required>{{ customer.address }}</textarea>
         </div>
       </div>
-      <button type="button" id="next-step" class="checkout-page-button">Next Step</button>
+      <button type="button" id="next-step" class="checkout-page-button" disabled>Next Step</button>
     </div>
     <div class="hidden page-section" id="checkout-products-section">
       <h2 class="page-section-title">Your Cart Items</h2>
@@ -77,32 +77,5 @@
     </div>
   </form>
 
-  <script>
-    $(document).ready(function () {
-      $('#next-step').click(function (e) {
-        e.preventDefault()        
-
-        var formData = new FormData()
-        $('.form-group input[name], .form-group textarea[name]').each(function () {
-          formData.append($(this).attr('name'), $(this).val())
-        })
-        // Add the CSRF token to the form data
-        formData.append('csrfmiddlewaretoken', '{{ csrf_token }}')
-    
-        $.ajax({
-          type: 'POST',
-          url: '{% url "checkout" %}',
-          contentType: false,
-          processData: false,
-          data: formData,
-          success: function () {
-            updatePage(response)
-          },
-          error: function (xhr, status, error) {
-            alert('Error while trying to redirect you. Please try again.')
-          }
-        })
-      })
-    })
-  </script>
+  <script src="{% static 'js/checkout-form-validation.js' %}"></script>
 {% endblock %}
