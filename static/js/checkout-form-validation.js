@@ -19,7 +19,7 @@ $(document).ready(function () {
 
         if (isValid) {
             alertBox.addClass("text-success").removeClass("text-danger")
-            alertBox.text("Details saved.")
+            alertBox.text("All fields are filled out.")
         }
         else {
             alertBox.addClass("text-danger").removeClass("text-success")
@@ -57,7 +57,7 @@ $(document).ready(function () {
                 processData: false,
                 data: formData,
                 success: function (response) {
-                    alert('Details submitted successfully! Proceeding to the next step.');
+                    alertBox.text('Details saved.')
                 },
                 error: function (xhr, status, error) {
                     alert('Error while submitting your details. Please try again.');

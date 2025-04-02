@@ -99,7 +99,7 @@ class Cart:
 
             # Check if the product exists in the user's cart
             cart_item, item_created = CartItem.objects.get_or_create(
-                cart=user_cart, product=product
+                cart=user_cart, product=product, quantity=quantity
             )
             if item_created:
                 # New item, just set the quantity

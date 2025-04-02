@@ -80,5 +80,10 @@
     </div>
   </form>
 
+  <script>
+    const csrfToken = '{{ csrf_token }}'
+    const checkoutUrl = "{% url 'checkout' %}"
+  </script>
+
   <script src="{% static 'js/checkout-form-validation.js' %}"></script>
 {% endblock %}
