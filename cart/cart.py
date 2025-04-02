@@ -1,7 +1,7 @@
 from products.models import Product
 from cart.models import Cart as current_cart, CartItem
 from django.dispatch import receiver
-from django.contrib.auth.signals import user_logged_in
+from django.contrib.auth.signals import user_logged_in, user_logged_out
 
 
 class Cart:
@@ -82,42 +82,46 @@ class Cart:
         self.session["cart"] = {}
         self.session.modified = True
 
-    # @receiver(user_logged_in)
-    # def merge_carts_on_login(request, user, **kwargs):
-    #     # Update carts: session and model
-    #     cart_model, created = current_cart.objects.get_or_create(user=request.user, active_cart=True)
-    #     session_cart = request.session.get("cart", None)
+    @receiver(user_logged_in)
+    def merge_carts_on_login(sender, request, user, **kwargs):
+        """
+        Merges the session cart with the user's persistent cart when they log in.
+        """
+        session_cart = request.session.get("cart", {})
+        user_cart, created = current_cart.objects.get_or_create(
+            user=user, active_cart=True
+        )
 
-    #     # Check if the user already has an active cart
-    #     try:
-    #         user_cart = current_cart.objects.get(user=user, active_cart=True)
-    #     except current_cart.DoesNotExist:
-    #         user_cart = None
+        # Update or merge session cart into the user's cart model
+        for product_id, session_item in session_cart.items():
+            product = Product.objects.get(pk=product_id)
+            quantity = session_item["quantity"]
 
-    #     if session_cart:
-    #         if user_cart is None:
-    #             user_cart = current_cart.objects.create(user=user, active_cart=True)
+            # Check if the product exists in the user's cart
+            cart_item, item_created = CartItem.objects.get_or_create(
+                cart=user_cart, product=product
+            )
+            if item_created:
+                # New item, just set the quantity
+                cart_item.quantity = quantity
+            else:
+                # Existing item, increment the quantity
+                # Although it might be better just to update the quantity, keep testing
+                cart_item.quantity += quantity
 
-    #         # Update or create cart items
-    #         for item in session_cart:
-    #             product_id = item["product_id"]
-    #             quantity = item["quantity"]
-    #             try:
-    #                 cart_item = CartItem.objects.get(cart=user_cart, product_id=product_id)
-    #                 cart_item.quantity += quantity
-    #                 cart_item.save()
-    #             except CartItem.DoesNotExist:
-    #                 CartItem.objects.create(
-    #                     cart=user_cart, product_id=product_id, quantity=quantity
-    #                 )
+            # Save the updated item
+            cart_item.save()
 
-    #     else:
-    #         # If session cart is empty or non-existent, populate it with the user's active cart
-    #         if user_cart:
-    #             session_cart = []
-    #             cart_items = CartItem.objects.filter(cart=user_cart)
-    #             for item in cart_items:
-    #                 session_cart.append(
-    #                     {"product_id": item.product_id, "quantity": item.quantity}
-    #                 )
-    #             request.session["cart"] = session_cart
+        # Update session cart from the user's cart model
+        updated_session_cart = {}
+        for cart_item in CartItem.objects.filter(cart=user_cart):
+            updated_session_cart[str(cart_item.product.pk)] = {
+                "id": cart_item.product.pk,
+                "name": cart_item.product.name,
+                "quantity": cart_item.quantity,
+                "total": round(float(cart_item.product.price) * cart_item.quantity, 2),
+            }
+
+        # Update the session's cart with the merged data
+        request.session["cart"] = updated_session_cart
+        request.session.modified = True
