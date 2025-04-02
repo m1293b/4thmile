@@ -69,14 +69,13 @@ $("#payment-form").on("submit", async function (e) {
 
     if (error) {
       // Display error.message in your UI
-      console.log(error.message);
       $(".message-container").show().delay(3000).fadeOut();
       payButton
         .html("Pay")
         .attr("disabled", true)
         .delay(3000)
         .attr("disabled", false);
-      cardElement.update({ disabled: true });
+      cardElement.update({ disabled: false });
     } else {
       // The payment has been processed!
       // Trigger form submission
@@ -103,9 +102,8 @@ $("#payment-form").on("submit", async function (e) {
       }, 500); // Adjust the interval duration as needed
     }
   } catch (err) {
-    console.error(err);
     $(".message-container").show().delay(3000).fadeOut();
-    payButton.html("Pay").attr("disabled", false);
+    payButton.html("Try again").attr("disabled", false);
     cardElement.update({ disabled: false });
   }
 });

@@ -483,6 +483,10 @@ textarea {
 
 /* Payment page styling */
 
+#payment-form {
+  @apply mt-4;
+}
+
 .payment-page-grid {
   @apply grid grid-cols-1 gap-4 mb-6 justify-items-center;
 }

@@ -8741,6 +8741,10 @@ textarea {
 
 /* Payment page styling */
 
+#payment-form {
+  margin-top: 1rem;
+}
+
 .payment-page-grid {
   margin-bottom: 1.5rem;
   display: grid;
