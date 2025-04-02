@@ -3,6 +3,8 @@
 $(document).ready(function () {
     // Reference the "Next Step" button
     var nextStepButton = $('#next-step');
+    // reference the "alert-box" paragraph
+    var alertBox = $('#alert-box')
 
     // Function to check whether all required fields are filled
     function checkFormCompletion() {
@@ -14,6 +16,15 @@ $(document).ready(function () {
                 isValid = false;
             }
         });
+
+        if (isValid) {
+            alertBox.addClass("text-success").removeClass("text-danger")
+            alertBox.text("Details saved.")
+        }
+        else {
+            alertBox.addClass("text-danger").removeClass("text-success")
+            alertBox.text("Please fill out all fields above to continue.")
+        }
 
         // Enable the button if all fields are valid; otherwise, disable it
         nextStepButton.prop('disabled', !isValid);
