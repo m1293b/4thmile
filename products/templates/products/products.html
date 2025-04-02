@@ -11,11 +11,11 @@
         {% endfor %}
         <label for="sort">Sort by:</label>
         <select name="sort" id="sort">
-          <option value="" {% if sort == '' %}selected{% endif %}>Select a sort option</option>
-          <option value="name" {% if sort == 'name' %}selected{% endif %}>Name (A-Z)</option>
-          <option value="-name" {% if sort == '-name' %}selected{% endif %}>Name (Z-A)</option>
-          <option value="price" {% if sort == 'price' %}selected{% endif %}>Price: Low to High</option>
-          <option value="-price" {% if sort == '-price' %}selected{% endif %}>Price: High to Low</option>
+          <option value="" {% if items.sort == '' %}selected{% endif %}>Select a sort option</option>
+          <option value="name" {% if items.sort == 'name' %}selected{% endif %}>Name (A-Z)</option>
+          <option value="-name" {% if items.sort == '-name' %}selected{% endif %}>Name (Z-A)</option>
+          <option value="price" {% if items.sort == 'price' %}selected{% endif %}>Price: Low to High</option>
+          <option value="-price" {% if items.sort == '-price' %}selected{% endif %}>Price: High to Low</option>
         </select>
         <button type="submit" id="sort-button" aria-label="Sort button">Sort</button>
       </form>
