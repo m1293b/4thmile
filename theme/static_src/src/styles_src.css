@@ -535,6 +535,10 @@ textarea {
   @apply grid items-center grid-cols-3 gap-4 justify-items-center;
 }
 
-.contact-info form input {
+form input {
   @apply text-black rounded-md;
+}
+
+form {
+  @apply justify-items-center;
 }

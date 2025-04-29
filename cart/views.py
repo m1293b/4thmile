@@ -132,6 +132,7 @@ def add_to_cart(request):
 def update_cart(request):
     pk = int(request.POST.get("product_id"))
     new_quantity = int(request.POST.get("quantity"))
+    product = Product.objects.get(pk=pk)
 
     # Retrieve the session cart
     cart_sess = cart_session(request)
@@ -160,7 +161,6 @@ def update_cart(request):
                 user=request.user, active_cart=True
             )
 
-            product = Product.objects.get(pk=pk)
             cart_item, created = CartItem.objects.get_or_create(
                 cart=cart, product=product
             )

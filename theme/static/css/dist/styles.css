@@ -8872,8 +8872,12 @@ textarea {
   gap: 1rem;
 }
 
-.contact-info form input {
+form input {
   border-radius: 0.375rem;
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity, 1));
+}
+
+form {
+  justify-items: center;
 }
